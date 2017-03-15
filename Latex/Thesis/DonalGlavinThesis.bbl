@@ -1,27 +1,8 @@
-\begin{thebibliography}{}
+\begin{thebibliography}{1}
 
-\bibitem[Afshar, 2015]{AfsharCurtainPhd}
-Afshar, S. (2015).
-\newblock {\em Modelling and infrared thermal imagery of hot particle
+\bibitem{AfsharCurtainPhd}
+S.~Afshar, {\em Modelling and infrared thermal imagery of hot particle
   curtains}.
-\newblock PhD thesis, James Cook University.
-
-\bibitem[Andrew, 2008]{AndrewLeePhd}
-Andrew, L. (2008).
-\newblock {\em Modelling the Solids Transport Phenomena Within Flighted Rotary
-  Dryers}.
-\newblock PhD thesis, James Cook University.
-
-\bibitem[Christian and Ho, 2015]{christian2015system}
-Christian, J. and Ho, C. (2015).
-\newblock System design of a 1 mw north-facing, solid particle receiver.
-\newblock {\em Energy Procedia}, 69:340--349.
-
-\bibitem[Viebahn et~al., 2011]{viebahn2011potential}
-Viebahn, P., Lechon, Y., and Trieb, F. (2011).
-\newblock The potential role of concentrated solar power (csp) in africa and
-  europe—a dynamic assessment of technology development, cost development and
-  life cycle inventories until 2050.
-\newblock {\em Energy Policy}, 39(8):4420--4430.
+\newblock PhD thesis, James Cook University, 2015.
 
 \end{thebibliography}

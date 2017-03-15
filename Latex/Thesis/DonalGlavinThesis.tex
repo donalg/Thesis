@@ -6,29 +6,27 @@
 \usepackage{mathtools}
 \usepackage{enumerate}
 \usepackage{verbatim}
-%\usepackage{logreq}
-%\usepackage[
-%backend=biber, 
-%style=alphabetic, 
-%citestyle=authoryear
-%]{biblatex}
-%\usepackage{apacite}
-
-%\addbibresource{references.bib}
 
 \usepackage{color}
 \usepackage{tikz}
 \usetikzlibrary{shapes.geometric, arrows}
 
-% Creating a new indent function to call if i want to indent 
-% something but also removing the current indent preset. 
-\newlength\tindent % Creates measurement variable
-\setlength{\tindent}{\parindent} % Sets variable to length of standard indent
-\setlength{\parindent}{0pt} % Sets standard indent to 0
+\geometry{margin = 2cm}
 
-\renewcommand{\indent}{\hspace*{\tindent}} % creates a new function called indent which executes a space the length of the standard preset indent which is identified by the * symbol to occur at the start of a new line
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% PERSONAL COMMANDS:
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Creating a new indent function to call if i want to indent something but also removing the current indent preset. 
+\newlength\tindent 
+\setlength{\tindent}{\parindent} 
+\setlength{\parindent}{0pt} 
+\renewcommand{\indent}{\hspace*{\tindent}} 
+
 \newcommand{\ts}{\textsuperscript}
 \newcommand{\pe}{\vspace{0.3cm}}
+
+\newcommand{\mycite}[1]{\ts{\cite{#1}}}
+
 
 %%%%%%%%%%%%%%%%%%% Flow Chart Diagrams: 
 \tikzstyle{position} = [rectangle, rounded corners, minimum width=3cm, minimum height=1cm,text centered, draw=black, fill=blue!30]
@@ -37,23 +35,24 @@
 %\tikzstyle{decision} = [diamond, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=green!30]
 \tikzstyle{arrow} = [thick,<->,>=stealth]
 
-\geometry{margin = 2cm}
-
 
 \begin{document}
+
+
+
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% TITLE PAGE
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 	\begin{titlepage}
-
+		
 	\centering
-	%\includegraphics[width=0.15\textwidth]{example-image-1x1}\par\vspace{1cm}
 	{\scshape\LARGE James Cook University \par}
-	%\vspace{1cm}
-	%{\scshape\Large Engineering Practice Report \par}
 	\vspace{0.5cm}
+	
 	{\huge\bfseries COLLEGE OF SCIENCE \& ENGINEERING\par}
 	\vspace{2cm}
 
@@ -78,14 +77,20 @@
 
 	\vspace{2cm} 
 
-	\today
+	{\large \today \\}
 
 	\vspace{2cm}
-	% Bottom of the page
-	%{\large \today\par}
+
 \end{titlepage}	
 
 \pagenumbering{roman} % Change pagenumbering to Roman numberals
+
+
+
+
+
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% STATEMENT OF ACCESS
@@ -98,10 +103,17 @@ I, the undersigned, author of this work, understand that James Cook University m
 I understand that, as an unpublished work, a thesis has significant protection under the Copyright Act and I do not wish to place any further restriction on access to this work. \\ 
 \vspace{5cm}
 
+\underline{\hspace{4cm}} \hfill \underline{\hspace{3cm} \today}  \\ 
+Signature \hfill Date \\
 
-%Signature \hfill Date \\ 
 
 \pagebreak
+
+
+
+
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% DECLARATION OF SOURCES
@@ -109,8 +121,18 @@ I understand that, as an unpublished work, a thesis has significant protection u
 \section*{Declaration of Sources}
 \addcontentsline{toc}{section}{Declaration of Sources}
 I declare that this thesis is my own work and has not been submitted in any form for another degree or diploma at any university or other institution of tertiary education. Information derived from the published of unpublished work of others has been acknowledged in this text and a list of references id given. 
+\vspace{5cm}
+
+\underline{\hspace{4cm}} \hfill \underline{\hspace{3cm} \today}  \\ 
+Signature \hfill Date \\
+
 
 \pagebreak
+
+
+
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% ABSTRACT
@@ -123,6 +145,8 @@ I declare that this thesis is my own work and has not been submitted in any form
 
 
 
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% ACKNOWLEDGEMENTS
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -130,6 +154,11 @@ I declare that this thesis is my own work and has not been submitted in any form
 \addcontentsline{toc}{section}{Acknowledgements}
 
 {\color{red} To be completed at later date.} 
+
+
+
+
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -145,14 +174,24 @@ I declare that this thesis is my own work and has not been submitted in any form
 \listoffigures
 
 
+
+
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% LISTS OF TERMS
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \pagebreak
 
-\pagebreak
+
 
 \pagenumbering{arabic} % Change page numbering to Numerals
+
+
+
+
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -166,51 +205,58 @@ I declare that this thesis is my own work and has not been submitted in any form
 
 
 
+
+
+
+
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% INTRODUCTION
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Introduction}
 
 % Introduce the general purpose:
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 Understanding temperature distributions in Engineering applications plays an invaluable role toward understanding the effectiveness of design. 
 As the most frequently measured physical quantity, the quantification of temperate values and their distributions allows for design goals to be achieved in a far more succinct manner and plays a key role in a diverse range of engineering systems. One particularly challenging engineering process that proves problematic in obtaining thermal data for is the particle curtain. \\
 
 \pe 
 
+
 % Define particle curtains and Potential uses: 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Particle curtains are defined as a stream of particles falling a fixed distance through a gas or fluid phase \mycite{AfsharCurtainPhd}. They are very common in industrial drying, particularly in the minerals and food industry \mycite{AfsharCurtainPhd}.
+
+
+\begin{comment}
 Particle curtains are defined as a continuous stream of particles made to fall in a curtain-like
 shape through a gaseous medium. They are employed in a wide variety of industries as heat
 exchangers for particulate mediums, due primarily to their simplicity and low operational costs \ts{\cite{AfsharCurtainPhd, AndrewLeePhd}}. Examples include the flighted rotary dryer (FRD) and the hopper, which are common in mineral and pharmaceutical industries. However, particle curtains are steadily emerging in promising new renewable energy technologies for use in concentrating solar power (CSP) plants. These solar particle receiver designs are currently in the early demonstration phase, delivering improved thermal efficiency through their direct storage of heat within sand-like particles \ts{\cite{christian2015system, viebahn2011potential}}.
+\end{comment}
+
 
 % Introduce current analysis techniques 
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % Define gap in these techniques:
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % Introduce Innovations in Methodology and/or Technilogy that may affect the way we look at these problems: 
- 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
 % Identify how these inovations may/have affect the feild or similar fields
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 
 % Identify the how their implementations how they can affect this field 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
 
 \subsection{Objectives}
 % Define the objectives of this these:
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -235,13 +281,8 @@ exchangers for particulate mediums, due primarily to their simplicity and low op
 % Particle Curtain Research
 
 
-
-
-
-
-
 \addcontentsline{toc}{section}{References}
-\bibliographystyle{apalike}
+\bibliographystyle{ieeetr}
 \bibliography{references.bib}
 
 \end{document}
