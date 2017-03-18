@@ -3,44 +3,44 @@ Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: DonalGlavinThesis.aux
 The style file: ieeetr.bst
 Database file #1: references.bib.bib
-You've used 1 entry,
+You've used 4 entries,
             1876 wiz_defined-function locations,
-            484 strings with 3678 characters,
-and the built_in function-call counts, 146 in all, are:
-= -- 15
-> -- 4
+            505 strings with 4245 characters,
+and the built_in function-call counts, 980 in all, are:
+= -- 110
+> -- 27
 < -- 0
-+ -- 2
-- -- 1
-* -- 7
-:= -- 34
-add.period$ -- 2
-call.type$ -- 1
-change.case$ -- 0
++ -- 11
+- -- 7
+* -- 61
+:= -- 148
+add.period$ -- 6
+call.type$ -- 4
+change.case$ -- 2
 chr.to.int$ -- 0
-cite$ -- 1
-duplicate$ -- 7
-empty$ -- 12
-format.name$ -- 1
-if$ -- 29
+cite$ -- 4
+duplicate$ -- 50
+empty$ -- 86
+format.name$ -- 7
+if$ -- 234
 int.to.chr$ -- 0
-int.to.str$ -- 1
-missing$ -- 0
-newline$ -- 7
-num.names$ -- 1
-pop$ -- 2
+int.to.str$ -- 4
+missing$ -- 2
+newline$ -- 17
+num.names$ -- 4
+pop$ -- 7
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 2
+skip$ -- 36
 stack$ -- 0
-substring$ -- 0
-swap$ -- 1
+substring$ -- 72
+swap$ -- 22
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
 warning$ -- 0
-while$ -- 1
-width$ -- 2
-write$ -- 12
+while$ -- 10
+width$ -- 5
+write$ -- 43

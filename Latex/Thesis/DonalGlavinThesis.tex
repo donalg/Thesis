@@ -6,7 +6,7 @@
 \usepackage{mathtools}
 \usepackage{enumerate}
 \usepackage{verbatim}
-
+\usepackage{hyperref}
 \usepackage{color}
 \usepackage{tikz}
 \usetikzlibrary{shapes.geometric, arrows}
@@ -89,8 +89,7 @@
 
 
 
-
-
+\begin{comment}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% STATEMENT OF ACCESS
@@ -159,19 +158,20 @@ Signature \hfill Date \\
 
 
 
-
+\end{comment}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% CONTENTS PAGE
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \pagebreak
 \tableofcontents
+\pagebreak
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% LISTS OF FIGURES./Bibliography/
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\pagebreak
-\listoffigures
+%\pagebreak
+%\listoffigures
 
 
 
@@ -181,7 +181,7 @@ Signature \hfill Date \\
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% LISTS OF TERMS
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\pagebreak
+%\pagebreak
 
 
 
@@ -219,14 +219,19 @@ Signature \hfill Date \\
 % Introduce the general purpose:
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 Understanding temperature distributions in Engineering applications plays an invaluable role toward understanding the effectiveness of design. 
-As the most frequently measured physical quantity, the quantification of temperate values and their distributions allows for design goals to be achieved in a far more succinct manner and plays a key role in a diverse range of engineering systems. One particularly challenging engineering process that proves problematic in obtaining thermal data for is the particle curtain. \\
+As one of the most frequently measured physical quantity, the quantification of temperate values and their distributions allows for design goals to be achieved in a far more succinct manner and plays a key role in a diverse range of engineering systems. One particularly challenging engineering process that proves problematic in obtaining thermal data for is the particle curtain. \\
 
 \pe 
 
 
 % Define particle curtains and Potential uses: 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Particle curtains are defined as a stream of particles falling a fixed distance through a gas or fluid phase \mycite{AfsharCurtainPhd}. They are very common in industrial drying, particularly in the minerals and food industry \mycite{AfsharCurtainPhd}.
+Particle curtains are defined as a stream of particles falling a fixed distance through a gas or fluid phase \mycite{AfsharCurtainPhd}. They are very common in industrial drying, particularly in the minerals and food industry \mycite{AfsharCurtainPhd}. Furthermore, particle curtains are steadily emerging in promising new renewable energy technologies for use in concentrating solar power (CSP) plants. These solar particle receiver designs are currently in the early demonstration phase, delivering improved thermal efficiency through their direct storage of heat within sand-like particles \ts{\cite{christian2015system, viebahn2011potential}}. With regards to the Industrial and Mineral Industries a common technique for particle drying is the use of Flighted rotary dryers (FRD). Flighted rotary dryers are used extensively in a large range of industries for the control of
+temperature and moisture content of free flowing, particulate solids such as grains,
+sugar and mineral ores \mycite{AndrewLeePhd}. However, Whilst flighted rotary dryers are widely used, their complex solids transport behaviour, and the difficulty of separating solids transport and heat and mass transfer
+phenomena within the dryer, has proven to be a significant issue in regards to understanding their behaviour. Given the complex behaviour of flighted rotary dryers, and the lack of design and control procedures, there is a need for a model for flighted rotary dryers \mycite{AndrewLeePhd}. \\ 
+
+\pe 
 
 
 \begin{comment}
@@ -236,21 +241,25 @@ exchangers for particulate mediums, due primarily to their simplicity and low op
 \end{comment}
 
 
-% Introduce current analysis techniques 
+% Introduce current analysis techniques:
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Currently there are two major branches of research being conducted on particle curtains. The first is of which relates to computational modelling of particle curtains, one of which is the development of Computational Fluid Dynamics (CFD) based models. CFD has been applied successfully to model particle curtains in isothermal conditions; however, there are relatively few CFD studies of hot
+particle curtains. Furthermore, the use of CFD to approximate bulk curtain behaviour has not been
+described \mycite{AfsharCurtainPhd}. Another of these methods relates to DEM
 
-% Define gap in these techniques:
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-% Introduce Innovations in Methodology and/or Technilogy that may affect the way we look at these problems: 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-% Identify how these inovations may/have affect the feild or similar fields
+% Define gap in these techniques: 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-% Identify the how their implementations how they can affect this field 
+% Introduce Innovations in Methodology and/or Technology that may affect the way we look at these problems:  
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+% Identify how these innovations may/have affect the feild or similar fields:
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+% Identify the how their implementations how they can affect this field:
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
@@ -265,6 +274,43 @@ exchangers for particulate mediums, due primarily to their simplicity and low op
 \section{Literature Review}
 
 
+
+\subsection{Introduction}
+% Introduce Literature Review
+
+\subsection{Thermodynamic Principles} 
+% Introduce general Thermodynamic Prociples
+
+\subsubsection{Conduction}
+
+\subsubsection{Convection}
+
+\subsubsection{Radiation}
+
+\subsection{Particle Curtains}
+% Introduce uses practicle applications and current research standards on Particle Curtains
+
+
+\subsection{Infra-red Thermography}
+% Introduce Infra-red cameras, How they work, their limitations, and their current uses. 
+
+\subsection{Image Analysis/Processing}
+% Introduce current Image analysis and processing techniques along with statistical analysis techniques used in image analysis and processing. 
+
+\subsection{Statistical Methods currently used in Image Processing/Analysis} 
+
+
+\subsection{Camera Modelling}
+% Talk about the Camera model and it's uses in real world scanrios such as control systems 
+
+\subsection{Model building}
+% Describe techniques that use Image analysis/processing along with the camera model that allow the development of model building from video footage.
+
+
+
+\subsection{Conclusions}
+
+\section{Methodology} 
 
 
 %%%%%%%%%%%%% TOPICS OF INTERIST (with respect to research) 
