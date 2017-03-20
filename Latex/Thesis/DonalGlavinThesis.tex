@@ -7,11 +7,52 @@
 \usepackage{enumerate}
 \usepackage{verbatim}
 \usepackage{hyperref}
+\usepackage{float}
 \usepackage{color}
+%\usepackage{titlesec}
 \usepackage{tikz}
 \usetikzlibrary{shapes.geometric, arrows}
 
 \geometry{margin = 2cm}
+
+\begin{comment}
+\titleclass{\subsubsubsection}{straight}[\subsection]
+
+\newcounter{subsubsubsection}[subsubsection]
+\renewcommand\thesubsubsubsection{\thesubsubsection.\arabic{subsubsubsection}}
+\renewcommand\theparagraph{\thesubsubsubsection.\arabic{paragraph}} % optional; useful if paragraphs are to be numbered
+
+\titleformat{\subsubsubsection}
+{\normalfont\normalsize\bfseries}{\thesubsubsubsection}{1em}{}
+\titlespacing*{\subsubsubsection}
+{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+
+\titleformat{\subsubsubsection}
+{\normalfont\normalsize\bfseries}{\thesubsubsubsection}{1em}{}
+\titlespacing*{\subsubsubsection}
+{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+
+\makeatletter
+\renewcommand\paragraph{\@startsection{paragraph}{5}{\z@}%
+	{3.25ex \@plus1ex \@minus.2ex}%
+	{-1em}%
+	{\normalfont\normalsize\bfseries}}
+\renewcommand\subparagraph{\@startsection{subparagraph}{6}{\parindent}%
+	{3.25ex \@plus1ex \@minus .2ex}%
+	{-1em}%
+	{\normalfont\normalsize\bfseries}}
+\def\toclevel@subsubsubsection{4}
+\def\toclevel@paragraph{5}
+\def\toclevel@paragraph{6}
+\def\l@subsubsubsection{\@dottedtocline{4}{7em}{4em}}
+\def\l@paragraph{\@dottedtocline{5}{10em}{5em}}
+\def\l@subparagraph{\@dottedtocline{6}{14em}{6em}}
+\makeatother
+
+\setcounter{secnumdepth}{4}
+\setcounter{tocdepth}{4}
+
+\end{comment}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% PERSONAL COMMANDS:
@@ -255,7 +296,7 @@ described \mycite{AfsharCurtainPhd}. Another of these methods relates to DEM
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-% Identify how these innovations may/have affect the feild or similar fields:
+% Identify how these innovations may/have affect the feild oParticle curtains are defined as a stream of particles falling a fixed distance through a gas or fluid phase \mycite{AfsharCurtainPhd}.r similar fields:
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
@@ -267,18 +308,47 @@ described \mycite{AfsharCurtainPhd}. Another of these methods relates to DEM
 \subsection{Objectives}
 % Define the objectives of this these:
 
+develop a numerical/analytic model to represent the thermodynamic properties of a particle curtains through the combination of known kinematics, thermodynamic properties. Verifying these relations through the analysis of IR and VIS imagery.    
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% LITERATURE REVIEW
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Literature Review}
 
-
-
 \subsection{Introduction}
 % Introduce Literature Review
 
-In this Literature Review, a general description of thermodynamic heat transfer will be looked at along with the physical nature of particle curtains and the relevant thermodynamic principles that affect their behaviour, furthermore the relevance of particle curtains in real world applications will be looked at and current models that 
+In this Literature Review, a general description of the physical nature of particle curtains and the relevance of particle curtains in real world applications will be looked at along with the current modelling techniques used to describe their behaviour, furthermore the fundamental thermodynamic heat transfer relationships will be looked at along with how these relations affect a falling particle curtain. 
+
+\pe 
+
+In addition to this Infra-red Thermal Imaging will also be looked at which will also cover current relevant Image analysis/processing and statistical analysis techniques. Further more camera modelling along with model building techniques will also be looked at.   
+
+\subsection{Particle Curtains}
+% Introduce uses practicle applications and current research standards on Particle Curtains
+Particle curtains are defined as a stream of particles falling a fixed distance through a gas or fluid phase \mycite{AfsharCurtainPhd}. Within this process a complex exchange of heat mass transfer occurs in a multiphase system. 
+Particle curtains are very common in industrial drying, particularly in the minerals and food industry \mycite{AfsharCurtainPhd}. 
+
+\pe 
+
+A common technique for particle drying is the use of Flighted rotary dryers (FRD). Flighted rotary dryers are used extensively in a large range of industries for the control of
+temperature and moisture content of free flowing, particulate solids such as grains, sugar and mineral ores \mycite{AndrewLeePhd}. However, Whilst flighted rotary dryers are widely used, their complex solids transport behaviour, and the difficulty of separating solids transport and heat and mass transfer phenomena within the dryer, has proven to be a significant issue in regards to understanding their behaviour. Given the complex behaviour of flighted rotary dryers, and the lack of design and control procedures, there is a need for a model for flighted rotary dryers \mycite{AndrewLeePhd}. 
+
+\pe 
+
+In addition to their use in the mineral and food industries, particle curtains are steadily emerging in promising new renewable energy technologies for use in concentrating solar power (CSP) plants. These solar particle receiver designs are currently in the early demonstration phase, delivering improved thermal efficiency through their direct storage of heat within sand-like particles \ts{\cite{christian2015system, viebahn2011potential}}. They are favoured over liquid heat exchangers due to the ability to operate at hight temperatures without having to compensate for extra pressure with enhanced infrastructure. 
+
+\pe 
+
+Currently their are two major research branches in understanding particle curtain behaviour. The first of which relates to the computational modelling of this physical phenomena whilst the alternative is through experimental investigations.  
+
+\subsubsection{Computational Modelling} 
+
+Currently the standard means of modelling particle curtains is divided between the Discrete Element Method (DEM) and Computational Fluid Dynamics (CFD). In recent years it has been shown that CFD has been successfully applied to modelling particles in particle curtains 
+
+\subsubsection{Experimental Investigations}
+
 
 \subsection{Thermodynamic Principles} 
 % Introduce general Thermodynamic Prociples
@@ -314,7 +384,7 @@ The convection heat transfer mode is comprised of two mechanisms. In addition to
 transfer due to random molecular motion (diffusion), energy is also transferred by the bulk, or macroscopic, motion of the fluid. This fluid motion is associated with the fact that, at any instant, large numbers of molecules are moving collectively or as aggregates.Such motion, in the presence of a temperature gradient, contributes to heat transfer\mycite{bergman2011fundamentals}.  
 \pe  
 
-This mode of heat transfer is considered as the most complex of the three due to the inherent chaotic behaviour of fluids. There are two sub categories of convective heat transfer: The first relating to natural convective behaviour where the temperature differentials between the fluid and the surface result in changes in density and thus fluid motion based on the physical properties of buoyancy. The second relates to forced convective heat transfer where there is some relative velocity difference between the bulk of the fluid and the surface of the object, in this instance the formation of a fluid velocity boundary layer occurs over the object base on the no slip condition which in turn provides the medium in which heat transfer occurs in the form of a temperature distribution within this boundary layer. In general regardless of the nature of the convection heat transfer process, the heat transfer is defined by Newton's Law of Cooling as seen in equation \ref{NetonsCooling}: 
+This mode of heat transfer is considered as the most complex of the three due to the inherent chaotic behaviour of fluids. There are two sub categories of convective heat transfer: The first relating to natural convective behaviour where the temperature differentials between the fluid and the surface result in changes in density and thus fluid motion based on the physical properties of buoyancy. The second relates to forced convective heat transfer where there is some relative velocity difference between the bulk of the fluid and the surface of the object, in this instance the formation of a fluid velocity boundary layer occurs over the object based on the no slip condition which in turn provides the medium in which heat transfer occurs in the form of a temperature distribution within this boundary layer. In general regardless of the nature of the convection heat transfer process, the heat transfer is defined by Newton's Law of Cooling as seen in equation \ref{NetonsCooling}: 
 
 \begin{align} \label{NetonsCooling}
 	\frac{\partial q}{\partial t} = h(T_s - T_\infty) 
@@ -327,18 +397,28 @@ Where: \\
 	$T_\infty$ & Is the bulk fluid temperature \\   
 \end{tabular}
 
-lala yeah boy!
 
-\subsubsection{Radiation}
+\subsubsection{Radiation \& Intra-Red (IR) Theory}
 
-\subsection{Particle Curtains}
-% Introduce uses practicle applications and current research standards on Particle Curtains
-\subsubsection{Computational Modelling} 
+Thermal radiation is energy emitted by matter that is at a non-zero temperature \mycite{bergman2011fundamentals}. This form of energy transfered via electromagnetic waves and unlike that of conduction or convection does not require a medium for heat transfer to occur. The rate at which energy it transmitted per unit area $(W/m^2)$ is termed the surface emissive power. StephanBoltzmann's Law desciribes this heat transfer: 
+ 
+\begin{align} \label{StephBoltzSimp}
+E = \epsilon \sigma T_s^4
+\end{align} 
+Where: \\ 
+\begin{tabular}{l | l}
+	$E$ & Is the emissive power $(W/m^2)$ \\ 
+	$\sigma$ & Is the StephanBoltzmann constant $(\sigma = 5.67 \times 10^{-8} W/m^2 \cdot K^4)$ \\ 
+	$T_s$ & Is the temperature of the objects surface \\   
+	$\epsilon$ & Is the emissivity $(0 \leq \epsilon \leq 1)$ 
+\end{tabular}
+\\ \pe \\ 
 
-\subsubsection{Experimental Investigations}
 
 \subsection{Infra-red Thermography}
 % Introduce Infra-red cameras, How they work, their limitations, and their current uses. 
+
+\subsubsection{Infra-red Theory}
 
 \subsection{Image Analysis/Processing}
 % Introduce current Image analysis and processing techniques along with statistical analysis techniques used in image analysis and processing. 
