@@ -278,18 +278,64 @@ described \mycite{AfsharCurtainPhd}. Another of these methods relates to DEM
 \subsection{Introduction}
 % Introduce Literature Review
 
+In this Literature Review, a general description of thermodynamic heat transfer will be looked at along with the physical nature of particle curtains and the relevant thermodynamic principles that affect their behaviour, furthermore the relevance of particle curtains in real world applications will be looked at and current models that 
+
 \subsection{Thermodynamic Principles} 
 % Introduce general Thermodynamic Prociples
 
+
+Within the study of thermodynamics the phenomena of heat transfer is defined as thermal energy in transit due to a spatial temperature difference\mycite{bergman2011fundamentals}.
+There are several modes in which heat/energy transfer (Q) can be transferred from differential temperature zones. When a temperature gradient exists in a medium or between a two mediums, which may be a solid, fluid or both there are three types of energy transfer that may exist: 
+\begin{itemize}
+	\item Conduction - Refers to the heat transfer that will occur across or within the medium. 
+	\item Convection - Refers to the heat transfer that will occur between a surface and a moving fluid. 
+	\item Radiation - Refers to the heat transfer that will occur from any surface at a temperature greater than absolute zero. 
+\end{itemize}
+
+Due to the inherently complex behaviour of matter, these three modes of energy transfer are described in very different ways although sharing the common trait to propagate toward equilibrium. A more in depth description of these modes can be seen below:  
+
 \subsubsection{Conduction}
+Conduction may be viewed as the transfer of energy from the more energetic to the less
+energetic particles of a substance due to interactions between the particles \mycite{bergman2011fundamentals}. This phenomena occurs very regularly in real world scenarios with the rate of heat transfer sharing a direct proportionality between the temperature differential. Fourier's Law mathematically describes this transfer:
+
+\begin{align} \label{condCart}
+\frac{\partial q}{\partial t} = -k \left( \frac{\partial T}{\partial x} \hat{i} + \frac{\partial T}{\partial y} \hat{j} + \frac{\partial T}{\partial z} \hat{k} \right)
+\end{align}
+Where: \\ 
+\begin{tabular}{l | l}
+	$\frac{\partial q}{\partial t}$ & Is the thermal energy flux $(W/m^2)$ \\ 
+	$k$ & Is the thermal transport property (Thermal conductivity) $(W/m \cdot K)$ \\ 
+	$\frac{\partial T}{\partial(x,y,z)}$ & Is the temperature gradient in each the $x,y$ and $z$ directions respectively. 
+\end{tabular}
+
 
 \subsubsection{Convection}
+The convection heat transfer mode is comprised of two mechanisms. In addition to energy
+transfer due to random molecular motion (diffusion), energy is also transferred by the bulk, or macroscopic, motion of the fluid. This fluid motion is associated with the fact that, at any instant, large numbers of molecules are moving collectively or as aggregates.Such motion, in the presence of a temperature gradient, contributes to heat transfer\mycite{bergman2011fundamentals}.  
+\pe  
+
+This mode of heat transfer is considered as the most complex of the three due to the inherent chaotic behaviour of fluids. There are two sub categories of convective heat transfer: The first relating to natural convective behaviour where the temperature differentials between the fluid and the surface result in changes in density and thus fluid motion based on the physical properties of buoyancy. The second relates to forced convective heat transfer where there is some relative velocity difference between the bulk of the fluid and the surface of the object, in this instance the formation of a fluid velocity boundary layer occurs over the object base on the no slip condition which in turn provides the medium in which heat transfer occurs in the form of a temperature distribution within this boundary layer. In general regardless of the nature of the convection heat transfer process, the heat transfer is defined by Newton's Law of Cooling as seen in equation \ref{NetonsCooling}: 
+
+\begin{align} \label{NetonsCooling}
+	\frac{\partial q}{\partial t} = h(T_s - T_\infty) 
+\end{align}
+Where: \\ 
+\begin{tabular}{l | l}
+	$\frac{\partial q}{\partial t}$ & Is the thermal energy flux $(W/m^2)$ \\ 
+	$h$ & Is the thermal transport property (Convective heat transfer coefficient) $(W/m^2 \cdot K)$ \\ 
+	$T_s$ & Is the temperature of the objects surface \\ 
+	$T_\infty$ & Is the bulk fluid temperature \\   
+\end{tabular}
+
+lala yeah boy!
 
 \subsubsection{Radiation}
 
 \subsection{Particle Curtains}
 % Introduce uses practicle applications and current research standards on Particle Curtains
+\subsubsection{Computational Modelling} 
 
+\subsubsection{Experimental Investigations}
 
 \subsection{Infra-red Thermography}
 % Introduce Infra-red cameras, How they work, their limitations, and their current uses. 
@@ -305,7 +351,6 @@ described \mycite{AfsharCurtainPhd}. Another of these methods relates to DEM
 
 \subsection{Model building}
 % Describe techniques that use Image analysis/processing along with the camera model that allow the development of model building from video footage.
-
 
 
 \subsection{Conclusions}
