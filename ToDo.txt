@@ -1,0 +1,20 @@
+To do list: 
+
+Document: 
+	1. Finish reading and writing about particle curtains. 
+	2. Touch up thermodynamic section (focus on radiative heat transfer)
+	3. Touch up Convective heat transfer with regards to heat transfer of particles and important physical properties
+	4. Start kinematic section focusing on falling spheres coefficient of drag and air entanglement
+	4. Begin image analysis, processing and computer vision methods of looking at temperature data and sound image analysis techniques. 
+	5. Look at Camera modelling and scene reconstruction how to develop 3D models from known geometry points. 
+	6. Look at the adaptation from 2d to three 3d of these image analysis techniques and how they can be adapted for use with 3d models (How FEW DEM SPH analyse models)
+	7. How to make use of modelling techniques to verify the models (monte carlo simulations) den FTPDEM (Fixed time probabilistic Lagrangian discrete element method)
+	8. (AND ABOVE ALL RELATE ALL OF THESE TECHNIQUES BACK TO PARTICLE CURTAINS MAINTAIN SUBJECT FOCUS)
+
+Programming Data and Methodology: 
+	1. Library porting OpenCV, GPU acceleration, OpenMP, OpenCL, Image handling/analysis/tools, also porting personal C code to python.
+	2. Build familiarity with MatplotLib numpy scipy general python tools
+	3. FileIO dealing with Thermographs, BMP RBG formats MP4 
+	4. Develop personal library/directory of image analysis tools (understand fully)
+	5. Start writing necessary object and function files for programming use. 
+	

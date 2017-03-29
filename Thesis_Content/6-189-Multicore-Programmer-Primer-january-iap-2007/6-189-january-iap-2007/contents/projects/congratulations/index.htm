@@ -1,0 +1,709 @@
+<!DOCTYPE html><html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="format-detection" content="telephone=no">
+<title>Congratulations | Projects | Multicore Programming Primer | Electrical Engineering and Computer Science | MIT OpenCourseWare</title>
+<!-- Begin Automatic Metadata Insertion --><meta content="6-189-multicore-programming-primer-january-iap-2007" name="WT.cg_n">
+<meta content="Congratulations" name="WT.cg_s">
+<meta content="" name="Description">
+<meta content="Rabbah, Rodric" name="Author">
+<meta content="Amarasinghe, Saman" name="Author">
+<meta content="multicore architectures,parallel programming patterns,Sony PlayStation 3,competition,Theory of Computation,Programming Languages,Software Design and Engineering" name="keywords">
+<meta content="6.189 Multicore Programming Primer | Congratulations" name="Search_Display">
+<meta content="Theory of Computation" itemprop="about">
+<meta content="Programming Languages" itemprop="about">
+<meta content="Software Design and Engineering" itemprop="about">
+<!-- End Automatic Metadata Insertion --><link title="default" rel="stylesheet" type="text/css" href="../../../common/styles/grid.css">
+<link title="default" rel="stylesheet" type="text/css" href="../../../common/styles/base.css">
+<link title="default" rel="stylesheet" type="text/css" href="../../../common/styles/menu.css">
+<link title="default" rel="stylesheet" type="text/css" href="../../../common/styles/jquery.bubblepopup.css">
+<link title="default" rel="stylesheet" type="text/css" href="../../../common/styles/courses.css">
+<link title="default" rel="stylesheet" type="text/css" href="../../../common/styles/courses_new.css">
+<link title="default" rel="stylesheet" type="text/css" href="../../../common/styles/jquery.jscrollpane.css">
+<link title="default" rel="stylesheet" type="text/css" href="../../../common/styles/media_tabs.css">
+<link href="https://ocw.mit.edu/xml/ocwcc.rdf" type="application/rdf+xml" rel="metadata">
+<link rel="canonical" href="https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-189-multicore-programming-primer-january-iap-2007/projects/congratulations">
+<link rel="apple-touch-icon" href="../../../common/images/apple-touch-icon.png">
+<script type="text/javascript" src="../../../common/scripts/jquery.js"></script><script type="text/javascript" src="../../../common/scripts/ocw-media-utils-offline.js"></script><script type="text/javascript" src="../../../common/scripts/ocw-offline.js"></script><script type="text/javascript" src="../../../common/scripts/jquery.bubblepopup.min.js"></script><script type="text/javascript" src="../../../common/scripts/jquery-ui.min.js"></script><script type="text/javascript" src="../../../common/scripts/jquery.jscrollpane.min.js"></script><script type="text/javascript" src="../../../common/scripts/expandy.js"></script><script type="text/javascript" src="../../../common/scripts/bubble-popup-offline.js"></script><script type="text/javascript">
+      $(document).ready(function() {
+        $("#tabs").tabs();
+        IpadScroller();
+      });
+    </script>
+</head>
+<body itemscope itemtype="http://schema.org/WebPage">
+        
+	
+
+        <header id="top"><div id="grid">
+				
+				
+					
+<div id="portletwrapper-6f63772e746f70706f72746c65746d616e616765720a636f6e746578740a2f506c6f6e650a736974652d686561646572" class="portletWrapper kssattr-portlethash-6f63772e746f70706f72746c65746d616e616765720a636f6e746578740a2f506c6f6e650a736974652d686561646572">
+<div class="portletStaticText portlet-static-site-header">
+<!--googleoff: index-->
+<div class="grid_6 alpha" id="banner"><a href="https://ocw.mit.edu/"><img src="../../../common/images/ocw_mast.png" class="logo" alt="MIT OpenCourseWare, Massachusetts Institute of Technology"></a></div>
+<div class="grid_6 omega" id="subscribe">
+<aside class="module" aria-label="Connect with OCW"><table class="social"><tbody><tr>
+<td class="socialbutton"><a aria-label="Subscribe to the OCW Newsletter" href="https://ocw.mit.edu/subscribe/index.htm?utm_source=header"><img src="../../../common/images/trans.gif" alt="An icon depicting an envelope.">Subscribe to the OCW Newsletter</a></td>
+            <td>
+<a aria-label="Google+" href="https://plus.google.com/104567381989352550847/posts"><img src="../../../common/images/icon_gp.png" alt="Click to visit our Google+ page."></a>                   <a aria-label="Pinterest" href="https://www.pinterest.com/mitocw/pins/"><img src="../../../common/images/icon_pin.png" alt="Click to visit our Pinterest page."></a>                   <a aria-label="Facebook" href="https://facebook.com/mitocw"><img src="../../../common/images/icon_fb.png" alt="Click to visit our Facebook page."></a>                   <a aria-label="Twitter" href="https://twitter.com/mitocw"><img src="../../../common/images/icon_tw.png" alt="Click to visit our Twitter feed."></a>
+</td>
+        </tr></tbody></table></aside><nav aria-label="Help Links" class="helplinks"><a aria-label="OCW Site Help" href="https://ocw.mit.edu/help">Help</a><span aria-hidden="true">|</span>     <a href="../../../common/jsp/feedback.htm">Contact Us</a>   </nav>
+</div>
+<div class="clear"> </div>
+<!--googleon: index-->
+</div>
+
+</div>
+
+
+
+
+
+<!--googleoff: index-->
+<nav id="mega" class="grid_8 alpha" aria-label="Site"><ul id="menu" role="presentation">
+<li id="menu_home">
+        <a href="https://ocw.mit.edu/" aria-label="Homepage"><img src="../../../common/images/top-nav_home.png" class="home_icon" alt="Click for site home page."></a><!-- Begin Home Item -->
+    </li>
+<!-- End Home Item -->
+    <li id="drop_1" aria-label="Find Courses" class="selected">
+      <a href="#" aria-hidden="true">Find Courses</a><!-- Begin 5 columns Item -->
+      <div class="dropdown_5columns-a mega-courses">
+        <div class="col_1a">
+          <div class="row_1a">
+            <nav aria-labelledby="mm-find-courses-by"><span id="mm-find-courses-by" class="nav" aria-hidden="true">Find courses by:</span>
+              <ul class="find_by" role="presentation">
+<li><a href="https://ocw.mit.edu/courses/find-by-topic/">Topic</a></li>
+                <li><a href="https://ocw.mit.edu/courses/find-by-number/">MIT Course Number</a></li>
+                <li><a href="https://ocw.mit.edu/courses/find-by-department/">Department</a></li>
+								<li><a href="https://ocw.mit.edu/educator/?view=instructional&amp;utm_campaign=Educator&amp;utm_source=megamenu&amp;utm_medium=find-courses&amp;utm_content=approaches">Instructional Approach</a></li>
+								<li><a href="https://ocw.mit.edu/educator/?view=teaching&amp;utm_campaign=Educator&amp;utm_source=megamenu&amp;utm_medium=find-courses&amp;utm_content=materials">Teaching Materials</a></li>
+            		<li><a href="https://ocw.mit.edu/courses/?utm_source=ocw-megamenu&amp;utm_medium=link&amp;utm_campaign=mclstudy">View All Courses</a></li>
+							</ul></nav><nav aria-labelledby="mm-collections"><span id="mm-collections" class="nav" aria-hidden="true">Collections</span>
+              <ul role="presentation">
+<li><a href="https://ocw.mit.edu/courses/audio-video-courses/">Audio/Video Lectures</a></li>
+                <li><a href="https://ocw.mit.edu/courses/online-textbooks/">Online Textbooks</a></li>
+                <li><a href="https://ocw.mit.edu/courses/new-courses/">New Courses</a></li>
+                <li><a href="https://ocw.mit.edu/courses/most-visited-courses/">Most Visited Courses</a></li>
+                <li><a href="https://ocw.mit.edu/courses/ocw-scholar/">OCW Scholar Courses</a></li>
+                <li><a href="https://ocw.mit.edu/courses/this-course-at-mit/">This Course at MIT</a></li>
+                <li><a href="https://ocw.mit.edu/resources/">Supplemental Resources</a></li>
+              </ul></nav><nav class="col_1b" aria-labelledby="mm-translated-courses"><span id="mm-translated-courses" class="nav" aria-hidden="true">Translated Courses</span>
+							<ul role="presentation">
+<li><a href="https://ocw.mit.edu/courses/translated-courses/traditional-chinese" aria-label="Traditional Chinese">繁體字 / Traditional Chinese</a></li>
+								<li><a href="https://ocw.mit.edu/courses/translated-courses/spanish" aria-label="Spanish">Español / Spanish</a></li>
+								<li><a href="https://ocw.mit.edu/courses/translated-courses/portuguese" aria-label="Portuguese">Português / Portuguese</a></li>
+								<li><a href="https://ocw.mit.edu/courses/translated-courses/persian" aria-label="Persian">فارسی / Persian</a></li>
+								<li><a href="https://ocw.mit.edu/courses/translated-courses/turkish" aria-label="Turkish">Türkçe / Turkish</a></li>
+								<li><a href="https://ocw.mit.edu/courses/translated-courses/korean" aria-label="Korean">(비디오)한국 / Korean</a></li>
+								<li><a href="https://ocw.mit.edu/courses/translated-courses">More...</a></li>
+							</ul></nav>
+</div>
+          <div class="row_1b">
+            <nav aria-labelledby="mm-cross-disciplinary-topic-lists"><span id="mm-cross-disciplinary-topic-lists" class="nav" aria-hidden="true">Cross-Disciplinary Topic Lists</span>
+            	<ul role="presentation">
+<li><a href="https://ocw.mit.edu/courses/energy-courses">Energy</a></li>
+                <li><a href="https://ocw.mit.edu/courses/entrepreneurship">Entrepreneurship</a></li>
+                <li><a href="https://ocw.mit.edu/courses/environment-courses">Environment</a></li>
+              	<li><a href="https://ocw.mit.edu/courses/intro-programming">Introductory Programming</a></li>
+                <li><a href="https://ocw.mit.edu/courses/life-sciences">Life Sciences</a></li>
+                <li><a href="https://ocw.mit.edu/courses/transportation-courses">Transportation</a></li>
+              </ul></nav>
+</div>
+        </div>
+
+      </div>
+    </li>
+    <li id="drop_2">
+        <a href="" aria-hidden="true">About</a>
+        <div class="dropdown_1column-a">
+            <nav class="col_1" aria-label="About"><ul role="presentation">
+<li><a href="https://ocw.mit.edu/about/">About MIT OpenCourseWare</a></li>
+                    <li><a href="https://ocw.mit.edu/about/site-statistics/">Site Statistics</a></li>
+                    <li><a href="https://ocw.mit.edu/about/ocw-stories/">OCW Stories</a></li>
+                    <li><a href="https://ocw.mit.edu/about/newsletter/">News</a></li>
+                </ul></nav>
+</div>
+    </li>
+    <li id="drop_3">
+        <a href="" aria-hidden="true">Donate</a>
+        <div class="dropdown_1column-a">
+          <nav class="col_1" aria-label="Donate"><ul role="presentation">
+<li><a href="https://ocw.mit.edu/donate/">Make a Donation</a></li>
+              <li><a href="https://ocw.mit.edu/donate/why-donate/">Why Donate?</a></li>
+              <li><a href="https://ocw.mit.edu/donate/our-supporters/">Our Supporters</a></li>
+              <li><a href="https://ocw.mit.edu/donate/other-ways-to-contribute/">Other Ways to Contribute</a></li>
+              <li><a href="https://ocw.mit.edu/donate/shop-ocw">Shop OCW</a></li>
+              <li><a href="https://ocw.mit.edu/support/">Become a Corporate Sponsor</a></li>
+            </ul></nav>
+</div>
+    </li>
+    <li id="drop_4">
+      <a href="" aria-hidden="true">Featured Sites</a>
+      <div class="dropdown_1column-a">
+        <nav class="col_1" aria-labelledby="mm-featured-sites"><span id="mm-featured-sites" class="nav" aria-hidden="true">OCW Initiatives</span>
+          <ul role="presentation">
+<li><a href="https://ocw.mit.edu/high-school/">Highlights for High School</a></li>
+            <li><a href="https://ocw.mit.edu/educator/?utm_campaign=Educator&amp;utm_source=megamenu&amp;utm_medium=featured-sites">OCW Educator</a></li>
+            <li><a href="https://ocw.mit.edu/courses/crosslinks/">MIT Crosslinks and OCW</a></li>
+            <li><a href="https://ocw.mit.edu/courses/mitx-related-courseware/">MITx and Related OCW Courses</a></li>
+					</ul></nav><nav class="col_1" aria-labelledby="mm-featured-external-links"><span id="mm-featured-external-links" class="nav" aria-hidden="true">Beyond OCW</span>
+					<ul>
+<li><a href="http://k12videos.mit.edu" aria-label="External Link: MIT Plus K12 Videos">MIT+K12 Videos</a></li>
+            <li><a href="https://teachingexcellence.mit.edu/" aria-label="External Link: Teaching Excellence at MIT">Teaching Excellence at MIT</a></li>
+						<li><a href="https://outreach.mit.edu" aria-label="External Link: Outreach at MIT">Outreach @ MIT</a></li>
+						<li><a href="http://www.oeconsortium.org/" aria-label="External Link: Open Education Consortium">Open Education Consortium</a></li>
+          </ul></nav>
+</div>
+    </li>
+  </ul></nav><div id="search" role="search" class="grid_4 omega">
+  
+    <form aria-label="Advanced Search" method="get" action="../../../common/search/AdvancedSearch.htm">
+		  <table class="search"><tbody><tr>
+<td class="black"><input type="text" onblur="fillSearchBox()" onfocus="clearSearchBox()" maxlength="255" value="Search" name="q" class="greytext searchField" id="terms"></td>
+            <td class="black"><input type="image" src="../../../common/images/button_search.png" name="btnG" class="sub_button"></td>
+            <td class="text2"><a href="../../../common/search/AdvancedSearch.htm">Advanced<br>Search</a></td>
+          </tr></tbody></table>
+</form>
+</div>
+<div class="clear"></div>
+<!--googleon: index-->
+<!-- *end header* -->
+
+				
+				
+			</div>
+<!-- top grid end -->
+		</header><!-- top end --><div id="center_media">
+      	<div id="grid">
+      		<div id="left">
+        		<nav id="breadcrumb_media" aria-label="Breadcrumb"><p>
+
+    <a href="https://ocw.mit.edu/">Home</a>
+    
+        »
+        
+    
+    
+        
+            <a href="https://ocw.mit.edu/courses">Courses</a>
+            
+                »
+                
+            
+            
+         
+    
+    
+        
+            <a href="https://ocw.mit.edu/courses/electrical-engineering-and-computer-science">Electrical Engineering and Computer Science</a>
+            
+                »
+                
+            
+            
+         
+    
+    
+        
+            <a href="../../../contents/index.htm">Multicore Programming Primer</a>
+            
+                »
+                
+            
+            
+         
+    
+    
+        
+            <a href="../../../contents/projects/index.htm">Projects</a>
+            
+                »
+                
+            
+            
+         
+    
+    
+        
+            
+            
+            Congratulations
+         
+    
+</p>
+
+            	</nav><div class="clear"></div>
+        		<div id="media_title">
+        		<h1 class="title" itemprop="name" property="dct:title">
+        <span class="" id="parent-fieldname-title">
+            Congratulations
+        </span>
+    </h1>
+        		</div>
+           		<div class="clear"></div>
+           		<div id="course_wrapper_media">
+           			<nav id="course_nav" aria-label="Course"><script language="javascript" type="text/javascript">
+function toggleMenu(objID) {
+  if (!document.getElementById) return;
+  var ob = document.getElementById(objID);
+  ob.className = (ob.className == 'selected')?'': 'selected';
+}
+function toggleClass(id)
+{
+  var divtoggleClass= document.getElementById(id);
+  divtoggleClass.className = (divtoggleClass.className == 'mO')?'mC': 'mO';
+  return false;
+}
+function changeAlt(id)
+{
+  id.alt = (id.alt == 'Expand Menu')?'Collapse Menu' : 'Expand Menu';
+  id.title = (id.title == 'Expand Menu')?'Collapse Menu' : 'Expand Menu';
+}
+</script><!--Left Nav Starts --><ul>
+<li class="">
+			   			<a href="../../../contents/index.htm">
+		                  Course Home  			                
+	                    </a>
+		        </li>
+		    
+         	
+	
+	
+	    	
+	    	    <li class="">
+			   			<a href="../../../contents/syllabus/index.htm">
+		                  Syllabus  			                
+	                    </a>
+		        </li>
+		    
+         	
+	
+	
+	    	
+	    	    <li class="">
+			   			<a href="../../../contents/lecture-notes-and-video/index.htm">
+		                  Lecture Notes and Video  			                
+	                    </a>
+		        </li>
+		    
+         	
+	
+	
+	    	
+	    	    <li class="">
+			   			<a href="../../../contents/recitations/index.htm">
+		                  Recitations  			                
+	                    </a>
+		        </li>
+		    
+         	
+	
+	
+	    	
+	    	    <li class="">
+			   			<a href="../../../contents/quizzes/index.htm">
+		                  Quizzes  			                
+	                    </a>
+		        </li>
+		    
+         	
+	
+	
+	    	
+	    	    <li class="selected">
+			   			<a href="../../../contents/projects/index.htm">
+		                  Projects  			                
+	                    </a>
+		        </li>
+		    
+         	
+	
+	
+	    	
+	    	    <li class="">
+			   			<a href="../../../contents/related-resources/index.htm">
+		                  Related Resources  			                
+	                    </a>
+		        </li>
+		    
+         	
+	
+	
+	    	
+	    	    
+		    
+         	
+	<!--second tal block close-->  
+	
+</ul>
+<!--Left Nav Ends --></nav><main id="course_inner_media" aria-labelledby="media_title"><div class="" id="parent-fieldname-text">
+            
+            
+        </div>
+    
+      					 
+
+<script type="text/javascript">var caption_embed_1 ={'English - US': '/courses/electrical-engineering-and-computer-science/6-189-multicore-programming-primer-january-iap-2007/projects/congratulations/r7rLHHd43MU.srt'}</script><div id="media-embed">
+         <div class="attention_message" id="embed_1">
+<p>Flash and JavaScript are required for this feature.</p>
+<p>Download the video from <a href="https://itunes.apple.com/us/itunes-u/id341597759">iTunes U</a> or the <a href="http://www.archive.org/download/MIT6.189IAP07/ocw-6.189-iap07-pro-awards_300k.mp4">Internet Archive</a>.</p>
+</div>
+     </div>
+    
+     <script type="text/javascript">ocw_embed_chapter_media('embed_1', 'https://www.youtube.com/v/r7rLHHd43MU', 'youtube', '/courses/electrical-engineering-and-computer-science/6-189-multicore-programming-primer-january-iap-2007/projects/congratulations', 'https://img.youtube.com/vi/r7rLHHd43MU/0.jpg',0,0, 'https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-189-multicore-programming-primer-january-iap-2007/projects/congratulations/r7rLHHd43MU.srt')</script><div id="transcript1"></div>
+				 <script type="text/javascript">createThreePlayParams(2, 654076, "embed_1", 0, 0)</script><div id="media_resource_next_prev_nav" style="margin-top: 1em;">
+        <p>
+        
+            <a href="../../../contents/projects/projects-closing/index.htm">
+                <img src="../../../common/images/btn_previous_resource.png" style="margin: 0 30px 0 50px;" alt="Previous track" title="Previous track"></a>
+     	
+     	
+        
+       </p>
+     </div>
+ 
+
+
+<script type="text/javascript">
+		window.onload=function(){
+		init();
+		
+		}
+		var tabLinks = new Array();
+		var contentDivs = new Array();
+		function init() {
+		  // Grab the tab links and content divs from the page
+		  var tabListItems = document.getElementById('tabs').childNodes;
+		  for ( var i = 0; i < tabListItems.length; i++ ) {
+			if ( tabListItems[i].nodeName == "LI" ) {
+			  var tabLink = getFirstChildWithTagName( tabListItems[i], 'A' );
+			  var id = getHash( tabLink.getAttribute('href') );
+			  tabLinks[id] = tabLink;
+			  contentDivs[id] = document.getElementById( id );
+			}
+		  }
+		  // Assign onclick events to the tab links, and
+		  // highlight the first tab
+		  var i = 0;
+		  for ( var id in tabLinks ) {
+			tabLinks[id].onclick = showTab;
+			tabLinks[id].onfocus = function() { this.blur() };
+			if ( i == 0 ) tabLinks[id].className = 'selected';
+			i++;
+		  }
+		  // Hide all content divs except the first
+		  var i = 0;
+		  for ( var id in contentDivs ) {
+			if ( i != 0 ) contentDivs[id].className = 'tabContent hide';
+			i++;
+		  }
+		}
+		function showTab() {
+		  var selectedId = getHash( this.getAttribute('href') );
+		  // Highlight the selected tab, and dim all others.
+		  // Also show the selected content div, and hide all others.
+		  for ( var id in contentDivs ) {
+			if ( id == selectedId ) {
+			  tabLinks[id].className = 'selected';
+			  contentDivs[id].className = 'tabContent';
+			} else {
+			  tabLinks[id].className = '';
+			  contentDivs[id].className = 'tabContent hide';
+			}
+		  }
+		  // Stop the browser following the link
+		  return false;
+		}
+		function getFirstChildWithTagName( element, tagName ) {
+		  for ( var i = 0; i < element.childNodes.length; i++ ) {
+			if ( element.childNodes[i].nodeName == tagName ) return element.childNodes[i];
+		  }
+		}
+		function getHash( url ) {
+		  var hashPos = url.lastIndexOf ( '#' );
+		  return url.substring( hashPos + 1 );
+		}
+ </script><div id="media_tabs">
+     
+        <ul id="tabs">
+<li class="first">
+                <a href="#vid_about" class="selected">About this Video</a>
+            </li>
+            <li class="">
+                <a href="#vid_index" class="">Playlist</a>
+            </li>
+            <li class="">
+                <a href="#vid_playlist" class="">Related Resources</a>
+            </li>
+            <li class="">
+                <a href="#vid_related" class="">Transcript</a>
+            </li>
+            <li class="">
+                <a href="#vid_transcript" class="">Download this Video</a>
+            </li>
+        </ul>
+<div id="vid_about" itemprop="description" class="tabContent"><p>Congratulations to the Blue-Steel Ray Tracer group! They were the first place winners of the competition. To learn more about the award ceremony, view the PDF and video.</p></div>
+        <div id="vid_index" itemprop="description" class="tabContent hide">
+<div class="related-media-thumbnail">
+<a href="../../../contents/projects/projects-introduction/index.htm">
+<img src="../../../contents/projects/projects-introduction/1.jpg" title="Projects Introduction " alt="Projects Introduction "><p>Projects Introduction </p></a>
+</div>
+<div class="related-media-thumbnail">
+<a href="../../../contents/projects/project-global-illumination/index.htm">
+<img src="../../../contents/projects/project-global-illumination/p1.jpg" title="Project: Global Illumination " alt="Project: Global Illumination "><p>Project: Global Illumination </p></a>
+</div>
+<div class="related-media-thumbnail">
+<a href="../../../contents/projects/project-battery-simulation/index.htm">
+<img src="../../../contents/projects/project-battery-simulation/p2.jpg" title="Project: Battery Simulation " alt="Project: Battery Simulation "><p>Project: Battery Simulation </p></a>
+</div>
+<div class="related-media-thumbnail">
+<a href="../../../contents/projects/project-blue-steel-ray-tracer/index.htm">
+<img src="../../../contents/projects/project-blue-steel-ray-tracer/p3.jpg" title="Project: Blue-steel Ray Tracer " alt="Project: Blue-steel Ray Tracer "><p>Project: Blue-steel Ray Tra...</p></a>
+</div>
+<div class="related-media-thumbnail">
+<a href="../../../contents/projects/project-software-radio/index.htm">
+<img src="../../../contents/projects/project-software-radio/p4.jpg" title="Project: Software Radio " alt="Project: Software Radio "><p>Project: Software Radio </p></a>
+</div>
+<div class="related-media-thumbnail">
+<a href="../../../contents/projects/project-speech-synthesis/index.htm">
+<img src="../../../contents/projects/project-speech-synthesis/p5.jpg" title="Project: Speech Synthesis" alt="Project: Speech Synthesis"><p>Project: Speech Synthesis</p></a>
+</div>
+<div class="related-media-thumbnail">
+<a href="../../../contents/projects/project-backgammon-tutor/index.htm">
+<img src="../../../contents/projects/project-backgammon-tutor/p6.jpg" title="Project: Backgammon Tutor " alt="Project: Backgammon Tutor "><p>Project: Backgammon Tutor </p></a>
+</div>
+<div class="related-media-thumbnail">
+<a href="../../../contents/projects/project-molecular-dynamics/index.htm">
+<img src="../../../contents/projects/project-molecular-dynamics/p7.jpg" title="Project: Molecular Dynamics " alt="Project: Molecular Dynamics "><p>Project: Molecular Dynamics </p></a>
+</div>
+<div class="related-media-thumbnail">
+<a href="../../../contents/projects/projects-closing/index.htm">
+<img src="../../../contents/projects/projects-closing/p8.jpg" title="Projects Closing " alt="Projects Closing "><p>Projects Closing </p></a>
+</div>
+<div class="related-media-thumbnail-nolink">
+<div class="now-playing-resource">Now Playing</div>
+<img src="../../../contents/projects/congratulations/9.jpg" title="Congratulations" alt="Congratulations"><p>Congratulations</p>
+</div>
+</div>
+        <div id="vid_playlist" itemprop="description" class="tabContent hide">
+<h2 class="subhead">Related Resources</h2>
+<p>Award Ceremony (<a href="../../../contents/projects/6189awards.pdf" target="_blank" title="Open in a new window.">PDF</a>)</p>
+</div>
+        <div id="vid_related" itemprop="description" class="tabContent hide">
+<ul><li><a class="transcript-link" title="Open in a new window." alt="Open in a new window." style="text-decoration: none; font-size: 1.0em;" target="_blank" text-decoration: none font-size: href="../../../contents/projects/congratulations/r7rLHHd43MU.pdf"> Download this transcript - PDF (English - US)</a></li></ul>
+<p><span m="40">NARRATOR: The</span> <span m="170">following</span> <span m="610">content</span> <span m="1200">is</span> <span m="1320">provided</span> <span m="1760">under</span> <span m="2040">a</span> <span m="2080">Creative</span> <span m="2480">Commons</span> <span m="2890">license.</span> <span m="4000">Your</span> <span m="4190">support</span> <span m="4690">will</span> <span m="4850">help</span> <span m="5090">MIT</span> <span m="5550">OpenCourseWare</span> <span m="6340">continue</span> <span m="6850">to</span> <span m="6930">offer</span> <span m="7340">high</span> <span m="7580">quality</span> <span m="8100">educational</span> <span m="8730">resources</span> <span m="9350">for</span> <span m="9500">free.</span> <span m="10710">To</span> <span m="10810">make</span> <span m="10920">a</span> <span m="10960">donation</span> <span m="11650">or</span> <span m="11920">view</span> <span m="12360">additional</span> <span m="12780">materials</span> <span m="13310">from</span> <span m="13470">hundreds</span> <span m="13900">of</span> <span m="14010">MIT</span> <span m="14440">courses,</span> <span m="15540">visit</span> <span m="15770">MIT</span> <span m="16190">OpenCourseWare</span> <span m="17240">at</span> <span m="17400">ocw.mit.edu.</span> </p>
+<p><span m="20876">RODRIC RABBAH: OK,</span> <span m="21290">great.</span> <span m="21980">So</span> <span m="22180">a</span> <span m="22200">lot</span> <span m="22360">of</span> <span m="22580">effort</span> <span m="22880">into</span> <span m="23080">making</span> <span m="23310">this</span> <span m="23440">course,</span> <span m="23900">and</span> <span m="24650">we</span> <span m="24800">hope</span> <span m="25330">you've</span> <span m="25540">had</span> <span m="25750">fun.</span> <span m="26742">It's been</span> <span m="27080">a</span> <span m="27140">lot</span> <span m="27320">of</span> <span m="27410">support</span> <span m="27800">from</span> <span m="28210">Sony,</span> <span m="28880">IBM,</span> <span m="29240">Toshiba.</span> <span m="31120">A</span> <span m="31170">lot</span> <span m="31370">of</span> <span m="31650">on demand</span> <span m="32650">help</span> <span m="32960">from</span> <span m="33450">people</span> <span m="33750">at</span> <span m="33860">IBM</span> <span m="34370">and</span> <span m="34580">Sony,</span> <span m="34880">trying</span> <span m="35090">to</span> <span m="35180">debug</span> <span m="36100">problems,</span> <span m="36580">even</span> <span m="36830">up</span> <span m="36930">to</span> <span m="37010">the</span> <span m="37100">last</span> <span m="37410">minute.</span> <span m="38390">So</span> <span m="38500">we're</span> <span m="38590">very</span> <span m="38780">thankful</span> <span m="39080">for</span> <span m="39170">that.</span> <span m="39650">And</span> <span m="39730">we</span> <span m="39810">hope</span> <span m="40000">in</span> <span m="40280">return</span> <span m="40600">that</span> <span m="40720">you</span> <span m="40910">really</span> <span m="41160">enjoyed the</span> <span m="41500">course,</span> <span m="41820">and it</span> <span m="41930">was</span> <span m="42030">really</span> <span m="42230">fun.</span> <span m="42870">So</span> <span m="43010">looking</span> <span m="43220">forward</span> <span m="43500">to</span> <span m="43580">the</span> <span m="43650">course</span> <span m="43900">evaluations.</span> </p>
+<p><span m="45870">So</span> <span m="46040">just</span> <span m="46240">want</span> <span m="46430">to</span> <span m="47010">tell</span> <span m="47190">you</span> <span m="47370">a</span> <span m="47420">little</span> <span m="47600">bit</span> <span m="47740">about</span> <span m="48020">some</span> <span m="48200">opportunities</span> <span m="48840">ahead.</span> <span m="49260">I've</span> <span m="49500">passed</span> <span m="49790">out</span> <span m="49920">these</span> <span m="50100">brochures</span> <span m="51090">for</span> <span m="51300">the</span> <span m="51770">cell</span> <span m="52240">broadband</span> <span m="52780">engine</span> <span m="53450">challenge,</span> <span m="54930">Beyond</span> <span m="55320">Gaming.</span> <span m="56080">And</span> <span m="56340">this</span> <span m="56480">is</span> <span m="56630">a</span> <span m="56880">IBM</span> <span m="57260">sponsored</span> <span m="57710">event,</span> <span m="59200">where</span> <span m="59510">you</span> <span m="59790">really</span> <span m="60040">can</span> <span m="60180">compete</span> <span m="60520">in</span> <span m="60620">two</span> <span m="60770">different</span> <span m="61100">challenges,</span> <span m="62160">and</span> <span m="62470">in</span> <span m="62780">one</span> <span m="62920">of</span> <span m="63010">them</span> <span m="63150">you</span> <span m="63250">can</span> <span m="63400">win</span> <span m="63610">really</span> <span m="63940">seriously</span> <span m="64620">cool</span> <span m="64970">t-shirts.</span> <span m="67650">That's</span> <span m="67870">actually</span> <span m="68770">lifted</span> <span m="69200">directly</span> <span m="69660">from</span> <span m="70020">the</span> <span m="71010">online</span> <span m="72120">link.</span> </p>
+<p><span m="73240">So</span> <span m="73600">the</span> <span m="73700">competition</span> <span m="74370">starts</span> <span m="74970">February</span> <span m="75420">5</span> <span m="76080">at</span> <span m="76250">midnight.</span> <span m="77090">And</span> <span m="77510">you</span> <span m="77580">have</span> <span m="77680">to</span> <span m="77760">pass</span> <span m="78050">an</span> <span m="78160">online</span> <span m="78510">quiz,</span> <span m="79240">of</span> <span m="79370">which</span> <span m="79640">I</span> <span m="79740">expect</span> <span m="80140">all</span> <span m="80310">of</span> <span m="80400">you</span> <span m="80460">should</span> <span m="80640">be</span> <span m="80750">able</span> <span m="80910">to</span> <span m="81000">pass.</span> <span m="82770">And</span> <span m="83190">hopefully,</span> <span m="83600">you</span> <span m="83710">will</span> <span m="83900">compete</span> <span m="84370">and</span> <span m="84610">at</span> <span m="84670">least</span> <span m="85010">get</span> <span m="85220">a</span> <span m="85280">seriously</span> <span m="85680">cool</span> <span m="85880">t-shirt.</span> </p>
+<p><span m="87300">The</span> <span m="87440">second</span> <span m="87820">challenge,</span> <span m="88350">which</span> <span m="88520">is</span> <span m="88860">potentially</span> <span m="89390">more</span> <span m="89820">interesting,</span> <span m="90680">just</span> <span m="90870">because</span> <span m="91160">there's</span> <span m="91300">a</span> <span m="91390">$10K</span> <span m="91910">grand</span> <span m="92200">prize--</span> <span m="93200">there's</span> <span m="93580">also</span> <span m="93850">a</span> <span m="93920">$7K</span> <span m="94580">second</span> <span m="94930">prize,</span> <span m="95380">and</span> <span m="95800">some</span> <span m="95950">serious</span> <span m="96310">money</span> <span m="97500">for</span> <span m="97850">at</span> <span m="97970">least</span> <span m="98390">three</span> <span m="98630">or</span> <span m="98690">four</span> <span m="99130">prizes.</span> <span m="99740">You</span> <span m="99840">can</span> <span m="100020">look at</span> <span m="100240">information</span> <span m="100550">in the</span> <span m="100860">brochures.</span> <span m="102640">According</span> <span m="103000">to</span> <span m="103280">the</span> <span m="103380">information,</span> <span m="103920">you'll</span> <span m="104080">find</span> <span m="104490">it</span> <span m="104670">requires</span> <span m="105150">some</span> <span m="105280">serious</span> <span m="105760">coding</span> <span m="106080">skills</span> <span m="106440">on</span> <span m="106550">your</span> <span m="106700">part.</span> <span m="107430">But</span> <span m="107530">I</span> <span m="107580">certainly</span> <span m="107880">expect</span> <span m="108300">all</span> <span m="108500">of</span> <span m="108600">you</span> <span m="108700">to</span> <span m="108820">be</span> <span m="108960">able</span> <span m="109170">to</span> <span m="109320">be</span> <span m="110040">well</span> <span m="110290">primed</span> <span m="110640">at</span> <span m="110730">this</span> <span m="110900">point,</span> <span m="111800">especially</span> <span m="112300">since</span> <span m="112560">you've</span> <span m="112740">learned</span> <span m="113090">about</span> <span m="113680">cell</span> <span m="114050">hands</span> <span m="114370">on,</span> <span m="114700">and you've</span> <span m="115380">discovered</span> <span m="115920">all</span> <span m="116090">the</span> <span m="116180">pitfalls</span> <span m="117090">on</span> <span m="117240">your</span> <span m="117470">own.</span> <span m="118550">It would</span> <span m="118800">make</span> <span m="119090">for</span> <span m="119420">a</span> <span m="119470">very</span> <span m="119730">good</span> <span m="119860">competition</span> <span m="120430">on</span> <span m="120520">your</span> <span m="120650">part.</span> </p>
+<p><span m="122610">There</span> <span m="122760">are</span> <span m="122790">different</span> <span m="123140">categories.</span> <span m="123960">Sorry,</span> <span m="124040">it's</span> <span m="124300">three</span> <span m="124480">categories,</span> <span m="125000">not</span> <span m="125180">four.</span> <span m="126100">Application</span> <span m="126700">solutions--</span> <span m="127860">so</span> <span m="128130">some</span> <span m="128320">of</span> <span m="128440">things,</span> <span m="129009">some of the</span> <span m="129240">people</span> <span m="129479">have</span> <span m="129630">done</span> <span m="129800">more</span> <span m="130009">application</span> <span m="130419">oriented</span> <span m="130820">thing</span> <span m="131090">could</span> <span m="131270">fit,</span> <span m="131540">or</span> <span m="131740">you</span> <span m="131820">can</span> <span m="131920">sort</span> <span m="132090">of</span> <span m="132370">take</span> <span m="132750">what</span> <span m="132880">you've</span> <span m="133050">learned,</span> <span m="133800">apply it</span> <span m="134250">to</span> <span m="134550">financial</span> <span m="135020">services</span> <span m="135280">if</span> <span m="135540">you</span> <span m="135720">have</span> <span m="135830">interest</span> <span m="136130">in</span> <span m="136210">that,</span> <span m="136500">medical</span> <span m="136900">imaging,</span> <span m="137750">electronic</span> <span m="138250">design,</span> <span m="138740">automation,</span> <span m="139760">things</span> <span m="139940">of that</span> <span m="140220">sort.</span> <span m="142230">Operating</span> <span m="142660">systems--</span> <span m="143030">I'm</span> <span m="143400">not</span> <span m="143620">sure</span> <span m="143900">if</span> <span m="144100">that's</span> <span m="144300">particularly</span> <span m="144850">relevant</span> <span m="145280">to a</span> <span m="145340">lot</span> <span m="145490">of</span> <span m="145550">people</span> <span m="145820">here.</span> <span m="146030">I'm not</span> <span m="146400">sure if</span> <span m="146655">that's</span> <span m="146910">in</span> <span m="147060">their</span> <span m="147230">interest</span> <span m="147560">area,</span> <span m="147770">but</span> <span m="147920">programmability.</span> <span m="148710">So</span> <span m="148880">certainly</span> <span m="149200">the</span> <span m="149260">streaming</span> <span m="149570">framework</span> <span m="151990">that</span> <span m="152140">one</span> <span m="152290">of</span> <span m="152410">the</span> <span m="152620">software</span> <span m="152920">radio</span> <span m="153200">projects</span> <span m="154020">tried</span> <span m="154320">to</span> <span m="154410">do</span> <span m="155110">would</span> <span m="155380">fit</span> <span m="155500">onto</span> <span m="155610">that,</span> <span m="155940">some</span> <span m="156100">of</span> <span m="156140">the</span> <span m="156200">work</span> <span m="156460">that</span> <span m="156600">the</span> <span m="156680">Ray</span> <span m="156950">Tracer</span> <span m="157220">team</span> <span m="157520">did,</span> <span m="158120">in</span> <span m="158230">terms</span> <span m="158460">of</span> <span m="159530">coming</span> <span m="159820">up</span> <span m="159950">with</span> <span m="160080">their</span> <span m="160240">own</span> <span m="160390">interface</span> <span m="160810">for</span> <span m="160940">graphics</span> <span m="161760">could</span> <span m="162080">certainly</span> <span m="162460">fit.</span> </p>
+<p><span m="163610">So</span> <span m="164060">I</span> <span m="164480">urge</span> <span m="164740">you</span> <span m="164840">to</span> <span m="165300">consider</span> <span m="165790">competing</span> <span m="166220">in</span> <span m="166300">these.</span> <span m="167420">There's</span> <span m="167580">probably</span> <span m="167920">a</span> <span m="167980">lot</span> <span m="168190">of</span> <span m="168270">fame</span> <span m="168530">and</span> <span m="168650">fortune</span> <span m="168990">to</span> <span m="169070">be</span> <span m="169160">had</span> <span m="169370">here.</span> </p>
+<p><span m="171250">So</span> <span m="171430">we</span> <span m="171570">had</span> <span m="171880">our</span> <span m="172050">own</span> <span m="172290">competition.</span> <span m="173170">And</span> <span m="173400">what</span> <span m="173520">you're</span> <span m="173690">going</span> <span m="173810">to</span> <span m="173860">get</span> <span m="174040">are</span> <span m="174140">some</span> <span m="174310">seriously</span> <span m="174750">cool</span> <span m="175000">trophies,</span> <span m="176440">since</span> <span m="177070">we</span> <span m="177140">don't</span> <span m="177280">have</span> <span m="177470">t-shirts.</span> <span m="178650">So</span> <span m="179070">Mary</span> <span m="179410">was</span> <span m="179590">very--</span> <span m="182370">could have had</span> <span m="182860">t-shirts.</span> <span m="184060">I didn't</span> <span m="184210">want</span> <span m="184370">to</span> <span m="184430">compete</span> <span m="184720">with</span> <span m="184960">IBM</span> <span m="185190">directly.</span> </p>
+<p><span m="187880">So</span> <span m="188470">for</span> <span m="188845">the</span> <span m="189220">winning</span> <span m="189790">team,</span> <span m="190680">you</span> <span m="190820">will</span> <span m="190930">get</span> <span m="191150">this</span> <span m="191350">seriously</span> <span m="191850">awesome</span> <span m="192320">looking</span> <span m="192660">trophy,</span> <span m="195090">which</span> <span m="195340">has</span> <span m="195810">a</span> <span m="195900">little</span> <span m="196130">imprint</span> <span m="196500">on</span> <span m="196600">the</span> <span m="196690">front</span> <span m="196940">that</span> <span m="197110">says</span> <span m="197330">first</span> <span m="197680">place,</span> <span m="198470">6.189.</span> <span m="202890">And</span> <span m="203670">you're</span> <span m="203780">also</span> <span m="204030">going</span> <span m="204130">to</span> <span m="204180">get</span> <span m="204790">a</span> <span m="204870">$150</span> <span m="205700">gift</span> <span m="205940">certificate,</span> <span m="206480">I</span> <span m="206540">think</span> <span m="206730">we</span> <span m="206860">announced</span> <span m="207220">this</span> <span m="207510">at</span> <span m="207640">the</span> <span m="207800">beginning</span> <span m="208170">it</span> <span m="208260">of the</span> <span m="208320">course.</span> </p>
+<p><span m="209410">I'm</span> <span m="209420">also</span> <span m="209690">working</span> <span m="210070">with</span> <span m="210270">people</span> <span m="210610">at</span> <span m="210690">IBM</span> <span m="211310">on</span> <span m="211550">arranging</span> <span m="211960">a</span> <span m="212060">one</span> <span m="212260">day</span> <span m="212430">trip</span> <span m="212910">to</span> <span m="213080">IBM</span> <span m="213180">T.J.</span> <span m="213650">Watson</span> <span m="214000">Research</span> <span m="214340">Center,</span> <span m="215340">for</span> <span m="215500">the</span> <span m="215580">winning</span> <span m="215830">team</span> <span m="216260">to</span> <span m="216960">present</span> <span m="217660">their</span> <span m="217880">winning</span> <span m="218100">project,</span> <span m="218980">do a</span> <span m="219170">demo,</span> <span m="219800">and</span> <span m="220010">then</span> <span m="220780">meet</span> <span m="221010">with</span> <span m="221170">people at</span> <span m="221420">IBM</span> <span m="221860">who</span> <span m="222010">are</span> <span m="222170">doing</span> <span m="222540">really</span> <span m="222750">cool,</span> <span m="223130">interesting</span> <span m="223420">research.</span> <span m="224750">And</span> <span m="226020">it</span> <span m="226250">should</span> <span m="226390">be</span> <span m="226540">a</span> <span m="226590">fun</span> <span m="226810">day.</span> <span m="227120">And</span> <span m="227340">certain</span> <span m="227570">people at</span> <span m="227790">IBM</span> <span m="228270">have</span> <span m="228910">been</span> <span m="229060">very</span> <span m="229250">excited about</span> <span m="229740">hearing</span> <span m="230050">what's</span> <span m="230200">going</span> <span m="230410">on in</span> <span m="230580">this</span> <span m="230720">project,</span> <span m="231610">in</span> <span m="231710">this</span> <span m="231850">class.</span> <span m="232750">And</span> <span m="233980">so</span> <span m="234180">it'll be a</span> <span m="234510">good,</span> <span m="234740">fun</span> <span m="234970">opportunity,</span> <span m="235430">I</span> <span m="235500">think,</span> <span m="235720">all</span> <span m="235890">around.</span> </p>
+<p><span m="237400">OK,</span> <span m="237590">so</span> <span m="239240">I'm</span> <span m="239320">going</span> <span m="239440">to</span> <span m="239480">work</span> <span m="239690">my</span> <span m="239810">way</span> <span m="239970">up</span> <span m="240120">to</span> <span m="240210">the</span> <span m="240280">first</span> <span m="240570">prize.</span> <span m="241170">I</span> <span m="241270">think</span> <span m="241300">in</span> <span m="241360">terms</span> <span m="241580">of</span> <span m="241760">the</span> <span m="241830">complexity</span> <span m="242610">of</span> <span m="243200">the</span> <span m="243370">project</span> <span m="243800">handled,</span> <span m="244430">certainly</span> <span m="244750">Speech</span> <span m="245230">Synthesis</span> <span m="245680">probably</span> <span m="245990">took</span> <span m="246210">on</span> <span m="246360">the</span> <span m="246420">most</span> <span m="246970">complex--</span> <span m="248970">certainly</span> <span m="249350">in terms of</span> <span m="249550">the</span> <span m="249640">software</span> <span m="249990">that they</span> <span m="250200">used,</span> <span m="251380">and</span> <span m="251770">then</span> <span m="252020">maybe</span> <span m="252240">that</span> <span m="253010">bogged</span> <span m="253260">them</span> <span m="253380">down</span> <span m="253560">a</span> <span m="253610">little.</span> <span m="253840">So</span> <span m="254060">there's</span> <span m="254360">probably</span> <span m="254630">something</span> <span m="254880">to</span> <span m="254960">be</span> <span m="255080">said</span> <span m="255300">in</span> <span m="255380">terms</span> <span m="255600">of</span> <span m="255920">starting</span> <span m="256149">from</span> <span m="256279">scratch</span> <span m="256709">versus</span> <span m="257149">taking</span> <span m="257459">complex</span> <span m="257920">infrastructure</span> <span m="258519">and</span> <span m="258589">re-engineering</span> <span m="258984">it</span> <span m="259380">for</span> <span m="259510">parallelism.</span> <span m="260390">I</span> <span m="260600">think</span> <span m="260810">you've</span> <span m="260940">discovered</span> <span m="261410">firsthand</span> <span m="262220">how</span> <span m="262520">hard</span> <span m="262790">that</span> <span m="262950">really</span> <span m="263180">is.</span> </p>
+<p><span m="263870">And</span> <span m="264420">this</span> <span m="264640">is</span> <span m="265090">a</span> <span m="265150">big</span> <span m="265330">problem</span> <span m="265760">for</span> <span m="266060">parallel</span> <span m="266360">computing.</span> <span m="267030">There's</span> <span m="267100">a</span> <span m="267140">lot</span> <span m="267370">of</span> <span m="267460">legacy</span> <span m="267800">software</span> <span m="268170">out</span> <span m="268330">there</span> <span m="268850">that</span> <span m="268950">eventually</span> <span m="269490">might</span> <span m="269730">have</span> <span m="269890">to</span> <span m="269980">be</span> <span m="270110">ported</span> <span m="270425">to</span> <span m="270740">parallel</span> <span m="271060">architectures.</span> <span m="272010">How</span> <span m="272140">do</span> <span m="272210">you</span> <span m="272300">do</span> <span m="272450">it?</span> <span m="272990">You pointed</span> <span m="273370">out,</span> <span m="273770">code is</span> <span m="273860">not</span> <span m="274050">well</span> <span m="274210">documented.</span> <span m="275510">Tools</span> <span m="276040">are</span> <span m="276170">lacking.</span> <span m="276620">So</span> <span m="276840">what do</span> <span m="276940">you</span> <span m="277070">do?</span> <span m="277560">So</span> <span m="277720">you've</span> <span m="277890">stumbled</span> <span m="278300">on</span> <span m="278500">a</span> <span m="278560">really</span> <span m="279000">seriously</span> <span m="279530">important</span> <span m="279960">problem</span> <span m="280900">facing</span> <span m="281290">a</span> <span m="281340">lot</span> <span m="281530">of</span> <span m="281690">people</span> <span m="282020">in the</span> <span m="282150">industry.</span> </p>
+<p><span m="284830">The</span> <span m="284920">most</span> <span m="285120">synchronization</span> <span m="285790">issues.</span> <span m="286290">We</span> <span m="286430">believe</span> <span m="286890">the</span> <span m="288670">guys</span> <span m="288980">who</span> <span m="289080">are</span> <span m="289170">doing</span> <span m="289440">the</span> <span m="289610">Battery</span> <span m="290070">Simulations</span> <span m="291370">and</span> <span m="291610">modeling</span> <span m="292160">sort</span> <span m="292360">of the</span> <span m="292540">chemical</span> <span m="292900">reactions</span> <span m="293850">certainly</span> <span m="293880">ran</span> <span m="294240">into</span> <span m="294410">a</span> <span m="294480">lot</span> <span m="294640">of</span> <span m="294700">synchronization</span> <span m="295370">issues,</span> <span m="295700">just</span> <span m="295910">because</span> <span m="296250">of</span> <span m="296520">the</span> <span m="297500">dependent</span> <span m="297940">nature</span> <span m="298320">of</span> <span m="298460">the</span> <span m="298540">computation.</span> </p>
+<p><span m="301240">Next</span> <span m="301620">up</span> <span m="301810">on</span> <span m="301940">the</span> <span m="302010">list</span> <span m="302300">would</span> <span m="302420">be</span> <span m="302700">for the</span> <span m="302910">most</span> <span m="303220">parallel</span> <span m="303570">programming</span> <span m="304040">challenges.</span> <span m="304980">So</span> <span m="305240">not</span> <span m="305440">only</span> <span m="305810">did</span> <span m="305960">they</span> <span m="306120">run</span> <span m="306300">into</span> <span m="307280">issues</span> <span m="307650">with</span> <span m="307800">synchronization,</span> <span m="308720">but</span> <span m="308860">certainly</span> <span m="309200">discovered</span> <span m="309620">problems</span> <span m="309960">with</span> <span m="310160">races.</span> <span m="310670">And</span> <span m="310830">I</span> <span m="310910">think</span> <span m="311130">they're</span> <span m="311230">the</span> <span m="311310">only</span> <span m="311590">team who</span> <span m="311900">have</span> <span m="311980">successfully</span> <span m="312500">hung</span> <span m="312740">their</span> <span m="312870">PlayStation</span> <span m="313390">3</span> <span m="313630">several</span> <span m="313990">times,</span> <span m="315860">and</span> <span m="316070">required</span> <span m="316650">a</span> <span m="317250">reboot</span> <span m="318730">quite</span> <span m="318950">a</span> <span m="318990">few</span> <span m="319160">times.</span> </p>
+<p><span m="321350">OK.</span> <span m="321550">So</span> <span m="322040">next,</span> <span m="322410">best</span> <span m="322670">effort</span> <span m="322950">awards.</span> <span m="323590">These</span> <span m="323850">guys</span> <span m="324510">should</span> <span m="324720">really</span> <span m="324980">be</span> <span m="325170">highlighted,</span> <span m="325660">because</span> <span m="325950">they</span> <span m="326050">worked</span> <span m="326310">largely</span> <span m="326720">on</span> <span m="326830">their</span> <span m="327050">own.</span> <span m="327956">Is that</span> <span m="328310">true?</span> </p>
+<p><span m="329110">Yes.</span> </p>
+<p><span m="329510">Yeah,</span> <span m="329890">and</span> <span m="330260">that's</span> <span m="330440">certainly true.</span> <span m="333090">And</span> <span m="333660">there was</span> <span m="334130">certainly</span> <span m="334560">a</span> <span m="335830">lot</span> <span m="336040">of</span> <span m="336190">people</span> <span m="336620">who were</span> <span m="336770">impressed</span> <span m="337140">by</span> <span m="337350">the</span> <span m="337480">Global</span> <span m="337740">Illumination</span> <span m="338290">stuff</span> <span m="338760">yesterday,</span> <span m="339120">and</span> <span m="339510">sort</span> <span m="339670">of</span> <span m="339890">mentioned</span> <span m="340190">that.</span> <span m="341410">And</span> <span m="341590">what I'm</span> <span m="341720">hoping</span> <span m="342010">to</span> <span m="342090">do</span> <span m="342280">is</span> <span m="342450">take</span> <span m="342750">the</span> <span m="342970">judges'</span> <span m="343350">feedback</span> <span m="343820">and</span> <span m="344000">sort</span> <span m="344150">of</span> <span m="344210">summarize</span> <span m="344640">that</span> <span m="344770">for</span> <span m="344880">each</span> <span m="345130">team,</span> <span m="345930">so</span> <span m="346080">you</span> <span m="346140">can</span> <span m="346280">have</span> <span m="346440">some</span> <span m="346600">constructive</span> <span m="347090">criticism</span> <span m="347560">back</span> <span m="348260">that</span> <span m="348440">might</span> <span m="348620">be</span> <span m="348690">helpful.</span> <span m="349810">Molecular</span> <span m="350150">Dynamic</span> <span m="350610">Simulation</span> <span m="351090">work</span> <span m="351250">that</span> <span m="351340">you</span> <span m="351430">heard</span> <span m="351610">about</span> <span m="351830">today,</span> <span m="352130">I</span> <span m="352200">think</span> <span m="352930">certainly</span> <span m="353410">a</span> <span m="353860">valiant</span> <span m="354190">effort</span> <span m="354460">on</span> <span m="354550">his</span> <span m="354680">part,</span> <span m="354870">as</span> <span m="354950">well.</span> </p>
+<p><span m="356240">The</span> <span m="356320">most</span> <span m="356530">complete</span> <span m="356930">project,</span> <span m="357490">I</span> <span m="357620">think</span> <span m="357820">this</span> <span m="358050">would</span> <span m="358410">probably</span> <span m="358880">be</span> <span m="359070">Backgammon</span> <span m="359570">Tutor's</span> <span m="360860">project.</span> <span m="361290">I</span> <span m="361430">think</span> <span m="361710">in</span> <span m="362240">terms</span> <span m="362480">of</span> <span m="363450">scope</span> <span m="363820">it was</span> <span m="363990">well</span> <span m="364160">defined,</span> <span m="364550">in</span> <span m="364670">terms</span> <span m="364910">of</span> <span m="365140">what</span> <span m="365270">they</span> <span m="365340">actually</span> <span m="365700">completed.</span> <span m="366550">I</span> <span m="366920">think</span> <span m="367090">they</span> <span m="367170">came</span> <span m="367390">out</span> <span m="367500">with</span> <span m="367600">a</span> <span m="367830">really</span> <span m="368080">cool</span> <span m="368300">game.</span> <span m="368830">My</span> <span m="368940">money</span> <span m="369190">was</span> <span m="369350">on</span> <span m="369510">them</span> <span m="369720">all</span> <span m="369900">along to</span> <span m="370160">actually</span> <span m="370890">win</span> <span m="371120">the</span> <span m="371210">first</span> <span m="371480">prize.</span> </p>
+<p><span m="371900">But</span> <span m="373050">I</span> <span m="373120">think</span> <span m="373490">the</span> <span m="373560">Ray</span> <span m="373770">Tracing</span> <span m="374100">team</span> <span m="374540">actually</span> <span m="374870">blew</span> <span m="375160">everybody</span> <span m="375560">away</span> <span m="375780">with</span> <span m="376060">their</span> <span m="376190">demo.</span> <span m="377730">And</span> <span m="378720">I</span> <span m="378830">think</span> <span m="379130">they were a</span> <span m="379200">clear</span> <span m="379440">winner.</span> <span m="381030">They</span> <span m="381880">really</span> <span m="383090">tackled</span> <span m="383550">sort</span> <span m="383720">of</span> <span m="383910">their</span> <span m="384030">paralyzation,</span> <span m="384760">descendizing.</span> <span m="385540">They</span> <span m="385640">had</span> <span m="385850">a</span> <span m="385880">really</span> <span m="386120">cool</span> <span m="386720">frame</span> <span m="387030">buffer</span> <span m="387310">demo,</span> <span m="387530">so</span> <span m="387660">they</span> <span m="387770">figured</span> <span m="387960">out</span> <span m="388020">how</span> <span m="388170">to</span> <span m="388280">actually</span> <span m="388610">write</span> <span m="388780">to the</span> <span m="388920">frame</span> <span m="389160">buffer</span> <span m="389890">and</span> <span m="390090">do</span> <span m="390220">that</span> <span m="390420">simulation,</span> <span m="392110">or</span> <span m="392660">do</span> <span m="392800">the</span> <span m="392950">graphics</span> <span m="393330">rendering.</span> <span m="394410">And</span> <span m="394840">I</span> <span m="394940">think</span> <span m="395570">some</span> <span m="395780">mumbling</span> <span m="396130">about a</span> <span m="396350">real</span> <span m="396570">cool</span> <span m="396830">demo</span> <span m="397130">that</span> <span m="397310">they've</span> <span m="397520">gotten</span> <span m="397790">working</span> <span m="398100">overnight.</span> <span m="398830">So</span> <span m="398960">we'll</span> <span m="399040">try</span> <span m="399200">to</span> <span m="399280">set</span> <span m="399620">up</span> <span m="400050">over</span> <span m="400740">in</span> <span m="401010">[? Stoddart, ?]</span> <span m="401580">where</span> <span m="401760">we</span> <span m="401840">have</span> <span m="401990">pizza,</span> <span m="402690">and</span> <span m="402810">you</span> <span m="402890">guys</span> <span m="403090">can</span> <span m="403220">take</span> <span m="403400">a</span> <span m="403460">look</span> <span m="403610">at</span> <span m="403680">that.</span> </p>
+<p><span m="404430">So</span> <span m="405950">with</span> <span m="406250">that,</span> <span m="406730">I'll</span> <span m="406880">hand</span> <span m="407070">out</span> <span m="407220">the</span> <span m="408330">certificates</span> <span m="408930">and</span> <span m="409030">the</span> <span m="409150">awards</span> <span m="409490">offline.</span> <span m="410890">But</span> <span m="411110">you've</span> <span m="411440">at</span> <span m="411560">this</span> <span m="411720">point</span> <span m="411940">been</span> <span m="412100">Cell-ified.</span> <span m="413520">And</span> <span m="415130">the</span> <span m="415240">cake</span> <span m="415580">is in</span> <span m="415760">the</span> <span m="415840">back</span> <span m="416170">says,</span> <span m="416470">Congratulations</span> <span m="417250">on</span> <span m="417360">your</span> <span m="417730">Cell-ification.</span> <span m="418660">So--</span> </p>
+<p><span m="420020">Resistance</span> <span m="420455">is</span> <span m="420890">futile.</span> </p>
+<p><span m="421760">That's</span> <span m="421980">right.</span> <span m="423460">So</span> <span m="423840">thanks</span> <span m="424060">a</span> <span m="424110">lot</span> <span m="424320">for</span> <span m="424540">taking</span> <span m="424820">the</span> <span m="424900">course.</span> <span m="425400">I</span> <span m="425660">think</span> <span m="425840">we've</span> <span m="426030">learned</span> <span m="426230">a</span> <span m="426280">lot</span> <span m="426560">as</span> <span m="426690">instructors.</span> <span m="427440">I'm</span> <span m="427610">hoping</span> <span m="427920">to</span> <span m="428130">do</span> <span m="428250">this</span> <span m="428420">again</span> <span m="429220">with</span> <span m="429360">Saman</span> <span m="429780">next</span> <span m="430030">year,</span> <span m="430220">next</span> <span m="430470">IAP,</span> <span m="431300">and</span> <span m="431480">maybe</span> <span m="431680">eventually</span> <span m="432050">turn it</span> <span m="432250">into</span> <span m="432470">a</span> <span m="432510">regular</span> <span m="432800">semester</span> <span m="433180">course.</span> <span m="434000">I</span> <span m="434330">think</span> <span m="434490">there's</span> <span m="434600">a</span> <span m="434640">lot</span> <span m="434810">of</span> <span m="434890">things</span> <span m="435080">we</span> <span m="435190">can</span> <span m="435300">do</span> <span m="435410">better,</span> <span m="436620">and</span> <span m="436740">hopefully</span> <span m="437100">you've</span> <span m="437310">told us</span> <span m="437620">some</span> <span m="437780">ideas</span> <span m="438130">of</span> <span m="438260">how</span> <span m="438400">to</span> <span m="438510">do</span> <span m="438620">that.</span> <span m="439210">So</span> <span m="439500">with</span> <span m="439650">that,</span> <span m="440560">thanks,</span> <span m="440820">and</span> <span m="441170">start</span> <span m="441560">enjoying</span> <span m="441870">cake</span> <span m="442170">in</span> <span m="442470">the back.</span> </p>
+</div>
+        <div id="vid_transcript" itemprop="description" class="tabContent hide">
+<h2 class="subhead">Free Downloads</h2>
+<h3 class="subsubhead">Video</h3>
+<ul>
+<li>iTunes U (<a href="https://itunes.apple.com/us/itunes-u/id341597759">MP4 - 17MB</a>)</li>
+<li>Internet Archive (<a href="http://www.archive.org/download/MIT6.189IAP07/ocw-6.189-iap07-pro-awards_300k.mp4">MP4 - 17MB</a>)</li>
+</ul>
+<br><h3 class="subsubhead">Subtitle</h3>
+<ul><li>English - US (<a href="../../../contents/projects/congratulations/r7rLHHd43MU.srt">SRT</a>)</li></ul>
+</div>
+    
+   </div>  
+
+
+
+      					 
+        <div class="" id="parent-fieldname-bottom_html_area">
+            
+            
+        </div>
+    
+               </main><!--Course_inner_media tag close -->
+</div>
+<!--Course_wrapper tag close -->
+            </div>
+<!--left tag close -->
+            <aside id="right"><!--Begin Right Portion --><div>
+    
+<div id="portletwrapper-6f63772e7269676874746f70706f72746c65746d616e616765720a636f6e746578740a2f506c6f6e650a646f6e617465" class="portletWrapper kssattr-portlethash-6f63772e7269676874746f70706f72746c65746d616e616765720a636f6e746578740a2f506c6f6e650a646f6e617465">
+<div class="portletStaticText portlet-static-donate"><p class="zero"><a href="http://ocw.mit.edu/donate"><img src="../../../common/images/button_donate-now.png" alt="Donate Now." class="donate"></a></p></div>
+
+</div>
+
+
+
+
+</div>
+
+                	<div>
+    
+
+
+
+</div>
+
+
+        <div class="" id="parent-fieldname-rsi_top_html_area">
+            
+            
+        </div>
+    
+
+<!-- RSI google ad space-->
+
+
+<div id="google_ads">    
+    <script type="text/javascript" src="https://partner.googleadservices.com/gampad/google_service.js"></script><script type="text/javascript">GS_googleAddAdSenseService("ca-pub-6588555046597237");GS_googleEnableAllServices();</script><script type="text/javascript">GA_googleAddSlot("ca-pub-6588555046597237", "VIDEO_INDIVIDUAL_SLOT_A_DL");GA_googleAddSlot("ca-pub-6588555046597237", "VIDEO_INDIVIDUAL_SLOT_B_DL");GA_googleAddSlot("ca-pub-6588555046597237", "VIDEO_INDIVIDUAL_SLOT_C_DL");</script><script type="text/javascript">GA_googleFetchAds();</script><script language="javascript" type="text/javascript">
+GA_googleAddAttr("TYPE","HOUSE");
+GA_googleAddAttr("DEPARTMENT","6");
+GA_googleAddAttr("CRS_BEG2","18");
+GA_googleAddAttr("CRS_END","9");
+GA_googleAddAttr("SESSION","IAP");
+GA_googleAddAttr("YEAR","07");
+</script><script type="text/javascript">GA_googleFillSlot("VIDEO_INDIVIDUAL_SLOT_A_DL");</script><script type="text/javascript">GA_googleFillSlot("VIDEO_INDIVIDUAL_SLOT_B_DL");</script><script type="text/javascript">GA_googleFillSlot("VIDEO_INDIVIDUAL_SLOT_C_DL");</script>
+</div>
+
+<!-- End RSI ads--> 
+
+<div>
+    
+
+
+
+</div>
+
+            </aside><!--Right div close --><div class="clear"></div>
+        </div>
+<!--grid tag close -->
+      </div>
+		
+		<footer id="bottom"><div id="grid">
+				
+<div id="portletwrapper-6f63772e626f74746f6d706f72746c65746d616e616765720a636f6e746578740a2f506c6f6e650a736974652d666f6f746572" class="portletWrapper kssattr-portlethash-6f63772e626f74746f6d706f72746c65746d616e616765720a636f6e746578740a2f506c6f6e650a736974652d666f6f746572">
+<div class="portletStaticText portlet-static-site-footer">
+<!--googleoff: index-->
+<div id="footer">
+<nav aria-label="Footer"><nav id="foot-c1" class="grid_2 alpha" aria-labelledby="f-find-courses"><span class="footer" id="f-find-courses" aria-hidden="true">Find Courses</span>
+<ul class="foot-bullet" role="presentation">
+<li><a href="https://ocw.mit.edu/courses/find-by-topic/">Find by Topic</a></li>
+    <li><a href="https://ocw.mit.edu/courses/find-by-number/">Find by Course Number</a></li>
+    <li><a href="https://ocw.mit.edu/courses/find-by-department/">Find by Department</a></li>
+    <li><a href="https://ocw.mit.edu/educator/?view=instructional&amp;utm_campaign=Educator&amp;utm_source=footer&amp;utm_medium=find-courses&amp;utm_content=approaches">Instructional Approach</a></li>
+    <li><a href="https://ocw.mit.edu/educator/?view=teaching&amp;utm_campaign=Educator&amp;utm_source=footer&amp;utm_medium=find-courses&amp;utm_content=materials">Teaching Materials</a></li>
+    <li><a href="https://ocw.mit.edu/courses/audio-video-courses/">Audio/Video Courses</a></li>
+    <li><a href="https://ocw.mit.edu/courses/subtitled/">Courses with Subtitles</a></li>
+    <li><a href="https://ocw.mit.edu/courses/online-textbooks/">Online Textbooks</a></li>
+    <li><a href="https://ocw.mit.edu/courses/new-courses/">New Courses</a></li>
+    <li><a href="https://ocw.mit.edu/courses/most-visited-courses/">Most Visited Courses</a></li>
+    <li><a href="https://ocw.mit.edu/courses/ocw-scholar/">OCW Scholar Courses</a></li>
+    <li><a href="https://ocw.mit.edu/courses/this-course-at-mit/">This Course at MIT</a></li>
+    <li><a href="https://ocw.mit.edu/resources/">Supplemental Resources</a></li>
+    <li><a href="https://ocw.mit.edu/courses/translated-courses/">Translated Courses</a></li>
+    <li><a href="https://ocw.mit.edu/courses/?utm_source=ocw-footer&amp;utm_medium=link&amp;utm_campaign=mclstudy">View All Courses</a></li>
+</ul></nav><div id="foot-c2" class="grid_2">
+<nav aria-labelledby="f-about"><span id="f-about" class="footer" aria-hidden="true">About</span>
+<ul class="foot-bullet" role="presentation">
+<li><a href="https://ocw.mit.edu/about/">About OpenCourseWare</a></li>
+    <li><a href="https://ocw.mit.edu/about/site-statistics/">Site Statistics</a></li>
+    <li><a href="https://ocw.mit.edu/about/ocw-stories/">OCW Stories</a></li>
+    <li><a href="https://ocw.mit.edu/about/newsletter/">News</a></li>
+    <li><a href="https://ocw.mit.edu/about/media-coverage/press-releases/">Press Releases</a></li>
+</ul></nav><!--about--><nav aria-labelledby="f-tools"><span id="f-tools" class="footer" aria-hidden="true">Tools</span>
+<ul class="foot-bullet" role="presentation">
+<li><a href="https://ocw.mit.edu/help/">Help &amp; FAQs</a></li>
+    <li><a href="../../../common/jsp/feedback.htm">Contact Us</a></li>
+    <li><a href="../../../common/search/AdvancedSearch.htm">Advanced Search</a></li>
+    <li><a href="https://ocw.mit.edu/help/site-map/">Site Map</a></li>
+    <li><a href="../../../common/terms/index.htm">Privacy &amp; Terms of Use</a></li>
+    <li><a href="https://ocw.mit.edu/help/rss/">RSS Feeds</a></li>
+</ul></nav><!--tools-->
+</div>
+<nav class="grid_2" id="foot-c3" aria-labelledby="f-donate"><span id="f-donate" class="footer" aria-hidden="true">Donate</span>
+<ul class="foot-bullet" role="presentation">
+<li><a href="https://ocw.mit.edu/donate">Make a Donation</a></li>
+    <li><a href="https://ocw.mit.edu/donate/why-donate/">Why Donate?</a></li>
+    <li><a href="https://ocw.mit.edu/donate/our-supporters/">Our Supporters</a></li>
+    <li><a href="https://ocw.mit.edu/donate/other-ways-to-contribute/">Other Ways to Contribute</a></li>
+    <li><a href="https://ocw.mit.edu/donate/shop-ocw/">Shop OCW</a></li>
+    <li><a href="https://ocw.mit.edu/support/">Become a Corporate Sponsor</a></li>
+</ul></nav><div class="grid_2" id="foot-c4"><nav aria-labelledby="f-featured-sites"><span id="f-featured-sites" class="footer" aria-hidden="true">Featured Sites</span>
+<ul class="foot-bullet" role="presentation">
+<li><a href="https://ocw.mit.edu/high-school/">Highlights for High School</a></li>
+    <li><a href="https://ocw.mit.edu/educator/?utm_campaign=Educator&amp;utm_source=footer&amp;utm_medium=featured-sites">OCW Educator</a></li>
+    <li><a href="https://ocw.mit.edu/courses/crosslinks/">MIT Crosslinks and OCW</a></li>
+    <li><a href="https://ocw.mit.edu/courses/mitx-related-courseware/">MITx and Related OCW Courses</a></li>
+    <li><a href="http://k12videos.mit.edu" aria-label="External Link: MIT+K12 Videos">MIT+K12 Videos</a></li>
+    <li><a href="https://teachingexcellence.mit.edu/" aria-label="External Link: Teaching Excellence at MIT">Teaching Excellence at MIT</a></li>
+    <li><a href="https://outreach.mit.edu/" aria-label="External Link: Outreach at MIT">Outreach@MIT</a></li>
+    <li><a href="http://www.oeconsortium.org/" aria-label="External Link: Open Education Consortium">Open Education Consortium</a></li>
+</ul></nav></div>
+</nav><!--Footer Nav>--><aside id="foot-c5" class="grid_4 omega" aria-labelledby="f-our-corporate-supporters" style="min-height: 289px;"><span id="f-our-corporate-supporters" class="footer" aria-hidden="true">Our Corporate Supporters</span>           <!-- HOME_CORP_LOGO_1 -->
+<div class="sponsors_google_ads_even" id="div-gpt-ad-1388181177156-0"><script type="text/javascript">
+              googletag.cmd.push(function() { googletag.display('div-gpt-ad-1388181177156-0'); });
+            </script></div>
+<!-- HOME_CORP_LOGO_2 -->
+<div class="sponsors_google_ads_odd" id="div-gpt-ad-1388181177156-1"><script type="text/javascript">
+              googletag.cmd.push(function() { googletag.display('div-gpt-ad-1388181177156-1'); });
+            </script></div>
+<!-- HOME_CORP_LOGO_3 -->
+<div class="sponsors_google_ads_even" id="div-gpt-ad-1388181177156-2"><script type="text/javascript">
+              googletag.cmd.push(function() { googletag.display('div-gpt-ad-1388181177156-2'); });
+            </script></div>
+<!-- HOME_CORP_LOGO_4 -->
+<div class="sponsors_google_ads_odd" id="div-gpt-ad-1388181177156-3"><script type="text/javascript">
+              googletag.cmd.push(function() { googletag.display('div-gpt-ad-1388181177156-3'); });
+            </script></div>
+<!-- HOME_CORP_LOGO_5 -->
+<div class="sponsors_google_ads_even" id="div-gpt-ad-1388181177156-4"><script type="text/javascript">
+              googletag.cmd.push(function() { googletag.display('div-gpt-ad-1388181177156-4'); });
+              </script></div>
+<!-- HOME_CORP_LOGO_6 -->
+<div class="sponsors_google_ads_odd" id="div-gpt-ad-1388181177156-5"><script type="text/javascript">
+              googletag.cmd.push(function() { googletag.display('div-gpt-ad-1388181177156-5'); });
+              </script></div>
+</aside><aside class="grid_12 alpha omega" aria-label="OCW 15th Anniversary" style="border-top: thin solid #d5c9ba; padding-top: 24px; margin-bottom: 10px; text-align: center;"><p style="font-family: TitilliumText22LRegular,Verdana; text-align: center; font-size: 1.1em;">Support for <span style="letter-spacing: 0.5px; font-weight: bold;"><span style="text-transform: uppercase;">MIT OpenCourseWare's</span> 15th anniversary</span> is provided by <a href="http://www.sapientnitro.com/en-us.html#home"><img style="width: 145px; height: 35px; vertical-align: middle; margin-left: 7px;" alt="SapientNitro" src="../../../common/images/logo_sapient.png"></a></p>
+</aside><aside class="grid_12 alpha omega" aria-labelledby="f-about-ocw" itemtype="http://schema.org/CollegeOrUniversity" itemscope="" itemprop="publisher" style="border-top: thin solid #d5c9ba; padding-top: 10px; margin-bottom: 10px;"><span id="f-about-ocw" class="footer" aria-hidden="true">             About <span itemprop="name">MIT OpenCourseWare</span></span>
+<p itemprop="description" style="color: #999; font-size: 1em; line-height: 1.5em; margin-top: 10px;">OCW is a free and open publication of material from thousands of MIT courses, covering the entire MIT curriculum. <a href="https://ocw.mit.edu/about/">Learn more »</a></p>
+<div id="foot-copy" class="grid_12 alpha omega" style="border-top: none;">
+<a href="http://web.mit.edu">               <img style="width: 195; height: 44;" alt="Massachusetts Institute of Technology" src="../../../common/images/logo_mit.png"></a>             <a href="http://odl.mit.edu">               <img style="width: 289; height: 54; vertical-align: top;" alt="MIT Office of Digital Learning" src="https://ocw.mit.edu/images/logo_odl.png"></a>             <a href="http://www.oeconsortium.org/">               <img style="width: 219px; height: 59px; vertical-align: top;" alt="Open Education Consortium" src="https://ocw.mit.edu/images/logo_oec.png"></a>             <a itemprop="useRightsUrl" rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">               <img style="width: 126px; height: 44px; margin-right: 0; margin-left: 13px;" alt="Creative Commons" src="../../../common/images/cc_by-nc-sa.png"></a>
+</div>
+<div id="f-legal" class="grid_12 alpha omega" style="border-top: none;">
+<p class="copyright">© 2001–2015<br>
+Massachusetts Institute of Technology</p>
+<p style="font-size: 0.9em; margin-bottom: 15px;">Your use of the MIT OpenCourseWare site and materials is subject to our <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons License</a> and other <a rel="cc:morePermissions" href="../../../common/terms/index.htm">terms of use</a>.</p>
+</div>
+</aside>
+</div>
+<!--footer-->   <!--googleon: index-->
+</div>
+
+</div>
+
+
+
+
+
+                
+			</div> <!-- bottom grid end -->
+		</footer><!-- footer bottom end -->
+</body>
+</html>

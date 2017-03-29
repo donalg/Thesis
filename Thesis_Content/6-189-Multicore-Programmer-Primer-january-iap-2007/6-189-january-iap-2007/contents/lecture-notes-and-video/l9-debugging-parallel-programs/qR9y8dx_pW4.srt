@@ -1,0 +1,2793 @@
+1
+00:00:00,030 --> 00:00:02,430
+The following content is
+provided under a Creative
+
+2
+00:00:02,430 --> 00:00:03,990
+Commons license.
+
+3
+00:00:03,990 --> 00:00:06,860
+Your support will help MIT
+OpenCourseWare continue to
+
+4
+00:00:06,860 --> 00:00:10,550
+offer high quality educational
+resources for free.
+
+5
+00:00:10,550 --> 00:00:13,410
+To make a donation or view
+additional materials from
+
+6
+00:00:13,410 --> 00:00:17,510
+hundreds of MIT courses, visit
+MIT OpenCourseWare at
+
+7
+00:00:17,510 --> 00:00:19,950
+ocw.mit.edu.
+
+8
+00:00:19,950 --> 00:00:26,100
+PROFESSOR: So, yesterday in
+the recitation we talked a
+
+9
+00:00:26,100 --> 00:00:29,260
+little bit about how to debug
+programs on Cell.
+
+10
+00:00:29,260 --> 00:00:32,420
+Today I'm going to talk a little
+more about debugging
+
+11
+00:00:32,420 --> 00:00:36,120
+parallel programs in general and
+give you some common tips
+
+12
+00:00:36,120 --> 00:00:39,430
+that might be helpful in
+helping you track down
+
+13
+00:00:39,430 --> 00:00:41,290
+problems that you run into.
+
+14
+00:00:45,190 --> 00:00:48,170
+As you might have gotten a feel
+for yesterday, debugging
+
+15
+00:00:48,170 --> 00:00:51,650
+parallel programs is harder
+than normal sequential
+
+16
+00:00:51,650 --> 00:00:54,090
+programs. So in normal
+sequential programs, you have
+
+17
+00:00:54,090 --> 00:00:55,830
+your traditional set
+of bugs which
+
+18
+00:00:55,830 --> 00:00:57,220
+parallel programs inherit.
+
+19
+00:00:57,220 --> 00:01:00,890
+So that doesn't get much harder,
+but then you add on
+
+20
+00:01:00,890 --> 00:01:03,490
+new things I can go wrong
+because of parallelization.
+
+21
+00:01:03,490 --> 00:01:05,540
+So things like synchronization,
+things like
+
+22
+00:01:05,540 --> 00:01:07,790
+deadlocks, things
+like data races.
+
+23
+00:01:07,790 --> 00:01:09,220
+So you have to get
+those right.
+
+24
+00:01:09,220 --> 00:01:11,310
+Now you have to debug your
+program and figure
+
+25
+00:01:11,310 --> 00:01:12,680
+out how to do that.
+
+26
+00:01:12,680 --> 00:01:15,530
+One of the things you'll see
+here is a lot of tools might
+
+27
+00:01:15,530 --> 00:01:19,440
+not be as good as you'd like
+them to in terms of providing
+
+28
+00:01:19,440 --> 00:01:22,840
+you the functionality
+for debugging.
+
+29
+00:01:22,840 --> 00:01:26,490
+Add to that that bugs in
+parallel programs often just
+
+30
+00:01:26,490 --> 00:01:32,300
+go away if you change one
+statement in your code -- you
+
+31
+00:01:32,300 --> 00:01:34,640
+reorder things and all of a
+sudden the bug is gone.
+
+32
+00:01:34,640 --> 00:01:37,360
+It's kind of like those pointer
+problems in C, where
+
+33
+00:01:37,360 --> 00:01:40,940
+you might add a word, add a
+new variable somewhere and
+
+34
+00:01:40,940 --> 00:01:42,505
+problem's gone, or you
+add a print-off and
+
+35
+00:01:42,505 --> 00:01:44,130
+the problem is gone.
+
+36
+00:01:44,130 --> 00:01:47,060
+So here it gets harder because
+those things can get rid of
+
+37
+00:01:47,060 --> 00:01:50,530
+deadlocks, so it makes it
+really hard to have an
+
+38
+00:01:50,530 --> 00:01:53,210
+experiment that you can repeat
+and come down to where the
+
+39
+00:01:53,210 --> 00:01:55,630
+problem is.
+
+40
+00:01:55,630 --> 00:01:57,910
+So what might you want
+in a debugger.
+
+41
+00:01:57,910 --> 00:02:01,190
+So this is a list that I've come
+up with, and if you have
+
+42
+00:02:01,190 --> 00:02:03,760
+some ideas we'll want
+to throw them out.
+
+43
+00:02:03,760 --> 00:02:05,970
+I'm thinking in terms of
+debugging parallel program,
+
+44
+00:02:05,970 --> 00:02:09,190
+what I want is a visual
+debugging system that really
+
+45
+00:02:09,190 --> 00:02:11,490
+let's me see all the processors
+that I have in my
+
+46
+00:02:11,490 --> 00:02:14,790
+network in my multi-processor
+system.
+
+47
+00:02:14,790 --> 00:02:19,060
+That includes actual computing
+and the actual network that
+
+48
+00:02:19,060 --> 00:02:21,055
+they're interconnecting all the
+processors that are going
+
+49
+00:02:21,055 --> 00:02:23,220
+to be communicating
+with each other.
+
+50
+00:02:23,220 --> 00:02:25,160
+So I'd like to be able
+to see what code is
+
+51
+00:02:25,160 --> 00:02:26,610
+running on each processor.
+
+52
+00:02:26,610 --> 00:02:29,110
+I'd like to see which edges
+are being used to send
+
+53
+00:02:29,110 --> 00:02:30,300
+messages around.
+
+54
+00:02:30,300 --> 00:02:33,010
+I might want to know which
+processors are blocked -- that
+
+55
+00:02:33,010 --> 00:02:37,250
+might help me identify
+deadlock problems.
+
+56
+00:02:37,250 --> 00:02:40,110
+For these kinds of scenarios it
+might be tricky to define
+
+57
+00:02:40,110 --> 00:02:42,940
+step, because there's no global
+clock, you can't force
+
+58
+00:02:42,940 --> 00:02:45,150
+everybody to proceed
+through one step.
+
+59
+00:02:45,150 --> 00:02:47,590
+What's one step on one processor
+might be different
+
+60
+00:02:47,590 --> 00:02:49,270
+on another, especially
+if they're not all
+
+61
+00:02:49,270 --> 00:02:50,460
+running the same code.
+
+62
+00:02:50,460 --> 00:02:55,170
+So how do you actually do that
+without a global clock.
+
+63
+00:02:55,170 --> 00:02:58,150
+So that can get a little
+bit tricky.
+
+64
+00:02:58,150 --> 00:03:01,230
+It likely won't help with data
+races, because I'm looking at
+
+65
+00:03:01,230 --> 00:03:03,660
+global communication problems,
+I'm looking at trying to
+
+66
+00:03:03,660 --> 00:03:05,680
+identify what's deadlocked
+and what's not.
+
+67
+00:03:05,680 --> 00:03:08,040
+So if there are data races, this
+kind of tool may or may
+
+68
+00:03:08,040 --> 00:03:09,940
+not help with that.
+
+69
+00:03:09,940 --> 00:03:11,380
+In general, this is
+the tool that I
+
+70
+00:03:11,380 --> 00:03:14,060
+would build for debugging.
+
+71
+00:03:14,060 --> 00:03:16,430
+I looked around on the web to
+see what's out there for
+
+72
+00:03:16,430 --> 00:03:17,640
+debugging parallel
+programs, and I
+
+73
+00:03:17,640 --> 00:03:19,820
+found this called TotalView.
+
+74
+00:03:19,820 --> 00:03:22,260
+This is actually something you
+have to buy, it's not free.
+
+75
+00:03:22,260 --> 00:03:24,790
+I don't know if they have
+evaluation licenses or
+
+76
+00:03:24,790 --> 00:03:28,070
+licences for academic
+purposes.
+
+77
+00:03:28,070 --> 00:03:29,940
+It kind of gets close to
+some of the things
+
+78
+00:03:29,940 --> 00:03:32,330
+I was talking about.
+
+79
+00:03:32,330 --> 00:03:34,540
+You have processors that shows
+your communication between
+
+80
+00:03:34,540 --> 00:03:39,040
+those processors, how much data
+is being sent through.
+
+81
+00:03:39,040 --> 00:03:42,730
+This particular version uses
+NPI, which we talked about in
+
+82
+00:03:42,730 --> 00:03:43,780
+previous lectures.
+
+83
+00:03:43,780 --> 00:03:46,570
+So it's sort of helpful in
+being able to see the
+
+84
+00:03:46,570 --> 00:03:49,180
+computation, looking at
+the communication, and
+
+85
+00:03:49,180 --> 00:03:51,130
+tracking down bugs.
+
+86
+00:03:51,130 --> 00:03:53,930
+But it doesn't get much
+better from there.
+
+87
+00:03:53,930 --> 00:03:58,600
+You know, how many people have
+used printouts for debugging?
+
+88
+00:03:58,600 --> 00:04:01,600
+It's the most popular way of
+debugging, and even I still
+
+89
+00:04:01,600 --> 00:04:03,500
+use it for debugging
+some of the Cell
+
+90
+00:04:03,500 --> 00:04:06,680
+programs we've been writing.
+
+91
+00:04:06,680 --> 00:04:09,490
+I know the TAs actually
+use this is well.
+
+92
+00:04:09,490 --> 00:04:14,100
+Yesterday you got a hands-on
+experience with GDB, and GDB
+
+93
+00:04:14,100 --> 00:04:17,440
+is a nice debugger, but it lacks
+a lot of things that you
+
+94
+00:04:17,440 --> 00:04:20,830
+might want, especially for
+debugging parallel programs.
+
+95
+00:04:20,830 --> 00:04:22,860
+You saw, for example, that you
+have multiple threads, you
+
+96
+00:04:22,860 --> 00:04:24,980
+need to be able switch between
+the threads, getting the
+
+97
+00:04:24,980 --> 00:04:28,190
+context right, being able to
+name the variables is tricky.
+
+98
+00:04:28,190 --> 00:04:32,820
+So there's a lot of things
+that could be improved.
+
+99
+00:04:32,820 --> 00:04:35,970
+There are some research
+debuggers, like something
+
+100
+00:04:35,970 --> 00:04:37,720
+we've built as part
+of the streaming
+
+101
+00:04:37,720 --> 00:04:39,160
+projects, StreamIt debugger.
+
+102
+00:04:39,160 --> 00:04:40,870
+I'll show you some screenshots
+of this so you can
+
+103
+00:04:40,870 --> 00:04:42,290
+see what we can do.
+
+104
+00:04:42,290 --> 00:04:45,930
+So in the StreamIt debugger,
+remember we have -- so this is
+
+105
+00:04:45,930 --> 00:04:48,720
+actually built in Eclipse and
+you can download this off the
+
+106
+00:04:48,720 --> 00:04:49,900
+web as well.
+
+107
+00:04:49,900 --> 00:04:52,230
+You can look at your
+stream graph.
+
+108
+00:04:52,230 --> 00:04:55,410
+Unfortunately, I couldn't get a
+split join in there, much to
+
+109
+00:04:55,410 --> 00:04:56,990
+Bill's dismay.
+
+110
+00:04:56,990 --> 00:04:59,180
+So you can't see, for example,
+the split join in all the
+
+111
+00:04:59,180 --> 00:05:01,740
+communication.
+
+112
+00:05:01,740 --> 00:05:04,850
+Each one of these is a filter,
+and if you recall the filter
+
+113
+00:05:04,850 --> 00:05:08,710
+is the computational element
+in your stream graph and
+
+114
+00:05:08,710 --> 00:05:10,300
+interconnected by channels.
+
+115
+00:05:10,300 --> 00:05:12,210
+So channels communicate data.
+
+116
+00:05:12,210 --> 00:05:14,940
+So what you see here -- well,
+you might not be able to quite
+
+117
+00:05:14,940 --> 00:05:17,010
+see it -- actually see the
+data that's being passed
+
+118
+00:05:17,010 --> 00:05:18,890
+through from one filter
+to the other.
+
+119
+00:05:18,890 --> 00:05:20,890
+You can actually go in there
+and change the value if you
+
+120
+00:05:20,890 --> 00:05:23,780
+wanted to or highlight
+particular value and see how
+
+121
+00:05:23,780 --> 00:05:25,870
+it flows down through
+the graph.
+
+122
+00:05:25,870 --> 00:05:28,520
+If you had a split join, then
+you might be able to -- in
+
+123
+00:05:28,520 --> 00:05:29,420
+fact, you can do this.
+
+124
+00:05:29,420 --> 00:05:33,400
+You can look at each path of the
+split join independently
+
+125
+00:05:33,400 --> 00:05:35,490
+and you can look at
+it in sequence.
+
+126
+00:05:35,490 --> 00:05:38,300
+Because the split join has nice
+semantics, it's actually
+
+127
+00:05:38,300 --> 00:05:42,475
+you can replicate the behavior
+because of the static nature
+
+128
+00:05:42,475 --> 00:05:44,800
+is everything is
+deterministic.
+
+129
+00:05:44,800 --> 00:05:46,050
+So this is very helpful.
+
+130
+00:05:46,050 --> 00:05:50,220
+We we did a user study two
+years ago almost with
+
+131
+00:05:50,220 --> 00:05:52,770
+something like 30 MIT students
+who use the C bugger and gave
+
+132
+00:05:52,770 --> 00:05:56,120
+us feedback on it.
+
+133
+00:05:56,120 --> 00:06:01,730
+So we gave them like 10
+problems, 10 code snippets,
+
+134
+00:06:01,730 --> 00:06:04,000
+each of them had a bug in it,
+we asked them to find it.
+
+135
+00:06:04,000 --> 00:06:06,090
+So a lot of them found to
+debugger to be helpful in
+
+136
+00:06:06,090 --> 00:06:09,010
+being able to track the flow of
+data and being able to see
+
+137
+00:06:09,010 --> 00:06:09,810
+what goes wrong.
+
+138
+00:06:09,810 --> 00:06:13,460
+So if you had, for example, a
+division that resulted in NaN
+
+139
+00:06:13,460 --> 00:06:15,750
+and not a number, floating
+point division you can
+
+140
+00:06:15,750 --> 00:06:17,750
+immediately see on a screen, so
+you know exactly where to
+
+141
+00:06:17,750 --> 00:06:18,880
+go look for it.
+
+142
+00:06:18,880 --> 00:06:22,110
+Doing that would print-offs
+might not be as easy.
+
+143
+00:06:22,110 --> 00:06:24,930
+So sometimes visual debugging
+can be very nice.
+
+144
+00:06:24,930 --> 00:06:27,300
+Unfortunately, visual debugging
+for the Cell isn't
+
+145
+00:06:27,300 --> 00:06:28,110
+that great.
+
+146
+00:06:28,110 --> 00:06:32,240
+So this is the Cell plug-in
+in Eclipse.
+
+147
+00:06:32,240 --> 00:06:35,180
+I've mentioned just to some of
+you if you want to run it you
+
+148
+00:06:35,180 --> 00:06:39,050
+can run it from a Playstation 3,
+but if more than one of you
+
+149
+00:06:39,050 --> 00:06:41,920
+is running it then it
+becomes unusable
+
+150
+00:06:41,920 --> 00:06:44,360
+because of memory issues.
+
+151
+00:06:44,360 --> 00:06:50,050
+You can install this on other
+Linux machines and remotely
+
+152
+00:06:50,050 --> 00:06:51,750
+debug on the Playstation
+3 hardware.
+
+153
+00:06:51,750 --> 00:06:55,410
+So the two remote machines can
+talk through GDB ports.
+
+154
+00:06:55,410 --> 00:06:57,770
+I can talk to you about how to
+set that up if you want to,
+
+155
+00:06:57,770 --> 00:06:59,260
+but it doesn't really
+add anything
+
+156
+00:06:59,260 --> 00:07:00,830
+over E-Max, for example.
+
+157
+00:07:00,830 --> 00:07:03,950
+It just might look fancier than
+an E-Max window or a GDB
+
+158
+00:07:03,950 --> 00:07:05,530
+on the command line prompt.
+
+159
+00:07:05,530 --> 00:07:07,200
+So this is the code
+from yesterday.
+
+160
+00:07:07,200 --> 00:07:09,610
+These are the exercises
+we asked you to do.
+
+161
+00:07:09,610 --> 00:07:11,130
+You can look at the
+different threads.
+
+162
+00:07:11,130 --> 00:07:13,190
+If you have debug Java programs
+in Eclipse this
+
+163
+00:07:13,190 --> 00:07:14,860
+should look very familiar.
+
+164
+00:07:14,860 --> 00:07:18,030
+You can look at the different
+variables.
+
+165
+00:07:18,030 --> 00:07:19,760
+You still have the
+naming problem.
+
+166
+00:07:19,760 --> 00:07:22,800
+So yesterday, remember you had
+to qualify which control box
+
+167
+00:07:22,800 --> 00:07:23,700
+you were looking at?
+
+168
+00:07:23,700 --> 00:07:25,750
+Still the same kind of issue --
+have to do some trickery to
+
+169
+00:07:25,750 --> 00:07:27,010
+find it here.
+
+170
+00:07:27,010 --> 00:07:29,840
+It doesn't have the nice visual
+aspect of showing you
+
+171
+00:07:29,840 --> 00:07:32,980
+which code is running on which
+SPE, and you might not be able
+
+172
+00:07:32,980 --> 00:07:37,510
+to find mailbox synchronization
+problems.
+
+173
+00:07:37,510 --> 00:07:39,700
+Maybe those things will come in
+the future, and the fact,
+
+174
+00:07:39,700 --> 00:07:41,210
+they likely will.
+
+175
+00:07:41,210 --> 00:07:42,950
+But a lot of that is sort
+of still lacking.
+
+176
+00:07:42,950 --> 00:07:45,530
+So what do you do in the
+meantime, In the next two
+
+177
+00:07:45,530 --> 00:07:47,650
+weeks as you're writing
+your programs?
+
+178
+00:07:47,650 --> 00:07:51,560
+So I've looked around for some
+tips or some talks and
+
+179
+00:07:51,560 --> 00:07:56,350
+lectures and what people have
+done in terms of improving the
+
+180
+00:07:56,350 --> 00:07:59,280
+process for debugging
+parallel codes.
+
+181
+00:07:59,280 --> 00:08:01,860
+Probably the best thing I've
+found is this talk that was
+
+182
+00:08:01,860 --> 00:08:05,190
+given at University of Maryland
+on defect patterns.
+
+183
+00:08:05,190 --> 00:08:09,260
+So the rest of these
+slides are largely
+
+184
+00:08:09,260 --> 00:08:11,370
+drawn from that talk.
+
+185
+00:08:11,370 --> 00:08:13,680
+I'm going to identify just a few
+of them to give you some
+
+186
+00:08:13,680 --> 00:08:16,576
+examples so you can understand
+what to look for and what are
+
+187
+00:08:16,576 --> 00:08:19,040
+some common symptoms, what are
+some common prevention
+
+188
+00:08:19,040 --> 00:08:20,770
+techniques.
+
+189
+00:08:20,770 --> 00:08:24,660
+So defect patterns, just like
+the programming patterns we
+
+190
+00:08:24,660 --> 00:08:27,520
+talked about, are meant to help
+you conjure up to write
+
+191
+00:08:27,520 --> 00:08:28,600
+contextual information.
+
+192
+00:08:28,600 --> 00:08:31,240
+You had what are things you
+should look for if you're
+
+193
+00:08:31,240 --> 00:08:33,190
+communicating with
+somebody else.
+
+194
+00:08:33,190 --> 00:08:35,470
+What kind of terminology do you
+use so that you don't have
+
+195
+00:08:35,470 --> 00:08:40,370
+to explain things down
+to every last detail.
+
+196
+00:08:40,370 --> 00:08:42,930
+At the end of this course, one
+thing I'd like to do is maybe
+
+197
+00:08:42,930 --> 00:08:45,220
+get some feedback from each of
+you as to what are some of the
+
+198
+00:08:45,220 --> 00:08:48,920
+problems that you ran into in
+writing your programs, and how
+
+199
+00:08:48,920 --> 00:08:51,110
+you actually went about
+debugging them, and maybe we
+
+200
+00:08:51,110 --> 00:08:55,050
+can come up with Cell defect
+patterns, and maybe Cell
+
+201
+00:08:55,050 --> 00:08:58,430
+defect recipes for resolving
+those defect patterns.
+
+202
+00:09:02,050 --> 00:09:05,920
+So, probably the worst one of
+all, and the easiest one to
+
+203
+00:09:05,920 --> 00:09:09,130
+fix is that you have new
+language features or new
+
+204
+00:09:09,130 --> 00:09:12,050
+language extensions that are
+not well understood.
+
+205
+00:09:12,050 --> 00:09:15,290
+This is especially true when you
+take a class of students
+
+206
+00:09:15,290 --> 00:09:18,340
+and they don't really know the
+language, they don't know all
+
+207
+00:09:18,340 --> 00:09:23,150
+the tools, and you ask them to
+do a project in four weeks and
+
+208
+00:09:23,150 --> 00:09:24,120
+you expect things to work.
+
+209
+00:09:24,120 --> 00:09:28,410
+So there's a lot for everybody
+to pick up and understand.
+
+210
+00:09:28,410 --> 00:09:31,620
+So you might have inconsistent
+types that you use in terms of
+
+211
+00:09:31,620 --> 00:09:33,240
+calling a function.
+
+212
+00:09:33,240 --> 00:09:35,430
+There might be alignment
+issues, which some of
+
+213
+00:09:35,430 --> 00:09:36,900
+you have run into.
+
+214
+00:09:36,900 --> 00:09:38,830
+You might use the
+wrong functions.
+
+215
+00:09:38,830 --> 00:09:41,190
+You know the functionality you
+want but you just don't know
+
+216
+00:09:41,190 --> 00:09:44,510
+how to name it and so you might
+use the wrong function.
+
+217
+00:09:44,510 --> 00:09:47,300
+Some of these are easy to fix
+because you might get a
+
+218
+00:09:47,300 --> 00:09:48,470
+compile time error.
+
+219
+00:09:48,470 --> 00:09:51,150
+If you have mismatch in function
+parameters then you
+
+220
+00:09:51,150 --> 00:09:52,840
+can fix that very easily.
+
+221
+00:09:52,840 --> 00:09:55,780
+Some defects -- you know, very
+natural parallel programs
+
+222
+00:09:55,780 --> 00:09:58,730
+might not come up until run
+time, so you might end up with
+
+223
+00:09:58,730 --> 00:10:02,220
+crashes or just erroneous
+behavior.
+
+224
+00:10:02,220 --> 00:10:03,840
+I really think this is probably
+the easiest one to
+
+225
+00:10:03,840 --> 00:10:07,140
+fix, and the prevention
+technique that I would
+
+226
+00:10:07,140 --> 00:10:10,400
+recommend is if there's
+something you're unfamiliar
+
+227
+00:10:10,400 --> 00:10:13,830
+about or you're not sure about
+how to use something, ask.
+
+228
+00:10:13,830 --> 00:10:16,930
+But also, you don't need to know
+all the functions that
+
+229
+00:10:16,930 --> 00:10:20,600
+are available in something
+like the Cell language
+
+230
+00:10:20,600 --> 00:10:22,440
+extensions for C.
+
+231
+00:10:22,440 --> 00:10:23,760
+Yes, there are a lot of
+functions -- you know, the
+
+232
+00:10:23,760 --> 00:10:26,890
+manuals, hundreds of pages,
+and you can't possibly go
+
+233
+00:10:26,890 --> 00:10:28,600
+through it all and nobody
+becomes an expert in
+
+234
+00:10:28,600 --> 00:10:29,280
+everything.
+
+235
+00:10:29,280 --> 00:10:32,500
+But understand just a few basic
+concepts and features.
+
+236
+00:10:32,500 --> 00:10:36,730
+So, David identified a bunch
+that he found useful for
+
+237
+00:10:36,730 --> 00:10:41,850
+writing the programs, and some
+of the ones that are up on the
+
+238
+00:10:41,850 --> 00:10:47,210
+web page under the recipes for
+this course list a few more.
+
+239
+00:10:47,210 --> 00:10:50,760
+And so this might help you in
+just understanding how these
+
+240
+00:10:50,760 --> 00:10:53,070
+functions work, understanding
+basic mechanisms that they
+
+241
+00:10:53,070 --> 00:10:54,810
+give you, and that's good
+enough because it'll
+
+242
+00:10:54,810 --> 00:10:55,790
+help you get by.
+
+243
+00:10:55,790 --> 00:10:59,250
+Certainly for doing the project
+under short time
+
+244
+00:10:59,250 --> 00:11:01,570
+constraints, you don't need to
+know all the advanced features
+
+245
+00:11:01,570 --> 00:11:04,560
+that Cell might have. Or you can
+probably just pick them up
+
+246
+00:11:04,560 --> 00:11:07,550
+on the fly as you need them.
+
+247
+00:11:07,550 --> 00:11:09,010
+So what are some more
+interesting
+
+248
+00:11:09,010 --> 00:11:10,980
+problems that come up.
+
+249
+00:11:10,980 --> 00:11:14,560
+I think one that is probably
+not too unfamiliar is this
+
+250
+00:11:14,560 --> 00:11:17,820
+space decomposition problems.
+So, if you remember, space
+
+251
+00:11:17,820 --> 00:11:20,230
+decomposition is really
+data distribution.
+
+252
+00:11:20,230 --> 00:11:23,320
+You have a serial program that
+you want to parallelize.
+
+253
+00:11:23,320 --> 00:11:25,450
+And what that means if you have
+to actually send data
+
+254
+00:11:25,450 --> 00:11:28,450
+around to different processors
+so that each one knows how to
+
+255
+00:11:28,450 --> 00:11:31,030
+compute locally.
+
+256
+00:11:31,030 --> 00:11:34,440
+Here you might get things like
+segmentation faults, alignment
+
+257
+00:11:34,440 --> 00:11:39,650
+problems, you might have index
+out of range errors.
+
+258
+00:11:39,650 --> 00:11:42,900
+What this comes of is forgetting
+to change things or
+
+259
+00:11:42,900 --> 00:11:45,420
+overlooking some simple things
+that don't carryover from the
+
+260
+00:11:45,420 --> 00:11:47,670
+sequential case that
+are parallel case.
+
+261
+00:11:47,670 --> 00:11:50,200
+So what you might want to do is
+validate your distributions
+
+262
+00:11:50,200 --> 00:11:51,980
+and your memory partitions
+correctly.
+
+263
+00:11:51,980 --> 00:11:54,970
+So what's an example?
+
+264
+00:11:54,970 --> 00:11:59,610
+So suppose you had an array
+or a list of cells,
+
+265
+00:11:59,610 --> 00:12:01,120
+each cell has a number.
+
+266
+00:12:01,120 --> 00:12:04,420
+What you want to do is at each
+step of the computation for
+
+267
+00:12:04,420 --> 00:12:07,550
+any given cell, you want add
+the value to the left of it
+
+268
+00:12:07,550 --> 00:12:09,210
+and the value to the
+right of it.
+
+269
+00:12:09,210 --> 00:12:11,660
+So here we have cell zero
+has the value 2.
+
+270
+00:12:11,660 --> 00:12:13,730
+We'll assume that the n
+disconnectors are first, so
+
+271
+00:12:13,730 --> 00:12:17,910
+this is like a circular list,
+a circular buffer.
+
+272
+00:12:17,910 --> 00:12:22,060
+So adding the left and right
+neighbor would get me, in this
+
+273
+00:12:22,060 --> 00:12:24,600
+case, 3 plus 1, 4.
+
+274
+00:12:24,600 --> 00:12:26,570
+And so on and so forth.
+
+275
+00:12:26,570 --> 00:12:28,710
+You want to repeat this
+computation for n steps.
+
+276
+00:12:28,710 --> 00:12:31,100
+So this might be very common in
+computations where you're
+
+277
+00:12:31,100 --> 00:12:34,190
+doing unit [? book ?]
+communication.
+
+278
+00:12:34,190 --> 00:12:37,560
+So what's a straightforward
+sequential implementation?
+
+279
+00:12:37,560 --> 00:12:39,850
+Well, you can use
+two buffers --
+
+280
+00:12:39,850 --> 00:12:42,220
+one for the current time step,
+and you do all the
+
+281
+00:12:42,220 --> 00:12:43,330
+calculations in that.
+
+282
+00:12:43,330 --> 00:12:47,970
+Then you use another buffer
+for next time step.
+
+283
+00:12:47,970 --> 00:12:50,530
+Then you swap the two.
+
+284
+00:12:50,530 --> 00:12:52,830
+So the code might look
+something like this.
+
+285
+00:12:52,830 --> 00:12:56,470
+Sequential c code, my two
+buffers, here's my loop.
+
+286
+00:12:56,470 --> 00:12:58,960
+I write into one buffer
+and then I switch
+
+287
+00:12:58,960 --> 00:13:00,380
+the two buffers around.
+
+288
+00:13:00,380 --> 00:13:03,450
+Any questions so far?
+
+289
+00:13:03,450 --> 00:13:07,035
+So now, what are some things
+that can go wrong when you try
+
+290
+00:13:07,035 --> 00:13:11,060
+to parallelize this?
+
+291
+00:13:11,060 --> 00:13:13,580
+So how would you actually
+parallelize this code?
+
+292
+00:13:13,580 --> 00:13:15,990
+Well, we saw in some of your
+labs, for example, that you
+
+293
+00:13:15,990 --> 00:13:18,620
+can take a big array, split it
+up in smaller chunks and
+
+294
+00:13:18,620 --> 00:13:21,450
+assign each chunk to one
+particular processor.
+
+295
+00:13:21,450 --> 00:13:23,610
+So we can use that
+technique here.
+
+296
+00:13:23,610 --> 00:13:28,540
+So each processor, we have n of
+them, rather size of them,
+
+297
+00:13:28,540 --> 00:13:32,000
+and it's going to get some
+number of elements.
+
+298
+00:13:32,000 --> 00:13:35,060
+So each time step, we have to
+compute locally all the
+
+299
+00:13:35,060 --> 00:13:37,870
+communications, but then there's
+some special cases
+
+300
+00:13:37,870 --> 00:13:40,270
+that we need to treat at
+the boundaries, right.
+
+301
+00:13:40,270 --> 00:13:42,430
+So if I have this chunk and I
+need to do my new neighbor
+
+302
+00:13:42,430 --> 00:13:44,800
+communication, I don't have
+this particular cells.
+
+303
+00:13:44,800 --> 00:13:47,230
+I have to go out there
+and request it.
+
+304
+00:13:47,230 --> 00:13:48,890
+Similarly, somebody has
+to send me this
+
+305
+00:13:48,890 --> 00:13:49,960
+particular data item.
+
+306
+00:13:49,960 --> 00:13:54,890
+So there's some data exchange
+that has to happen.
+
+307
+00:13:54,890 --> 00:13:59,300
+So in the decomposition, you
+write your parallel code.
+
+308
+00:13:59,300 --> 00:14:01,930
+Here, each buffer is
+a different size.
+
+309
+00:14:01,930 --> 00:14:05,550
+What you do is you have some
+local, which says this is how
+
+310
+00:14:05,550 --> 00:14:08,510
+much of the data I'm getting,
+and has a total number of
+
+311
+00:14:08,510 --> 00:14:11,490
+elements, besides the number
+of processors.
+
+312
+00:14:11,490 --> 00:14:14,540
+Local essentially tells me
+the size of my chunk.
+
+313
+00:14:14,540 --> 00:14:17,900
+I'm iterating through from zero
+and local and I'm doing
+
+314
+00:14:17,900 --> 00:14:19,710
+essentially the same
+computation.
+
+315
+00:14:19,710 --> 00:14:21,400
+So what's a bug in here?
+
+316
+00:14:21,400 --> 00:14:22,260
+Anybody see it?
+
+317
+00:14:22,260 --> 00:14:24,780
+Sort of giving you some hints
+of things highlighted in red
+
+318
+00:14:24,780 --> 00:14:26,170
+or there's something wrong
+with the things
+
+319
+00:14:26,170 --> 00:14:27,420
+highlighted in red.
+
+320
+00:14:36,790 --> 00:14:38,090
+There's another hint.
+
+321
+00:14:38,090 --> 00:14:40,330
+So this is essentially the
+computations going on at every
+
+322
+00:14:40,330 --> 00:14:44,230
+processor, this is my buffer,
+and at every step I have to do
+
+323
+00:14:44,230 --> 00:14:46,320
+the calculations, taking care
+of the boundary edges.
+
+324
+00:14:51,840 --> 00:14:55,100
+Anybody want to take a stab?
+
+325
+00:14:55,100 --> 00:14:55,450
+Mark?
+
+326
+00:14:55,450 --> 00:15:00,490
+AUDIENCE: Is it that the
+nextbuffer zero needs to look
+
+327
+00:15:00,490 --> 00:15:01,740
+at data from 1?
+
+328
+00:15:04,720 --> 00:15:06,820
+PROFESSOR: Next buffer
+zero, right.
+
+329
+00:15:06,820 --> 00:15:08,780
+So what might be
+a fix to that?
+
+330
+00:15:12,910 --> 00:15:14,810
+So the next buffer is zero.
+
+331
+00:15:14,810 --> 00:15:18,850
+So if this is zero then buffer
+of x minus 1 plus
+
+332
+00:15:18,850 --> 00:15:20,100
+this points to what?
+
+333
+00:15:23,160 --> 00:15:24,640
+AUDIENCE: So you need to
+start at 1 and iterate.
+
+334
+00:15:24,640 --> 00:15:26,840
+PROFESSOR: Right, exactly.
+
+335
+00:15:26,840 --> 00:15:30,780
+It's a local plus 1, if you
+were going to do these.
+
+336
+00:15:30,780 --> 00:15:32,150
+So that's one bug.
+
+337
+00:15:32,150 --> 00:15:34,810
+The other thing is the
+assumption that your data
+
+338
+00:15:34,810 --> 00:15:37,800
+elements might be divisible by
+the number of processors that
+
+339
+00:15:37,800 --> 00:15:40,260
+you have. So you pick the
+decomposition that might not
+
+340
+00:15:40,260 --> 00:15:42,110
+be symmetric across
+all processors.
+
+341
+00:15:42,110 --> 00:15:46,320
+So it's more subtle, I think,
+to keep in mind.
+
+342
+00:15:46,320 --> 00:15:48,640
+So that's one particular kind of
+problem that might come up
+
+343
+00:15:48,640 --> 00:15:51,350
+on your decomposing data and
+replicating among different
+
+344
+00:15:51,350 --> 00:15:52,610
+processors.
+
+345
+00:15:52,610 --> 00:15:56,380
+So you have to be careful about
+what are your boundary
+
+346
+00:15:56,380 --> 00:16:00,650
+cases going to be and how are
+you going to deal with those.
+
+347
+00:16:00,650 --> 00:16:03,870
+The more difficult one
+is synchronization.
+
+348
+00:16:03,870 --> 00:16:06,630
+So synchronization is when
+you're sending data from one
+
+349
+00:16:06,630 --> 00:16:09,530
+processor to the other and you
+might end up with deadlock,
+
+350
+00:16:09,530 --> 00:16:11,920
+because one is trying to send,
+the other's trying to send,
+
+351
+00:16:11,920 --> 00:16:15,020
+and neither can make progress
+until the other's received.
+
+352
+00:16:15,020 --> 00:16:19,390
+So your program hangs, you get
+non-deterministic behavior or
+
+353
+00:16:19,390 --> 00:16:22,110
+output, every time you run
+your program you get a
+
+354
+00:16:22,110 --> 00:16:24,910
+different result -- that
+can drive you crazy.
+
+355
+00:16:24,910 --> 00:16:27,910
+So some of the defects
+can be very subtle.
+
+356
+00:16:27,910 --> 00:16:29,750
+This is probably where you'll
+spend most of your time trying
+
+357
+00:16:29,750 --> 00:16:32,400
+to figure it out.
+
+358
+00:16:32,400 --> 00:16:35,100
+So one of the ways to prevent
+this is to actually look at
+
+359
+00:16:35,100 --> 00:16:37,680
+how you're orchestrating your
+communication and doing it
+
+360
+00:16:37,680 --> 00:16:38,700
+very carefully.
+
+361
+00:16:38,700 --> 00:16:42,660
+So look at, for example,
+what's going on here.
+
+362
+00:16:42,660 --> 00:16:45,620
+So this is the same problem, and
+what I'm doing is now this
+
+363
+00:16:45,620 --> 00:16:48,780
+is the parallel version and
+I'm sending the boundary
+
+364
+00:16:48,780 --> 00:16:52,870
+cases, the boundary cells to
+the different processors.
+
+365
+00:16:52,870 --> 00:16:54,290
+This is an SPMD program.
+
+366
+00:16:54,290 --> 00:16:58,240
+So an SPMD program has every
+processor running essentially
+
+367
+00:16:58,240 --> 00:16:59,380
+the same code.
+
+368
+00:16:59,380 --> 00:17:01,640
+So this code is replicated
+over n processors and
+
+369
+00:17:01,640 --> 00:17:03,290
+everybody's trying to
+do this same thing.
+
+370
+00:17:03,290 --> 00:17:06,500
+So what's the problem
+with this code?
+
+371
+00:17:06,500 --> 00:17:11,060
+We're doing send of
+next buffer zero.
+
+372
+00:17:11,060 --> 00:17:13,320
+Here, rank essentially
+just says each
+
+373
+00:17:13,320 --> 00:17:14,880
+processor has a rank.
+
+374
+00:17:14,880 --> 00:17:17,360
+So this is a way of identifying
+things.
+
+375
+00:17:17,360 --> 00:17:20,280
+So I'm trying to send it to my
+previous guy, I'm trying to
+
+376
+00:17:20,280 --> 00:17:23,740
+send it to the next guy, and
+here I'm sending the value at
+
+377
+00:17:23,740 --> 00:17:27,150
+the far extreme of the buffer to
+the next processor and then
+
+378
+00:17:27,150 --> 00:17:28,560
+to the previous processor.
+
+379
+00:17:28,560 --> 00:17:29,630
+Anybody see what's wrong here?
+
+380
+00:17:29,630 --> 00:17:33,610
+AUDIENCE: So are these
+blocking things?
+
+381
+00:17:33,610 --> 00:17:35,160
+PROFESSOR: Yeah, imagine they're
+blocking things.
+
+382
+00:17:35,160 --> 00:17:37,149
+AUDIENCE: Why will
+that deadlock?
+
+383
+00:17:40,630 --> 00:17:42,100
+PROFESSOR: Right.
+
+384
+00:17:42,100 --> 00:17:45,380
+So this will deadlock, right.
+
+385
+00:17:45,380 --> 00:17:48,110
+So this will deadlock because
+this processor is trying to
+
+386
+00:17:48,110 --> 00:17:50,590
+send here, this processor is
+trying to send here, but
+
+387
+00:17:50,590 --> 00:17:53,410
+neither is receiving yet, so
+neither makes progress.
+
+388
+00:17:53,410 --> 00:17:55,940
+So how would you fix
+it at this point?
+
+389
+00:17:55,940 --> 00:17:59,950
+You might not want to use a
+blocking send all the time.
+
+390
+00:17:59,950 --> 00:18:03,600
+So if your architecture allows
+you to have different flavors
+
+391
+00:18:03,600 --> 00:18:05,960
+of communication, so synchronous
+versus an
+
+392
+00:18:05,960 --> 00:18:08,680
+asynchronous, a blocking versus
+non-blocking, you'll
+
+393
+00:18:08,680 --> 00:18:11,790
+want to avoid using constructs
+that can lead you to deadlock
+
+394
+00:18:11,790 --> 00:18:14,020
+if you don't need to.
+
+395
+00:18:14,020 --> 00:18:17,430
+The other mechanism -- this was
+pointed out briefly in the
+
+396
+00:18:17,430 --> 00:18:19,980
+talk on parallel programming
+-- you want to order your
+
+397
+00:18:19,980 --> 00:18:21,440
+sends and receives properly.
+
+398
+00:18:21,440 --> 00:18:22,330
+So alternate them.
+
+399
+00:18:22,330 --> 00:18:24,160
+So you have a send in
+one processor, a
+
+400
+00:18:24,160 --> 00:18:25,970
+receive in the other.
+
+401
+00:18:25,970 --> 00:18:28,430
+You can use that to prevent
+deadlock and get the
+
+402
+00:18:28,430 --> 00:18:30,890
+communication patterns right.
+
+403
+00:18:30,890 --> 00:18:32,640
+There could be more interesting
+cases that come up
+
+404
+00:18:32,640 --> 00:18:35,230
+if you're communicating over a
+network where you might end up
+
+405
+00:18:35,230 --> 00:18:40,470
+with cyclic patterns leading
+to loops, and that also can
+
+406
+00:18:40,470 --> 00:18:41,720
+create some problems for you.
+
+407
+00:18:44,770 --> 00:18:48,780
+The last two I'll talk about
+aren't really bugs in that
+
+408
+00:18:48,780 --> 00:18:51,090
+they might not cause your
+program to break or compute
+
+409
+00:18:51,090 --> 00:18:52,050
+incorrectly.
+
+410
+00:18:52,050 --> 00:18:53,890
+Things might work properly,
+but you might not get the
+
+411
+00:18:53,890 --> 00:18:56,460
+actual performance that
+you're expecting.
+
+412
+00:18:56,460 --> 00:19:01,660
+So these are performance bucks
+or performance defects.
+
+413
+00:19:01,660 --> 00:19:04,940
+So side effects of
+parallelization is often case
+
+414
+00:19:04,940 --> 00:19:07,560
+that you're focusing on your
+parallel code and you might
+
+415
+00:19:07,560 --> 00:19:09,820
+ignore things that are going
+on in your sequential code,
+
+416
+00:19:09,820 --> 00:19:12,060
+and that might lead you to,
+essentially you've spent all
+
+417
+00:19:12,060 --> 00:19:14,720
+this time trying to parallelize
+your code, but
+
+418
+00:19:14,720 --> 00:19:16,760
+your end result is not getting
+the performance that you
+
+419
+00:19:16,760 --> 00:19:19,030
+expect because things
+look sequential.
+
+420
+00:19:19,030 --> 00:19:21,120
+So what's wrong here?
+
+421
+00:19:21,120 --> 00:19:26,240
+So as an example, imagine that
+we're doing instead of reading
+
+422
+00:19:26,240 --> 00:19:30,160
+data from a --
+
+423
+00:19:30,160 --> 00:19:32,020
+so, in the previous case I
+didn't show you how we were
+
+424
+00:19:32,020 --> 00:19:34,720
+reading data into the different
+buffers, but suppose
+
+425
+00:19:34,720 --> 00:19:37,240
+we were getting it from some
+files, so input buffer.
+
+426
+00:19:37,240 --> 00:19:39,750
+So now we have an SPMD program
+again, everybody's trying to
+
+427
+00:19:39,750 --> 00:19:41,010
+read from this buffer.
+
+428
+00:19:41,010 --> 00:19:42,930
+What could go wrong here?
+
+429
+00:19:42,930 --> 00:19:45,150
+Anybody have an idea?
+
+430
+00:19:45,150 --> 00:19:48,050
+So every processor is opening
+the file and then it's going
+
+431
+00:19:48,050 --> 00:19:50,650
+to figure out how much to skip
+and it'll start reading from
+
+432
+00:19:50,650 --> 00:19:51,245
+that location.
+
+433
+00:19:51,245 --> 00:19:53,830
+So everybody's reading from a
+file, so that's OK, nobody's
+
+434
+00:19:53,830 --> 00:19:54,510
+modifying it.
+
+435
+00:19:54,510 --> 00:19:55,950
+But what can go wrong here?
+
+436
+00:19:55,950 --> 00:19:59,887
+AUDIENCE: [INAUDIBLE PHRASE].
+
+437
+00:20:07,270 --> 00:20:09,760
+PROFESSOR: Right.
+
+438
+00:20:09,760 --> 00:20:13,010
+So essentially, sequentialize
+your execution because reading
+
+439
+00:20:13,010 --> 00:20:16,770
+from the file system becomes
+the bottleneck.
+
+440
+00:20:16,770 --> 00:20:19,550
+So you'll want to schedule input
+and output carefully.
+
+441
+00:20:19,550 --> 00:20:21,680
+You might find that not
+everybody needs to do the
+
+442
+00:20:21,680 --> 00:20:22,860
+input and output.
+
+443
+00:20:22,860 --> 00:20:26,520
+Only one processor has to do
+the input and then it can
+
+444
+00:20:26,520 --> 00:20:28,370
+distribute it to all the
+different processors.
+
+445
+00:20:28,370 --> 00:20:32,390
+So, in the Master/Slave model,
+which a lot of you are using
+
+446
+00:20:32,390 --> 00:20:36,550
+for the Cell programming, the
+Master can just read the data
+
+447
+00:20:36,550 --> 00:20:37,810
+from the input files
+and distribute it
+
+448
+00:20:37,810 --> 00:20:38,633
+to everybody else.
+
+449
+00:20:38,633 --> 00:20:39,900
+So this avoids some
+of the problems
+
+450
+00:20:39,900 --> 00:20:41,740
+with input and output.
+
+451
+00:20:41,740 --> 00:20:45,150
+You can have similar kinds of
+problems if you're reading
+
+452
+00:20:45,150 --> 00:20:46,130
+from other devices.
+
+453
+00:20:46,130 --> 00:20:48,740
+It doesn't have to be
+the file system.
+
+454
+00:20:48,740 --> 00:20:52,520
+So here's another one,
+a little more subtle.
+
+455
+00:20:52,520 --> 00:20:55,810
+So you're generating data--.
+
+456
+00:20:55,810 --> 00:20:57,196
+Hey, Allen, what's up?
+
+457
+00:20:57,196 --> 00:20:59,965
+AUDIENCE: I somehow missed the
+distinction between when
+
+458
+00:20:59,965 --> 00:21:02,231
+you're waiting for the master
+to read all the dat aand
+
+459
+00:21:02,231 --> 00:21:04,748
+distribute it, and waiting for
+the other [? processes ?] to
+
+460
+00:21:04,748 --> 00:21:07,600
+get through so I can read my
+private data, isn't it going
+
+461
+00:21:07,600 --> 00:21:10,910
+to be about the same
+time on this?
+
+462
+00:21:10,910 --> 00:21:11,090
+PROFESSOR: No.
+
+463
+00:21:11,090 --> 00:21:15,130
+So here, just essentially, the
+Master reads the file as part
+
+464
+00:21:15,130 --> 00:21:17,410
+of the initialization.
+
+465
+00:21:17,410 --> 00:21:18,050
+Then you distribute it.
+
+466
+00:21:18,050 --> 00:21:19,770
+So distribution can happen
+at run time.
+
+467
+00:21:19,770 --> 00:21:23,250
+So, the initialization you
+don't care about because
+
+468
+00:21:23,250 --> 00:21:25,080
+hopefully that's a small
+part of the code.
+
+469
+00:21:28,680 --> 00:21:31,550
+So this code is guarded by rank
+equals Master, so only it
+
+470
+00:21:31,550 --> 00:21:32,270
+does this code.
+
+471
+00:21:32,270 --> 00:21:35,200
+Then here you might have the
+command that says wait until
+
+472
+00:21:35,200 --> 00:21:38,680
+I've received it and then
+execute, or on the cells, then
+
+473
+00:21:38,680 --> 00:21:41,270
+these might be the SPE create
+threads that happen after
+
+474
+00:21:41,270 --> 00:21:42,340
+you've read the data.
+
+475
+00:21:42,340 --> 00:21:45,200
+So hopefully, initialization
+time is not something you have
+
+476
+00:21:45,200 --> 00:21:46,450
+concern about too much.
+
+477
+00:21:48,830 --> 00:21:52,930
+So if you're generating data on
+the fly or dynamically, so
+
+478
+00:21:52,930 --> 00:21:56,250
+here we might use the Srand
+function to sort of start with
+
+479
+00:21:56,250 --> 00:21:58,830
+a random seeing and then
+fill in the buffer
+
+480
+00:21:58,830 --> 00:22:00,330
+with some random data.
+
+481
+00:22:00,330 --> 00:22:01,580
+So what could go wrong here?
+
+482
+00:22:04,250 --> 00:22:10,070
+So in Srand, when you're using
+a random function -- sorry,
+
+483
+00:22:10,070 --> 00:22:12,340
+this is the same function.
+
+484
+00:22:12,340 --> 00:22:14,640
+When you're using a random,
+a pseudo random number
+
+485
+00:22:14,640 --> 00:22:17,390
+generator, you have to give it
+a seed, then if everybody
+
+486
+00:22:17,390 --> 00:22:20,060
+starts off with the same seed,
+then you might end up with the
+
+487
+00:22:20,060 --> 00:22:22,640
+same random number sequence.
+
+488
+00:22:22,640 --> 00:22:25,960
+If that's something you're
+using to parallelize your
+
+489
+00:22:25,960 --> 00:22:28,460
+computation, you might, in
+effect, end up with the same
+
+490
+00:22:28,460 --> 00:22:31,820
+kind of sequence on each
+processor and you lose all
+
+491
+00:22:31,820 --> 00:22:34,250
+kinds of parallelization.
+
+492
+00:22:34,250 --> 00:22:36,860
+So there's some hidden
+serialization issues in some
+
+493
+00:22:36,860 --> 00:22:38,940
+of the functions that you
+might use that you
+
+494
+00:22:38,940 --> 00:22:40,190
+should be aware of.
+
+495
+00:22:42,350 --> 00:22:44,430
+The last one I'll talk about is
+
+496
+00:22:44,430 --> 00:22:46,570
+performance scalability defect.
+
+497
+00:22:46,570 --> 00:22:50,170
+So here you parallelize your
+code, things look good, but
+
+498
+00:22:50,170 --> 00:22:51,300
+you're still not getting --
+
+499
+00:22:51,300 --> 00:22:54,030
+you've taken care of all your
+IO issue, you're still not
+
+500
+00:22:54,030 --> 00:22:55,370
+getting the performance
+you want.
+
+501
+00:22:55,370 --> 00:22:57,710
+So, why is that?
+
+502
+00:22:57,710 --> 00:23:01,430
+You might have -- remember your
+Amdahl's law, and what
+
+503
+00:23:01,430 --> 00:23:03,580
+you want is an efficiency
+that's linear.
+
+504
+00:23:03,580 --> 00:23:08,500
+Every time you add one processor
+you want a straight
+
+505
+00:23:08,500 --> 00:23:11,410
+line curve between the number
+of processors and speed up.
+
+506
+00:23:11,410 --> 00:23:13,490
+This should be a linear
+relationship.
+
+507
+00:23:13,490 --> 00:23:16,440
+So you might see sublinear speed
+ups, and you want to
+
+508
+00:23:16,440 --> 00:23:17,980
+figure out why that is.
+
+509
+00:23:17,980 --> 00:23:20,680
+Some of the common causes here,
+and this will be the end
+
+510
+00:23:20,680 --> 00:23:23,280
+up focus of the next talk
+is, unbalanced amount of
+
+511
+00:23:23,280 --> 00:23:24,100
+computation.
+
+512
+00:23:24,100 --> 00:23:25,420
+Remember, dynamic
+load balancing
+
+513
+00:23:25,420 --> 00:23:27,050
+versus static load balancing.
+
+514
+00:23:27,050 --> 00:23:29,210
+Your work estimation might be
+wrong and so you might end up
+
+515
+00:23:29,210 --> 00:23:32,660
+with some processors idling,
+other processors
+
+516
+00:23:32,660 --> 00:23:34,940
+doing too much work.
+
+517
+00:23:34,940 --> 00:23:37,280
+So the way to prevent this is
+to actually look at the work
+
+518
+00:23:37,280 --> 00:23:40,370
+that's being done and figure
+out whether it's actually
+
+519
+00:23:40,370 --> 00:23:42,380
+roughly the same amount
+of work everywhere.
+
+520
+00:23:42,380 --> 00:23:45,040
+Here you might need profiling
+tools to help, and so I'm
+
+521
+00:23:45,040 --> 00:23:46,250
+going to talk about
+this in a lot more
+
+522
+00:23:46,250 --> 00:23:49,930
+detail in the next lecture.
+
+523
+00:23:49,930 --> 00:23:53,800
+So in summary, there are lots
+of different bugs that you
+
+524
+00:23:53,800 --> 00:23:56,030
+might come up with.
+
+525
+00:23:56,030 --> 00:23:59,490
+There's a few that I've
+identified here, some common
+
+526
+00:23:59,490 --> 00:24:01,070
+things you should
+look out for.
+
+527
+00:24:01,070 --> 00:24:03,520
+So the erroneous use of language
+features understand
+
+528
+00:24:03,520 --> 00:24:06,790
+only a few basic concepts of the
+entire language extension
+
+529
+00:24:06,790 --> 00:24:10,270
+set that you have. Space
+decomposition, side effects
+
+530
+00:24:10,270 --> 00:24:11,540
+from parallelization.
+
+531
+00:24:11,540 --> 00:24:14,330
+Don't ignore sequential code.
+
+532
+00:24:14,330 --> 00:24:16,430
+Last one is trying to understand
+your performance
+
+533
+00:24:16,430 --> 00:24:17,390
+scalability.
+
+534
+00:24:17,390 --> 00:24:18,760
+But there are other kinds
+of bugs, like
+
+535
+00:24:18,760 --> 00:24:19,990
+data races, for example.
+
+536
+00:24:19,990 --> 00:24:22,200
+So what can you do with those?
+
+537
+00:24:22,200 --> 00:24:24,800
+So remember, data races you
+have different concurrent
+
+538
+00:24:24,800 --> 00:24:25,990
+threads and they're
+trying to update
+
+539
+00:24:25,990 --> 00:24:28,010
+the same memory location.
+
+540
+00:24:28,010 --> 00:24:30,400
+So depending on who gets to
+write first and when you
+
+541
+00:24:30,400 --> 00:24:34,540
+actually do your read, you might
+get a different result.
+
+542
+00:24:34,540 --> 00:24:37,880
+So with data race detection,
+these things are actually
+
+543
+00:24:37,880 --> 00:24:38,840
+getting better.
+
+544
+00:24:38,840 --> 00:24:41,140
+There are tools out there that
+will essentially generate
+
+545
+00:24:41,140 --> 00:24:43,530
+traces as your program
+is running.
+
+546
+00:24:43,530 --> 00:24:46,140
+So for each thread you
+instrumented and you look at
+
+547
+00:24:46,140 --> 00:24:48,120
+every load stored at executes.
+
+548
+00:24:48,120 --> 00:24:51,040
+Then what you do is you look at
+the load in stores between
+
+549
+00:24:51,040 --> 00:24:53,410
+the difference threads and see
+if there's any intersections,
+
+550
+00:24:53,410 --> 00:24:57,600
+any orderings that might give
+you erroneous behavior.
+
+551
+00:24:57,600 --> 00:25:00,770
+So this is getting better, it's
+getting more automated.
+
+552
+00:25:00,770 --> 00:25:02,610
+Intel Threadchecker
+is one example.
+
+553
+00:25:02,610 --> 00:25:05,310
+There are others.
+
+554
+00:25:05,310 --> 00:25:07,670
+I really think the trend in
+debugging will be towards
+
+555
+00:25:07,670 --> 00:25:11,720
+trace-based systems. You'll
+have things like
+
+556
+00:25:11,720 --> 00:25:12,430
+checkpointing.
+
+557
+00:25:12,430 --> 00:25:15,550
+So as your program is running
+you can take a snapshot of
+
+558
+00:25:15,550 --> 00:25:17,830
+where it is in the execution,
+and then you can use that
+
+559
+00:25:17,830 --> 00:25:21,390
+snapshot later on to inspect
+it and see what went wrong.
+
+560
+00:25:21,390 --> 00:25:23,380
+I think you might even have
+features like replay.
+
+561
+00:25:23,380 --> 00:25:26,350
+In fact, some people are working
+on this in research
+
+562
+00:25:26,350 --> 00:25:28,120
+and in industry.
+
+563
+00:25:28,120 --> 00:25:31,000
+So you might be able to say
+uh-oh, something went wrong.
+
+564
+00:25:31,000 --> 00:25:33,840
+Here's my list of checkpoints,
+can you replay the execution
+
+565
+00:25:33,840 --> 00:25:36,360
+from this particular stage
+in the computation.
+
+566
+00:25:36,360 --> 00:25:40,540
+So it helps you focus down
+in the entire lifetime of
+
+567
+00:25:40,540 --> 00:25:42,320
+execution on a particular
+chunk where
+
+568
+00:25:42,320 --> 00:25:45,710
+things have gone wrong.
+
+569
+00:25:45,710 --> 00:25:48,900
+This is sort of a
+personal dream.
+
+570
+00:25:48,900 --> 00:25:51,300
+I think one day we'll have the
+equivalent of a TiVo for your
+
+571
+00:25:51,300 --> 00:25:54,350
+programs, and you can use
+it for debugging.
+
+572
+00:25:54,350 --> 00:25:56,470
+So my program is running,
+something goes wrong, I can
+
+573
+00:25:56,470 --> 00:25:58,970
+rewind it, I can inspect things,
+do my traditional
+
+574
+00:25:58,970 --> 00:26:02,700
+debugging, change things maybe
+even, and then start replaying
+
+575
+00:26:02,700 --> 00:26:07,580
+things and letting the
+program execute.
+
+576
+00:26:07,580 --> 00:26:10,320
+In fact, we're working on things
+like this here at MIT
+
+577
+00:26:10,320 --> 00:26:12,140
+and with collaborators
+elsewhere.
+
+578
+00:26:12,140 --> 00:26:15,890
+So, this was a short lecture.
+
+579
+00:26:15,890 --> 00:26:16,530
+We'll take a break.
+
+580
+00:26:16,530 --> 00:26:18,240
+You can do the quizzes.
+
+581
+00:26:18,240 --> 00:26:19,410
+Note on the quizzes,
+there are two
+
+582
+00:26:19,410 --> 00:26:20,720
+different kinds of questions.
+
+583
+00:26:20,720 --> 00:26:24,570
+They're very similar, just one
+word is different, and so
+
+584
+00:26:24,570 --> 00:26:26,720
+you'll want to just keep that in
+mind when you're discussing
+
+585
+00:26:26,720 --> 00:26:28,310
+it with others.
+
+586
+00:26:28,310 --> 00:26:31,320
+Then about 5, 10 minutes and
+then we'll continue with the
+
+587
+00:26:31,320 --> 00:26:33,710
+rest of the talk, lecture 2.
+
+588
+00:26:33,710 --> 00:26:34,960
+Thanks.

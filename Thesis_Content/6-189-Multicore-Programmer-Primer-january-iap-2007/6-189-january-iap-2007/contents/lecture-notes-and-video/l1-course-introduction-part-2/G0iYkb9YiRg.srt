@@ -1,0 +1,2582 @@
+1
+00:00:00,030 --> 00:00:02,430
+The following content is
+provided under a Creative
+
+2
+00:00:02,430 --> 00:00:03,880
+Commons license.
+
+3
+00:00:03,880 --> 00:00:06,860
+Your support will help MIT
+OpenCourseWare continue to
+
+4
+00:00:06,860 --> 00:00:10,550
+offer high quality educational
+resources for free.
+
+5
+00:00:10,550 --> 00:00:13,410
+To make a donation or view
+additional materials from
+
+6
+00:00:13,410 --> 00:00:17,510
+hundreds of MIT courses, visit
+MIT OpenCourseWare at
+
+7
+00:00:17,510 --> 00:00:18,760
+ocw.mit.edu.
+
+8
+00:00:21,510 --> 00:00:25,490
+PROFESSOR: So I will go into a
+little about what the class
+
+9
+00:00:25,490 --> 00:00:28,790
+is, and what you're
+going to do.
+
+10
+00:00:28,790 --> 00:00:31,100
+I'll just put one slide about
+requirements and outcomes.
+
+11
+00:00:31,100 --> 00:00:32,190
+So what are the requirements?
+
+12
+00:00:32,190 --> 00:00:34,550
+We require you to be a good
+programmer with a lot of
+
+13
+00:00:34,550 --> 00:00:36,390
+programming experience.
+
+14
+00:00:36,390 --> 00:00:39,180
+As I said, we are going down
+to very bare metal.
+
+15
+00:00:39,180 --> 00:00:41,980
+And there won't be any
+niceties of just
+
+16
+00:00:41,980 --> 00:00:42,850
+writing Java code.
+
+17
+00:00:42,850 --> 00:00:45,140
+So you're going to run into a
+lot of these kind of issues.
+
+18
+00:00:45,140 --> 00:00:47,260
+Fluent in C is --
+
+19
+00:00:47,260 --> 00:00:53,430
+I wouldn't call it a 100%
+requirement, but it really
+
+20
+00:00:53,430 --> 00:00:55,770
+helps if you're fluent in C.
+If not, you'll have to
+
+21
+00:00:55,770 --> 00:00:59,510
+probably spend a lot of time
+trying to understand C, C++.
+
+22
+00:00:59,510 --> 00:01:05,230
+And in this class that means --
+just start doing it today,
+
+23
+00:01:05,230 --> 00:01:07,080
+just get a C book and then
+try to understand.
+
+24
+00:01:07,080 --> 00:01:09,640
+If you run a lot of Java it
+might be an easy transition.
+
+25
+00:01:09,640 --> 00:01:13,070
+But get to the transition
+fast, don't wait.
+
+26
+00:01:13,070 --> 00:01:17,140
+What are we expecting
+at the end?
+
+27
+00:01:17,140 --> 00:01:18,920
+We expect at the end
+for you to know --
+
+28
+00:01:18,920 --> 00:01:20,880
+AUDIENCE: I have to go.
+
+29
+00:01:20,880 --> 00:01:22,716
+Thank you very much
+[INAUDIBLE]
+
+30
+00:01:25,460 --> 00:01:27,790
+PROFESSOR: So what
+do we expect?
+
+31
+00:01:27,790 --> 00:01:30,290
+We expect at the end you'll
+probably understand a lot of
+
+32
+00:01:30,290 --> 00:01:33,410
+fundamentals and concepts of
+parallel programming --
+
+33
+00:01:33,410 --> 00:01:34,260
+both hardware and software.
+
+34
+00:01:34,260 --> 00:01:36,230
+Because the nice
+thing about --
+
+35
+00:01:36,230 --> 00:01:37,770
+or the nice thing or the
+bad thing about Cell --
+
+36
+00:01:37,770 --> 00:01:39,710
+is a lot of hardware conceptuals
+to expose.
+
+37
+00:01:39,710 --> 00:01:42,340
+There's no nice abstraction
+layers in there.
+
+38
+00:01:42,340 --> 00:01:44,280
+You'll understand a lot of
+issues about parallel
+
+39
+00:01:44,280 --> 00:01:45,060
+performance.
+
+40
+00:01:45,060 --> 00:01:48,220
+We started here, you write a
+program, compile -- it's not
+
+41
+00:01:48,220 --> 00:01:49,570
+just order n you're
+looking for.
+
+42
+00:01:49,570 --> 00:01:50,970
+You're looking for all
+these constants.
+
+43
+00:01:50,970 --> 00:01:53,290
+All these things matter,
+basically.
+
+44
+00:01:53,290 --> 00:01:56,100
+You should be able to synthesize
+a fairly complex
+
+45
+00:01:56,100 --> 00:01:58,020
+parallel program by the end,
+because that's what your group
+
+46
+00:01:58,020 --> 00:01:59,260
+project's going to be.
+
+47
+00:01:59,260 --> 00:02:02,060
+And you'll get a lot of hands-on
+experience with the
+
+48
+00:02:02,060 --> 00:02:03,930
+Cell processor, so we'll
+understand this one
+
+49
+00:02:03,930 --> 00:02:05,350
+instance very well.
+
+50
+00:02:05,350 --> 00:02:07,820
+So that is what we are expecting
+will happen at the
+
+51
+00:02:07,820 --> 00:02:10,390
+end of this 3.5 weeks.
+
+52
+00:02:10,390 --> 00:02:12,360
+So the project.
+
+53
+00:02:12,360 --> 00:02:14,750
+You proposed the projects, we
+did something different.
+
+54
+00:02:14,750 --> 00:02:18,230
+So it's all your ideas that
+we are going to do.
+
+55
+00:02:18,230 --> 00:02:20,710
+We selected seven groups out
+of these -- there are seven
+
+56
+00:02:20,710 --> 00:02:22,000
+projects in there --
+
+57
+00:02:22,000 --> 00:02:24,300
+mainly based on the strength
+of the project proposals.
+
+58
+00:02:24,300 --> 00:02:26,330
+And I was pretty impressed with
+the height of things you
+
+59
+00:02:26,330 --> 00:02:28,030
+guys proposed.
+
+60
+00:02:28,030 --> 00:02:29,660
+So here are the seven
+projects.
+
+61
+00:02:29,660 --> 00:02:31,480
+Let's actually try to figure
+out who's who.
+
+62
+00:02:31,480 --> 00:02:35,400
+Who's doing distributed
+real-time ray tracer?
+
+63
+00:02:35,400 --> 00:02:37,110
+OK, that's not true.
+
+64
+00:02:37,110 --> 00:02:40,510
+OK, how about the global
+illumination?
+
+65
+00:02:40,510 --> 00:02:43,060
+OK.
+
+66
+00:02:43,060 --> 00:02:44,490
+Linear algebra pack?
+
+67
+00:02:44,490 --> 00:02:46,990
+OK, good.
+
+68
+00:02:46,990 --> 00:02:49,600
+Molecular dynamics?
+
+69
+00:02:49,600 --> 00:02:51,030
+OK.
+
+70
+00:02:51,030 --> 00:02:53,890
+Speech synthesizer?
+
+71
+00:02:53,890 --> 00:02:54,950
+OK.
+
+72
+00:02:54,950 --> 00:02:57,480
+Soft radio?
+
+73
+00:02:57,480 --> 00:02:58,600
+OK.
+
+74
+00:02:58,600 --> 00:03:00,550
+Backgammon tutor?
+
+75
+00:03:00,550 --> 00:03:01,050
+OK.
+
+76
+00:03:01,050 --> 00:03:03,660
+And there are some people who
+are, I think, in this class
+
+77
+00:03:03,660 --> 00:03:05,260
+thinking that they
+can join a group.
+
+78
+00:03:05,260 --> 00:03:08,420
+So at the end, there are a few
+groups that only have one
+
+79
+00:03:08,420 --> 00:03:10,190
+member, so probably go ahead
+and talk to them and see
+
+80
+00:03:10,190 --> 00:03:13,240
+whether they are willing
+to work with people.
+
+81
+00:03:13,240 --> 00:03:15,720
+So I'll give you a little bit of
+time, because I'm going to
+
+82
+00:03:15,720 --> 00:03:16,970
+finish early.
+
+83
+00:03:19,770 --> 00:03:21,570
+OK, let's ask -- who are
+the people who are
+
+84
+00:03:21,570 --> 00:03:22,380
+hoping to join a group?
+
+85
+00:03:22,380 --> 00:03:23,240
+Is there anybody who came?
+
+86
+00:03:23,240 --> 00:03:26,660
+I got a few emails, I don't
+know that anybody's here.
+
+87
+00:03:26,660 --> 00:03:27,900
+Oh good.
+
+88
+00:03:27,900 --> 00:03:30,420
+So it's not going
+to be a problem.
+
+89
+00:03:30,420 --> 00:03:33,020
+So I did the project
+characteristics.
+
+90
+00:03:33,020 --> 00:03:35,860
+You can see that they are
+ambitious projects, but
+
+91
+00:03:35,860 --> 00:03:38,310
+accomplishable.
+
+92
+00:03:38,310 --> 00:03:40,990
+I was worried that people would
+say, "I'm going to build
+
+93
+00:03:40,990 --> 00:03:43,460
+this entire thing", and it's
+going to take a year.
+
+94
+00:03:43,460 --> 00:03:45,500
+But I think most of the projects
+that they proposed
+
+95
+00:03:45,500 --> 00:03:47,260
+are doable.
+
+96
+00:03:47,260 --> 00:03:49,020
+Another thing is important
+and relevant things.
+
+97
+00:03:52,090 --> 00:03:55,410
+I think for a lot of these
+things, if the code is done
+
+98
+00:03:55,410 --> 00:03:56,960
+right other people might
+even use it.
+
+99
+00:03:56,960 --> 00:03:59,160
+I think this can start
+something, it's not just going
+
+100
+00:03:59,160 --> 00:04:00,600
+to be this project.
+
+101
+00:04:00,600 --> 00:04:02,710
+And there's a lot of opportunity
+to sizzle.
+
+102
+00:04:02,710 --> 00:04:04,710
+I think some people will come
+up with these things that I
+
+103
+00:04:04,710 --> 00:04:07,100
+think at the end will
+be so amazing.
+
+104
+00:04:07,100 --> 00:04:09,880
+And that's what got
+me excited.
+
+105
+00:04:09,880 --> 00:04:13,310
+But get them started as soon as
+possible, because this is
+
+106
+00:04:13,310 --> 00:04:16,800
+not a semester course, this is
+going to run so fast. There's
+
+107
+00:04:16,800 --> 00:04:18,440
+only a few all nighters
+you can pull,
+
+108
+00:04:18,440 --> 00:04:20,850
+basically is what it is.
+
+109
+00:04:20,850 --> 00:04:22,610
+So there's a note of caution.
+
+110
+00:04:22,610 --> 00:04:24,230
+Cell processor is very new.
+
+111
+00:04:24,230 --> 00:04:25,350
+We heard about that today.
+
+112
+00:04:25,350 --> 00:04:27,940
+I mean this is a really
+cool thing, but it has
+
+113
+00:04:27,940 --> 00:04:29,850
+its problems in there.
+
+114
+00:04:29,850 --> 00:04:32,530
+It's not an easy architecture
+to work with.
+
+115
+00:04:32,530 --> 00:04:33,960
+There is though this
+nice abstraction.
+
+116
+00:04:33,960 --> 00:04:37,510
+So it's just then from this
+being completely abstracted
+
+117
+00:04:37,510 --> 00:04:40,570
+out, writing Java code, to
+all the way to metal.
+
+118
+00:04:40,570 --> 00:04:42,560
+So it's just almost a jump
+from going to a higher
+
+119
+00:04:42,560 --> 00:04:43,790
+language of assembly.
+
+120
+00:04:43,790 --> 00:04:46,990
+So there's a huge, big gap in
+there, and that's going to be
+
+121
+00:04:46,990 --> 00:04:48,810
+a lot of issues in there.
+
+122
+00:04:48,810 --> 00:04:51,270
+The tool chain is very
+thin and brittle.
+
+123
+00:04:51,270 --> 00:04:53,870
+So my pointing out all those
+things, you wish there's a
+
+124
+00:04:53,870 --> 00:04:54,720
+tool, but there's nothing.
+
+125
+00:04:54,720 --> 00:04:56,510
+And even the existing tools --
+
+126
+00:04:56,510 --> 00:04:59,715
+we just got the SDK 2.0 into
+working I think this morning
+
+127
+00:04:59,715 --> 00:05:03,800
+-- and so there might
+be issues in there.
+
+128
+00:05:03,800 --> 00:05:05,980
+Most of the staff have
+limited experience.
+
+129
+00:05:05,980 --> 00:05:07,380
+For example, SDK 2.0.
+
+130
+00:05:07,380 --> 00:05:11,110
+We just got it working, so we
+haven't used it yet in there.
+
+131
+00:05:11,110 --> 00:05:14,835
+So that can create problems,
+especially in
+
+132
+00:05:14,835 --> 00:05:17,480
+a fast moving course.
+
+133
+00:05:17,480 --> 00:05:20,580
+The projects you are doing
+are of your own making.
+
+134
+00:05:20,580 --> 00:05:21,920
+Most of the classes --
+
+135
+00:05:21,920 --> 00:05:23,000
+if you need to [UNINTELLIGIBLE]
+
+136
+00:05:23,000 --> 00:05:26,040
+classes, we actually come up
+with the projects, TAs go and
+
+137
+00:05:26,040 --> 00:05:28,420
+implement it once, we know
+all the gotchas.
+
+138
+00:05:28,420 --> 00:05:31,070
+And then when you get the
+project we know there's an
+
+139
+00:05:31,070 --> 00:05:33,230
+existence proof that
+it's doable, it
+
+140
+00:05:33,230 --> 00:05:34,840
+works, the tools work.
+
+141
+00:05:34,840 --> 00:05:37,470
+We know at least there's
+one path through it.
+
+142
+00:05:37,470 --> 00:05:38,950
+There's nothing like
+that here.
+
+143
+00:05:38,950 --> 00:05:41,500
+Everybody's kind of just jumping
+at it head on, and
+
+144
+00:05:41,500 --> 00:05:45,170
+hoping that we can read them.
+
+145
+00:05:45,170 --> 00:05:48,670
+And we might find issues that
+are very hard, and that's why
+
+146
+00:05:48,670 --> 00:05:50,230
+we actually have very
+close contact with
+
+147
+00:05:50,230 --> 00:05:51,150
+those guys at IBM.
+
+148
+00:05:51,150 --> 00:05:53,330
+So if things happen, we'll call
+them and they will be
+
+149
+00:05:53,330 --> 00:05:54,680
+available to help us.
+
+150
+00:05:54,680 --> 00:05:57,730
+But it's not something you can
+say -- oh yeah, I know, just
+
+151
+00:05:57,730 --> 00:05:58,380
+go do that.
+
+152
+00:05:58,380 --> 00:06:00,050
+Or -- here's the way out.
+
+153
+00:06:00,050 --> 00:06:01,900
+So there might be issues like
+that, so we have to be very
+
+154
+00:06:01,900 --> 00:06:03,020
+careful of that.
+
+155
+00:06:03,020 --> 00:06:08,540
+And you will face these kinds of
+problems. That's more given
+
+156
+00:06:08,540 --> 00:06:10,960
+than anything else, so
+be ready for that.
+
+157
+00:06:10,960 --> 00:06:13,390
+This is not just writing some
+high level code and getting
+
+158
+00:06:13,390 --> 00:06:14,540
+away with it.
+
+159
+00:06:14,540 --> 00:06:16,250
+And you're all in
+this together.
+
+160
+00:06:16,250 --> 00:06:20,120
+So the staff, you,
+me, everybody --
+
+161
+00:06:20,120 --> 00:06:22,170
+we're just doing it for the
+first time in some sense.
+
+162
+00:06:22,170 --> 00:06:24,840
+And that's the fun part about
+it, because as you pointed
+
+163
+00:06:24,840 --> 00:06:27,040
+out, there might be some stuff
+that you guys come out with
+
+164
+00:06:27,040 --> 00:06:31,060
+that will become more like
+folklore and the basis for the
+
+165
+00:06:31,060 --> 00:06:32,330
+things people do.
+
+166
+00:06:32,330 --> 00:06:33,690
+Because you might say --
+hey, there's a neat
+
+167
+00:06:33,690 --> 00:06:34,470
+way of doing that.
+
+168
+00:06:34,470 --> 00:06:36,220
+You will be the first to
+do this kind of thing.
+
+169
+00:06:36,220 --> 00:06:40,460
+So there's that time, but on
+planning the three week course
+
+170
+00:06:40,460 --> 00:06:41,550
+it's a large chunk to bite.
+
+171
+00:06:41,550 --> 00:06:44,030
+If it is more for a PhD,
+then you can say --
+
+172
+00:06:44,030 --> 00:06:45,430
+OK, spend three months
+figuring it out.
+
+173
+00:06:45,430 --> 00:06:46,830
+There's no other time limit.
+
+174
+00:06:46,830 --> 00:06:51,406
+So we will try to manage this
+process, but you need to try
+
+175
+00:06:51,406 --> 00:06:53,780
+to -- expectations of what you
+are trying to get done, and
+
+176
+00:06:53,780 --> 00:06:54,980
+then be able to get it done.
+
+177
+00:06:54,980 --> 00:06:56,570
+So you have to always
+balance this out.
+
+178
+00:06:56,570 --> 00:07:01,120
+If you're running into issues,
+get to us very fast. Because
+
+179
+00:07:01,120 --> 00:07:02,150
+we need to figure it out.
+
+180
+00:07:02,150 --> 00:07:04,250
+And we might have to actually
+also figure it out from
+
+181
+00:07:04,250 --> 00:07:06,590
+somebody else, so we can
+escalate it up and get the
+
+182
+00:07:06,590 --> 00:07:07,110
+information.
+
+183
+00:07:07,110 --> 00:07:10,500
+Because three weeks are
+going to go so fast.
+
+184
+00:07:10,500 --> 00:07:11,850
+How many people are taking
+the class for a grade?
+
+185
+00:07:14,380 --> 00:07:16,935
+So people who are taking it for
+a grade, here is what we
+
+186
+00:07:16,935 --> 00:07:18,750
+are going to do.
+
+187
+00:07:18,750 --> 00:07:22,540
+The first thing, what I call
+mini quizzes, is just a prop
+
+188
+00:07:22,540 --> 00:07:24,260
+so you will come into class.
+
+189
+00:07:24,260 --> 00:07:26,860
+So the way I am going to do that
+is, at the beginning of
+
+190
+00:07:26,860 --> 00:07:30,360
+the class I am going to give you
+a piece of paper with two
+
+191
+00:07:30,360 --> 00:07:32,510
+questions from the
+previous lecture.
+
+192
+00:07:32,510 --> 00:07:34,020
+You can do anything you
+want to answer it.
+
+193
+00:07:34,020 --> 00:07:36,510
+You can talk to people,
+look it up, whatever.
+
+194
+00:07:36,510 --> 00:07:39,660
+And then at the end
+of the class
+
+195
+00:07:39,660 --> 00:07:41,630
+basically we want it back.
+
+196
+00:07:41,630 --> 00:07:44,110
+And the only requirement is, you
+have to come individually
+
+197
+00:07:44,110 --> 00:07:46,290
+to pick your thing up, and you
+have to come individually to
+
+198
+00:07:46,290 --> 00:07:50,310
+hand it in, and you can't write
+somebody else's anwers
+
+199
+00:07:50,310 --> 00:07:51,910
+physically, but you can
+talk to each other.
+
+200
+00:07:51,910 --> 00:07:55,232
+So we'll try to make it a little
+bit entertaining, and a
+
+201
+00:07:55,232 --> 00:07:58,270
+little bit thought-provoking,
+but nothing like you have to
+
+202
+00:07:58,270 --> 00:08:00,520
+spend hours doing it.
+
+203
+00:08:00,520 --> 00:08:03,390
+It'll be probably
+five minutes.
+
+204
+00:08:03,390 --> 00:08:06,670
+Normally we will do a break
+inbetween, so you probably can
+
+205
+00:08:06,670 --> 00:08:09,310
+talk to each other and come up
+with some of the answers.
+
+206
+00:08:09,310 --> 00:08:12,110
+So this is just the fact that
+the people who are actually
+
+207
+00:08:12,110 --> 00:08:16,270
+getting the grades will be
+coming to class, more than
+
+208
+00:08:16,270 --> 00:08:17,680
+anything else I'll be testing.
+
+209
+00:08:17,680 --> 00:08:20,320
+And then we have these lab
+projects at the beginning,
+
+210
+00:08:20,320 --> 00:08:21,280
+that will get some grade.
+
+211
+00:08:21,280 --> 00:08:24,330
+And the final group project.
+
+212
+00:08:24,330 --> 00:08:26,800
+And then we have a final
+competition.
+
+213
+00:08:26,800 --> 00:08:30,405
+So since everybody's not doing
+the same project, we are going
+
+214
+00:08:30,405 --> 00:08:32,720
+to decide on performance --
+
+215
+00:08:32,720 --> 00:08:39,400
+so how well your code ran, how
+much MIPS or [? GOPs ?] you
+
+216
+00:08:39,400 --> 00:08:40,710
+were able to get from that.
+
+217
+00:08:40,710 --> 00:08:43,380
+And how raw performance
+is in there.
+
+218
+00:08:43,380 --> 00:08:47,440
+And then we will also
+look at it from a
+
+219
+00:08:47,440 --> 00:08:48,430
+complexity point of view.
+
+220
+00:08:48,430 --> 00:08:51,900
+So for example, as I pointed
+out, if you do matrix
+
+221
+00:08:51,900 --> 00:08:54,630
+multiplier you get certain
+performance, so if you do
+
+222
+00:08:54,630 --> 00:08:55,710
+[? FF3, ?] you get certain
+performance.
+
+223
+00:08:55,710 --> 00:08:59,460
+So just absolute numbers is not
+what matters, but how far
+
+224
+00:08:59,460 --> 00:09:01,920
+you can get hard
+algorithm too.
+
+225
+00:09:01,920 --> 00:09:03,390
+Completeness.
+
+226
+00:09:03,390 --> 00:09:06,100
+So were you able to get
+your project through?
+
+227
+00:09:06,100 --> 00:09:08,170
+How much do you actually have a
+compete solution at the end
+
+228
+00:09:08,170 --> 00:09:09,210
+that something works?
+
+229
+00:09:09,210 --> 00:09:10,300
+That's important.
+
+230
+00:09:10,300 --> 00:09:13,150
+Algorithmic complexity -- how
+much of a complexity did you
+
+231
+00:09:13,150 --> 00:09:17,810
+bite in, both from more of a
+pure algorithm point of view,
+
+232
+00:09:17,810 --> 00:09:20,070
+and also implementing some
+shared complexity in there.
+
+233
+00:09:20,070 --> 00:09:21,860
+And demo and presentation.
+
+234
+00:09:21,860 --> 00:09:24,250
+So OK, those two.
+
+235
+00:09:24,250 --> 00:09:27,740
+So we are going to select
+a winning team.
+
+236
+00:09:27,740 --> 00:09:30,960
+We haven't figured exactly what,
+but we'll give everybody
+
+237
+00:09:30,960 --> 00:09:33,400
+a gift set depending on --
+
+238
+00:09:33,400 --> 00:09:36,250
+this is what we are aiming
+at right now.
+
+239
+00:09:36,250 --> 00:09:39,550
+Also we are going to invite the
+winning team to spend a
+
+240
+00:09:39,550 --> 00:09:41,910
+day at IBM TJ Watson.
+
+241
+00:09:41,910 --> 00:09:45,470
+You get to give a presentation
+to a bunch of people there,
+
+242
+00:09:45,470 --> 00:09:48,020
+and probably go see what
+they are doing.
+
+243
+00:09:48,020 --> 00:09:49,840
+That should be a fun
+day to spend.
+
+244
+00:09:49,840 --> 00:09:51,810
+We haven't scheduled a day,
+depending on the class
+
+245
+00:09:51,810 --> 00:09:54,580
+schedule and stuff like that,
+the winning team will go spend
+
+246
+00:09:54,580 --> 00:09:56,160
+a day out in there.
+
+247
+00:09:56,160 --> 00:09:57,920
+That will be a fun thing to
+do, there's a lot of cool
+
+248
+00:09:57,920 --> 00:10:01,140
+stuff going on there.
+
+249
+00:10:01,140 --> 00:10:02,670
+They will get to actually
+interact with some
+
+250
+00:10:02,670 --> 00:10:05,090
+researchers, see what they
+do, as well as present
+
+251
+00:10:05,090 --> 00:10:06,180
+this work to them.
+
+252
+00:10:06,180 --> 00:10:08,230
+And since this is new
+everybody's excited.
+
+253
+00:10:08,230 --> 00:10:11,620
+I think hopefully we'll come
+up with a team that will do
+
+254
+00:10:11,620 --> 00:10:14,460
+things that other people will be
+interested in and will use.
+
+255
+00:10:17,350 --> 00:10:19,590
+So these kind of come from
+backward because I wanted to
+
+256
+00:10:19,590 --> 00:10:23,790
+get Mike Perrone first.
+So my name is Saman --
+
+257
+00:10:23,790 --> 00:10:24,510
+Saman Amarasinghe --
+
+258
+00:10:24,510 --> 00:10:26,950
+I live in CSAIL.
+
+259
+00:10:26,950 --> 00:10:28,510
+I have had a lot of
+interest in --
+
+260
+00:10:28,510 --> 00:10:31,550
+[LAUGHTER]
+
+261
+00:10:31,550 --> 00:10:35,780
+Not as much as you
+guys probably.
+
+262
+00:10:35,780 --> 00:10:38,820
+I have a lot of interest in
+languages, compilers, and
+
+263
+00:10:38,820 --> 00:10:40,000
+computer architecture.
+
+264
+00:10:40,000 --> 00:10:43,350
+So if you have been at this game
+for a long time, in the
+
+265
+00:10:43,350 --> 00:10:46,200
+early 1990s there was a huge
+surge in parallel performance,
+
+266
+00:10:46,200 --> 00:10:49,630
+work on parallelism, and at
+that time I did the SUIF
+
+267
+00:10:49,630 --> 00:10:51,140
+parallelizing compiler
+in there.
+
+268
+00:10:51,140 --> 00:10:55,120
+And then, everybody says -- hey,
+there's this Moore slope
+
+269
+00:10:55,120 --> 00:10:56,420
+of performance, who cares
+about parallelism?
+
+270
+00:10:56,420 --> 00:10:58,890
+So there was this decade
+when this paralellism
+
+271
+00:10:58,890 --> 00:10:59,900
+kind of died down.
+
+272
+00:10:59,900 --> 00:11:02,460
+I kind of hid under the radar
+and kind of survived through
+
+273
+00:11:02,460 --> 00:11:04,810
+that thing, and then again I
+think parallelism coming up.
+
+274
+00:11:04,810 --> 00:11:07,280
+So we are doing a bunch of
+parallel work in here.
+
+275
+00:11:07,280 --> 00:11:09,860
+So I probably have a perspective
+that goes
+
+276
+00:11:09,860 --> 00:11:11,820
+somewhere old, and
+then coming up.
+
+277
+00:11:11,820 --> 00:11:13,570
+Probably Aaron can also
+relate to that.
+
+278
+00:11:13,570 --> 00:11:14,440
+Aaron: There's one of
+us who did that.
+
+279
+00:11:14,440 --> 00:11:15,210
+PROFESSOR: Yeah exactly.
+
+280
+00:11:15,210 --> 00:11:17,080
+Going through that, kind
+of survived in that.
+
+281
+00:11:19,720 --> 00:11:23,430
+And Rodric is sitting there.
+
+282
+00:11:23,430 --> 00:11:29,310
+So Rodric is right now at IBM
+PJ Watson, but he's probably
+
+283
+00:11:29,310 --> 00:11:32,400
+going to live at CSAIL next
+month, so he's going to be
+
+284
+00:11:32,400 --> 00:11:35,290
+here more than me in fact.
+
+285
+00:11:35,290 --> 00:11:40,320
+He was actually in the lab until
+a few months ago, as a
+
+286
+00:11:40,320 --> 00:11:43,160
+research scientist. He's also
+interested in a lot of these
+
+287
+00:11:43,160 --> 00:11:45,680
+kinds of things -- compilers,
+architecture, parallel
+
+288
+00:11:45,680 --> 00:11:47,890
+architecture, and
+FPGA type work.
+
+289
+00:11:47,890 --> 00:11:50,000
+And then we have two TAs.
+
+290
+00:11:50,000 --> 00:11:52,340
+Where's David and Phil?
+
+291
+00:11:52,340 --> 00:11:53,790
+OK, get up.
+
+292
+00:11:53,790 --> 00:11:57,020
+So they actually have
+some experience.
+
+293
+00:11:57,020 --> 00:11:59,910
+Probably they are about a week
+ahead of you on understanding
+
+294
+00:11:59,910 --> 00:12:01,300
+Cell, not too much.
+
+295
+00:12:05,210 --> 00:12:07,910
+They are going to lead the
+recitations and be available
+
+296
+00:12:07,910 --> 00:12:09,160
+to help you in there.
+
+297
+00:12:09,160 --> 00:12:12,610
+So really use those resources
+as much as possible.
+
+298
+00:12:12,610 --> 00:12:15,980
+And then we are going to have
+a huge amount of guest
+
+299
+00:12:15,980 --> 00:12:17,740
+lecturers, and I was pretty
+happy with the
+
+300
+00:12:17,740 --> 00:12:18,840
+kind of list we got.
+
+301
+00:12:18,840 --> 00:12:21,270
+Mike Perrone just came and gave
+you the lecture, and Alan
+
+302
+00:12:21,270 --> 00:12:24,780
+is going to talk
+in a few weeks.
+
+303
+00:12:24,780 --> 00:12:29,440
+And Professor Arvind, Brad
+Kuszmaul, Mike Acton -- that
+
+304
+00:12:29,440 --> 00:12:31,400
+Mike Perrone talk about is
+going to come at the end.
+
+305
+00:12:31,400 --> 00:12:36,760
+And Bill Thies, who was one
+of the PhD students in the
+
+306
+00:12:36,760 --> 00:12:37,990
+Streamit group, is going
+to talk about
+
+307
+00:12:37,990 --> 00:12:40,310
+the Streamit language.
+
+308
+00:12:40,310 --> 00:12:45,350
+So the way we have kind of
+structured the class is, how
+
+309
+00:12:45,350 --> 00:12:48,090
+do you go about extracting
+parallelism.
+
+310
+00:12:48,090 --> 00:12:50,490
+There's implicit parallelism.
+
+311
+00:12:50,490 --> 00:12:53,260
+And sometimes the
+current way of
+
+312
+00:12:53,260 --> 00:12:56,340
+everything done by hardware.
+
+313
+00:12:56,340 --> 00:12:59,370
+In the next lecture, I will just
+touch upon superscalar
+
+314
+00:12:59,370 --> 00:13:02,690
+hardware, what it is and
+what its problems are.
+
+315
+00:13:02,690 --> 00:13:05,700
+Implicit parallelism means
+you can do by compiler.
+
+316
+00:13:05,700 --> 00:13:08,150
+So you write a C program, and
+let the compiler deal with the
+
+317
+00:13:08,150 --> 00:13:08,620
+parallelism.
+
+318
+00:13:08,620 --> 00:13:13,035
+For as long as you are a
+programmer, you don't have to
+
+319
+00:13:13,035 --> 00:13:16,050
+deal with that thing.
+
+320
+00:13:16,050 --> 00:13:18,230
+In lectures 11 and 12
+I will talk about
+
+321
+00:13:18,230 --> 00:13:19,440
+parallelizing compilers.
+
+322
+00:13:19,440 --> 00:13:21,890
+So we'll cover how you can
+do that [? in C. ?]
+
+323
+00:13:21,890 --> 00:13:26,020
+So that means kind of abstract
+it out, and leaving it out of
+
+324
+00:13:26,020 --> 00:13:27,450
+the end programmer.
+
+325
+00:13:27,450 --> 00:13:31,430
+So the hardware exposes it, but
+we put a software layer.
+
+326
+00:13:31,430 --> 00:13:33,420
+And then the other end is
+explicit parallelism.
+
+327
+00:13:33,420 --> 00:13:34,830
+That's where, I think, we are
+going to spend most of the
+
+328
+00:13:34,830 --> 00:13:36,550
+time in this class.
+
+329
+00:13:36,550 --> 00:13:38,830
+So in the first part of explicit
+parallelism is the
+
+330
+00:13:38,830 --> 00:13:40,170
+library approach.
+
+331
+00:13:40,170 --> 00:13:44,410
+What that means is you are using
+MPI type things, so you
+
+332
+00:13:44,410 --> 00:13:49,270
+are basically at the metal
+dealing with this parallelism.
+
+333
+00:13:49,270 --> 00:13:52,830
+I am going to do lecture
+4 on concurrency.
+
+334
+00:13:52,830 --> 00:13:58,540
+How many people took 6.170 last
+year when I was teaching?
+
+335
+00:13:58,540 --> 00:13:59,880
+OK.
+
+336
+00:13:59,880 --> 00:14:02,310
+I did a lecture on concurrency
+there, so something very
+
+337
+00:14:02,310 --> 00:14:05,020
+similar I'm going to do in here
+-- to get the basics of
+
+338
+00:14:05,020 --> 00:14:06,660
+parallelism.
+
+339
+00:14:06,660 --> 00:14:08,320
+In order to write a parallel
+program, the program has to
+
+340
+00:14:08,320 --> 00:14:09,090
+run concurrently.
+
+341
+00:14:09,090 --> 00:14:11,750
+There's a lot of issues for
+writing concurrent programs.
+
+342
+00:14:11,750 --> 00:14:14,110
+It is necessary to get parallel,
+it's not sufficient.
+
+343
+00:14:14,110 --> 00:14:15,470
+There are a lot more other
+things to worry about.
+
+344
+00:14:15,470 --> 00:14:18,590
+But let's deal with those
+kind of issues --
+
+345
+00:14:18,590 --> 00:14:21,520
+deal with things like
+synchronization, deadlocks,
+
+346
+00:14:21,520 --> 00:14:22,600
+and issues like that.
+
+347
+00:14:22,600 --> 00:14:26,140
+So I'm going to give that, and
+then Rodric is going to have a
+
+348
+00:14:26,140 --> 00:14:27,910
+few lecture on design
+patterns.
+
+349
+00:14:27,910 --> 00:14:32,930
+So if you want to write a
+parallel program, how do you
+
+350
+00:14:32,930 --> 00:14:32,980
+look at it?
+
+351
+00:14:32,980 --> 00:14:35,710
+Different algorithms will
+have different ways of
+
+352
+00:14:35,710 --> 00:14:36,580
+parallelizing.
+
+353
+00:14:36,580 --> 00:14:39,330
+So he's going to go about
+looking at these kind of
+
+354
+00:14:39,330 --> 00:14:40,200
+parallel patterns.
+
+355
+00:14:40,200 --> 00:14:41,956
+If you have this kind of
+program, here is a
+
+356
+00:14:41,956 --> 00:14:42,660
+way to look at it.
+
+357
+00:14:42,660 --> 00:14:43,770
+Here's another way
+to look at it.
+
+358
+00:14:43,770 --> 00:14:47,880
+So kind of go through
+that in there.
+
+359
+00:14:47,880 --> 00:14:52,250
+And in concurrency we work
+with a lot more abstract
+
+360
+00:14:52,250 --> 00:14:56,130
+parallel model, and get slowly
+down to all the realism needed
+
+361
+00:14:56,130 --> 00:14:58,520
+in dealing with Cell.
+
+362
+00:14:58,520 --> 00:15:02,860
+And then we are going to have
+a bunch of guest lectures,
+
+363
+00:15:02,860 --> 00:15:06,320
+mainly dealing with other ways
+of doing parallelism.
+
+364
+00:15:06,320 --> 00:15:08,810
+So this is one way.
+
+365
+00:15:08,810 --> 00:15:10,850
+We are going to have a lecture
+on Streamit, because you might
+
+366
+00:15:10,850 --> 00:15:14,220
+be able to use that also
+as a way on Cell.
+
+367
+00:15:14,220 --> 00:15:16,330
+So a little bit of high
+abstraction, we are trying to
+
+368
+00:15:16,330 --> 00:15:17,480
+make that available on Cell.
+
+369
+00:15:17,480 --> 00:15:20,250
+So if that comes to, then you
+might be able to even have
+
+370
+00:15:20,250 --> 00:15:22,630
+that as a part of your
+toolbox in there.
+
+371
+00:15:22,630 --> 00:15:25,220
+The other three talks are
+about very different
+
+372
+00:15:25,220 --> 00:15:27,560
+approaches for parallelism.
+
+373
+00:15:27,560 --> 00:15:30,606
+I think they will give you a
+big picture view, it's not
+
+374
+00:15:30,606 --> 00:15:32,090
+that you're just going
+through one
+
+375
+00:15:32,090 --> 00:15:35,040
+parallelling down in there.
+
+376
+00:15:35,040 --> 00:15:37,400
+I think at the end of to the day
+you'll understand not only
+
+377
+00:15:37,400 --> 00:15:40,370
+how to deal with Cell, but
+kind of a general way of
+
+378
+00:15:40,370 --> 00:15:42,020
+looking at parallelism, and
+maybe from that approach
+
+379
+00:15:42,020 --> 00:15:44,580
+[UNINTELLIGIBLE] parallelism
+in there.
+
+380
+00:15:44,580 --> 00:15:46,970
+So the lectures are organized
+as follows.
+
+381
+00:15:46,970 --> 00:15:49,440
+We are now at the end
+of the day here.
+
+382
+00:15:49,440 --> 00:15:51,590
+Tomorrow we'll have
+a recitation on
+
+383
+00:15:51,590 --> 00:15:53,120
+getting to know Cell.
+
+384
+00:15:53,120 --> 00:15:56,450
+We are trying to figure out a
+good room, so just check your
+
+385
+00:15:56,450 --> 00:15:58,060
+email to figure out exactly
+where we are going to have it,
+
+386
+00:15:58,060 --> 00:15:59,580
+because we are trying
+to figure it out.
+
+387
+00:15:59,580 --> 00:16:01,930
+We want to find a room with
+machines so everybody can
+
+388
+00:16:01,930 --> 00:16:04,295
+actualy get hands-on experience
+in kind of a
+
+389
+00:16:04,295 --> 00:16:05,000
+lecture format.
+
+390
+00:16:05,000 --> 00:16:09,720
+And then we will have the
+architecture, just general
+
+391
+00:16:09,720 --> 00:16:12,730
+parallel architecture, and an
+introduction to concurrent
+
+392
+00:16:12,730 --> 00:16:13,470
+programming.
+
+393
+00:16:13,470 --> 00:16:16,260
+And then Rodric is going to
+have individual meets with
+
+394
+00:16:16,260 --> 00:16:17,770
+individual groups,
+trying to get the
+
+395
+00:16:17,770 --> 00:16:19,190
+groups' projects going.
+
+396
+00:16:19,190 --> 00:16:23,330
+So at that point kind of figure
+out how we are doing
+
+397
+00:16:23,330 --> 00:16:26,270
+it, have some early ideas about
+it so you can start
+
+398
+00:16:26,270 --> 00:16:31,840
+thinking and start the process
+of doing that.
+
+399
+00:16:31,840 --> 00:16:34,910
+You can start working on Cell
+probably from tomorrow, but
+
+400
+00:16:34,910 --> 00:16:37,040
+really get a day to kind of
+get familiarized, and then
+
+401
+00:16:37,040 --> 00:16:38,410
+here start the project.
+
+402
+00:16:38,410 --> 00:16:42,210
+And then we will have
+some lectures on
+
+403
+00:16:42,210 --> 00:16:44,240
+design patterns in here.
+
+404
+00:16:44,240 --> 00:16:47,370
+And as we go we'll have more
+hands-on experience also.
+
+405
+00:16:53,210 --> 00:16:55,460
+Then we'll have a lecture
+on Streamit.
+
+406
+00:16:55,460 --> 00:17:03,210
+So if you are using Streamit for
+a part of the run program,
+
+407
+00:17:03,210 --> 00:17:04,870
+you'll be able to understand
+what's going on.
+
+408
+00:17:04,870 --> 00:17:07,380
+And we'll get to some debugging
+tools, hopefully we
+
+409
+00:17:07,380 --> 00:17:10,320
+will have to deal with these
+things before that, but here's
+
+410
+00:17:10,320 --> 00:17:14,240
+something that if you're really
+stuck, to get a breadth
+
+411
+00:17:14,240 --> 00:17:15,790
+of tools available in here.
+
+412
+00:17:15,790 --> 00:17:18,430
+And then we'll talk in general
+about debugging and
+
+413
+00:17:18,430 --> 00:17:20,360
+performance monitoring and
+performance optimization.
+
+414
+00:17:20,360 --> 00:17:23,400
+So at this point hopefully you
+have done the first cart, you
+
+415
+00:17:23,400 --> 00:17:25,560
+have figured out what problems,
+and start optimizing
+
+416
+00:17:25,560 --> 00:17:26,530
+things in here.
+
+417
+00:17:26,530 --> 00:17:32,440
+And then we'll going into a
+little bit more breadth,
+
+418
+00:17:32,440 --> 00:17:35,080
+things like traffic paralleizing
+compilers that I
+
+419
+00:17:35,080 --> 00:17:37,330
+talk about, getting implicit
+parallelism in here.
+
+420
+00:17:37,330 --> 00:17:41,290
+And then we will have a bunch of
+guest lecturers coming in.
+
+421
+00:17:41,290 --> 00:17:43,680
+And we'll talk about some
+hardware and the future,
+
+422
+00:17:43,680 --> 00:17:47,690
+because we are just starting
+this very new phase in
+
+423
+00:17:47,690 --> 00:17:51,130
+programming that might change
+almost everybody.
+
+424
+00:17:51,130 --> 00:17:53,490
+Five years, ten years down the
+line if you go through
+
+425
+00:17:53,490 --> 00:17:56,250
+computer science, you might have
+a very different flavor,
+
+426
+00:17:56,250 --> 00:18:00,990
+if what people think of
+parallelism takes hold.
+
+427
+00:18:00,990 --> 00:18:03,800
+So let's look at some future,
+and talk about that.
+
+428
+00:18:03,800 --> 00:18:05,910
+And it's a nice way to
+finish the lectures.
+
+429
+00:18:05,910 --> 00:18:07,600
+A few more days and then
+we'll have group
+
+430
+00:18:07,600 --> 00:18:08,920
+presentations in here.
+
+431
+00:18:08,920 --> 00:18:13,890
+So each group will get about
+15 minutes time to present
+
+432
+00:18:13,890 --> 00:18:16,130
+what they have done and give
+a little bit of a demo.
+
+433
+00:18:16,130 --> 00:18:18,710
+And then finally on
+Friday we will
+
+434
+00:18:18,710 --> 00:18:22,200
+have awards and reception.
+
+435
+00:18:22,200 --> 00:18:25,470
+So this is what we got.
+
+436
+00:18:25,470 --> 00:18:26,720
+Any questions?
+
+437
+00:18:33,625 --> 00:18:36,090
+AUDIENCE: For recitations, if
+we're not in a room with
+
+438
+00:18:36,090 --> 00:18:37,570
+machines should we
+bring laptops?
+
+439
+00:18:37,570 --> 00:18:39,910
+PROFESSOR: So that's
+a good question.
+
+440
+00:18:39,910 --> 00:18:41,815
+Who doesn't have a laptop
+they can bring?
+
+441
+00:18:44,394 --> 00:18:47,290
+OK.
+
+442
+00:18:47,290 --> 00:18:49,820
+If that is the case, we can have
+it in any room we want,
+
+443
+00:18:49,820 --> 00:18:50,970
+and have the network.
+
+444
+00:18:50,970 --> 00:18:54,380
+And we might have one or two
+additional machines for people
+
+445
+00:18:54,380 --> 00:18:55,710
+who don't have a laptop.
+
+446
+00:18:55,710 --> 00:18:58,230
+And that actually will work
+much better than everybody
+
+447
+00:18:58,230 --> 00:19:00,580
+marching into some kind of a
+computer room that's not
+
+448
+00:19:00,580 --> 00:19:03,410
+structured properly
+for doing a class.
+
+449
+00:19:03,410 --> 00:19:06,160
+OK, that actually helps a lot.
+
+450
+00:19:06,160 --> 00:19:08,980
+That's a good point, I think
+that helps a lot.
+
+451
+00:19:08,980 --> 00:19:11,024
+OK, we'll do that
+that way then.
+
+452
+00:19:11,024 --> 00:19:13,510
+AUDIENCE: How do we get access
+to these machines?
+
+453
+00:19:13,510 --> 00:19:14,330
+PROFESSOR: OK.
+
+454
+00:19:14,330 --> 00:19:14,830
+Rodric, you --
+
+455
+00:19:14,830 --> 00:19:23,010
+RODRIC RABBAH: Every room has
+a PS3 dedicated to them.
+
+456
+00:19:23,010 --> 00:19:26,060
+And every group has accounts
+on their dedicated PS3.
+
+457
+00:19:26,060 --> 00:19:28,020
+I have your usernames
+and passwords.
+
+458
+00:19:28,020 --> 00:19:31,200
+I will pass them out tomorrow,
+because I'm going to propagate
+
+459
+00:19:31,200 --> 00:19:34,480
+the new SDK to all the PS3's --
+to sort of test it with one
+
+460
+00:19:34,480 --> 00:19:35,890
+and make sure everything's
+working.
+
+461
+00:19:35,890 --> 00:19:38,350
+So you'll get them at the first
+recitation tomorrow.
+
+462
+00:19:38,350 --> 00:19:42,440
+Unless you really want them
+today, then come talk to me or
+
+463
+00:19:42,440 --> 00:19:43,355
+send me email.
+
+464
+00:19:43,355 --> 00:19:44,420
+PROFESSOR: You'll get
+to take home --
+
+465
+00:19:44,420 --> 00:19:46,020
+AUDIENCE: [INAUDIBLE]
+
+466
+00:19:46,020 --> 00:19:46,360
+PROFESSOR: Yes.
+
+467
+00:19:46,360 --> 00:19:47,240
+RODRIC RABBAH: Yes.
+
+468
+00:19:47,240 --> 00:19:49,360
+PROFESSOR: We couldn't even put
+it in the machine room,
+
+469
+00:19:49,360 --> 00:19:50,365
+because they were scared
+somebody was going
+
+470
+00:19:50,365 --> 00:19:51,200
+to take them home.
+
+471
+00:19:51,200 --> 00:19:53,310
+So we actually have it in a
+different room -- closed,
+
+472
+00:19:53,310 --> 00:19:55,590
+nicely locked --
+
+473
+00:19:55,590 --> 00:19:57,010
+or on the network.
+
+474
+00:19:57,010 --> 00:20:00,475
+So I have been a very popular
+person lately, a lot of people
+
+475
+00:20:00,475 --> 00:20:02,740
+have tried to bribe me
+to get access to
+
+476
+00:20:02,740 --> 00:20:03,990
+one of these masters.
+
+477
+00:20:07,218 --> 00:20:08,468
+AUDIENCE: [UNINTELLIGIBLE]
+
+478
+00:20:19,283 --> 00:20:22,570
+AUDIENCE: How much does
+the PS3 cost?
+
+479
+00:20:22,570 --> 00:20:29,016
+PROFESSOR: Officially $600, but
+then eBay's going up to
+
+480
+00:20:29,016 --> 00:20:30,710
+like $2,500 these days.
+
+481
+00:20:30,710 --> 00:20:30,880
+AUDIENCE: No.
+
+482
+00:20:30,880 --> 00:20:31,530
+PROFESSOR: That's gone down?
+
+483
+00:20:31,530 --> 00:20:34,360
+AUDIENCE: They're down between
+$400 and $500.
+
+484
+00:20:34,360 --> 00:20:35,020
+PROFESSOR: Oh, OK.
+
+485
+00:20:35,020 --> 00:20:36,933
+AUDIENCE: They tried
+[? to rope me in. ?]
+
+486
+00:20:36,933 --> 00:20:38,350
+[LAUGHTER]
+
+487
+00:20:38,350 --> 00:20:39,240
+PROFESSOR: OK.
+
+488
+00:20:39,240 --> 00:20:42,260
+But during Christmas
+it was down for --
+
+489
+00:20:42,260 --> 00:20:45,118
+a few desperate payers who
+were trying to bribe me.
+
+490
+00:20:45,118 --> 00:20:49,280
+[LAUGHTER]
+
+491
+00:20:49,280 --> 00:20:51,690
+So I guess their volume
+has caught up to --
+
+492
+00:20:51,690 --> 00:20:54,320
+AUDIENCE: No, the demand
+has dropped.
+
+493
+00:20:54,320 --> 00:20:54,630
+PROFESSOR: OK.
+
+494
+00:20:54,630 --> 00:20:55,880
+AUDIENCE: [INAUDIBLE]
+
+495
+00:21:04,230 --> 00:21:06,850
+AUDIENCE: Will we get to
+see the Playstation?
+
+496
+00:21:06,850 --> 00:21:09,610
+PROFESSOR: Tomorrow we
+can bring one --
+
+497
+00:21:09,610 --> 00:21:11,120
+AUDIENCE: I can bring
+one [INAUDIBLE]
+
+498
+00:21:11,120 --> 00:21:13,980
+PROFESSOR: If you put
+a game in it's fun.
+
+499
+00:21:13,980 --> 00:21:16,540
+You can put a game in and play
+it, but this is going to be
+
+500
+00:21:16,540 --> 00:21:18,920
+Linux so it's a little
+bit boring.
+
+501
+00:21:18,920 --> 00:21:20,652
+[LAUGHTER]
+
+502
+00:21:20,652 --> 00:21:22,115
+AUDIENCE: So these are
+things that actually
+
+503
+00:21:22,115 --> 00:21:23,090
+cannot play the games.
+
+504
+00:21:23,090 --> 00:21:24,730
+PROFESSOR: It can.
+
+505
+00:21:24,730 --> 00:21:29,730
+Interestingly, mostly these
+game machines are sold for
+
+506
+00:21:29,730 --> 00:21:31,450
+less than production value.
+
+507
+00:21:31,450 --> 00:21:36,350
+So Microsoft, Nintendo, and
+Sony before made sure that
+
+508
+00:21:36,350 --> 00:21:41,090
+nobody can run anything other
+than the published games that
+
+509
+00:21:41,090 --> 00:21:43,680
+they've charged $25 per pop to
+
+510
+00:21:43,680 --> 00:21:45,520
+recover the cost. Huh?
+
+511
+00:21:45,520 --> 00:21:46,620
+No, $60 for the game.
+
+512
+00:21:46,620 --> 00:21:49,660
+I think they are charging $25
+from the game maker just for
+
+513
+00:21:49,660 --> 00:21:51,040
+the privilege of running
+the game.
+
+514
+00:21:51,040 --> 00:21:53,140
+That's how they make
+their money.
+
+515
+00:21:53,140 --> 00:21:55,070
+But, [UNINTELLIGIBLE]
+
+516
+00:21:55,070 --> 00:21:58,370
+when they made PS3 bootable
+by Linux.
+
+517
+00:21:58,370 --> 00:22:04,200
+So in fact, it's much cheaper,
+you get a Blu-Ray player, and
+
+518
+00:22:04,200 --> 00:22:07,529
+this Cell processor for a lot
+less than the production cost.
+
+519
+00:22:07,529 --> 00:22:09,819
+AUDIENCE: Does Linux on
+the PS3 run on top
+
+520
+00:22:09,819 --> 00:22:11,601
+of the PS3 OS though?
+
+521
+00:22:11,601 --> 00:22:13,290
+PROFESSOR: No.
+
+522
+00:22:13,290 --> 00:22:14,720
+It just boots up PS3.
+
+523
+00:22:14,720 --> 00:22:18,240
+What it does is in fact --
+
+524
+00:22:18,240 --> 00:22:20,130
+right now, you don't get
+access to the graphics
+
+525
+00:22:20,130 --> 00:22:21,240
+processor properly.
+
+526
+00:22:21,240 --> 00:22:23,570
+So you can run open G11.
+
+527
+00:22:23,570 --> 00:22:26,120
+You have framebuffer access,
+but you don't get the full
+
+528
+00:22:26,120 --> 00:22:28,410
+graphics access out of that.
+
+529
+00:22:28,410 --> 00:22:30,530
+AUDIENCE: Which distribution
+are we using?
+
+530
+00:22:30,530 --> 00:22:30,900
+PROFESSOR: Which one?
+
+531
+00:22:30,900 --> 00:22:32,342
+AUDIENCE: We're using
+Yellow Dog.
+
+532
+00:22:36,669 --> 00:22:38,770
+AUDIENCE: So in other words,
+Mario and Luigi are
+
+533
+00:22:38,770 --> 00:22:40,416
+subsidizing what we're
+going to do.
+
+534
+00:22:40,416 --> 00:22:41,360
+[LAUGHTER]
+
+535
+00:22:41,360 --> 00:22:43,430
+PROFESSOR: Yeah, exactly.
+
+536
+00:22:43,430 --> 00:22:46,830
+All those shoot them up games
+are basically what subsidizes.
+
+537
+00:22:46,830 --> 00:22:51,280
+Actually he said, in one sense,
+you get the processor
+
+538
+00:22:51,280 --> 00:22:54,610
+down to $200 because they are
+selling all the other things.
+
+539
+00:22:54,610 --> 00:22:57,010
+And the other thing, actually
+if you want to build a high
+
+540
+00:22:57,010 --> 00:23:00,680
+performance Cell farm, it's
+probably cheaper because I
+
+541
+00:23:00,680 --> 00:23:03,210
+think that the Cell blend
+would be $2,000.
+
+542
+00:23:03,210 --> 00:23:05,480
+It should be cheaper to
+buy a bunch of PS3's,
+
+543
+00:23:05,480 --> 00:23:06,400
+connect them together.
+
+544
+00:23:06,400 --> 00:23:09,520
+But there might be issues about
+things like network
+
+545
+00:23:09,520 --> 00:23:14,160
+access, file access, because as
+you pointed out, the board
+
+546
+00:23:14,160 --> 00:23:15,880
+access is pretty primitive.
+
+547
+00:23:15,880 --> 00:23:18,510
+Because for games you don't
+need this high bandwidth
+
+548
+00:23:18,510 --> 00:23:20,200
+connection, you just need
+to download it once.
+
+549
+00:23:20,200 --> 00:23:23,860
+So there might be issues
+using it for cluster.
+
+550
+00:23:32,080 --> 00:23:32,670
+OK.
+
+551
+00:23:32,670 --> 00:23:33,920
+Anything else?
+
+552
+00:23:36,240 --> 00:23:37,520
+OK, good.

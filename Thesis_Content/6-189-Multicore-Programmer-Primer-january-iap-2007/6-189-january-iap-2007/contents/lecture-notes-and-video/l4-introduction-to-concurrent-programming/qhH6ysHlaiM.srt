@@ -1,0 +1,3631 @@
+1
+00:00:00,030 --> 00:00:02,430
+The following content is
+provided under a Creative
+
+2
+00:00:02,430 --> 00:00:03,850
+Commons license.
+
+3
+00:00:03,850 --> 00:00:06,860
+Your support will help MIT
+OpenCourseWare continue to
+
+4
+00:00:06,860 --> 00:00:10,550
+offer high quality educational
+resources for free.
+
+5
+00:00:10,550 --> 00:00:13,420
+To make a donation or view
+additional materials from
+
+6
+00:00:13,420 --> 00:00:17,510
+hundreds of MIT courses, visit
+MIT OpenCourseWare at
+
+7
+00:00:17,510 --> 00:00:18,760
+ocw.mit.edu.
+
+8
+00:00:21,370 --> 00:00:26,280
+PROFESSOR: So, the next part,
+today's going to be about
+
+9
+00:00:26,280 --> 00:00:28,420
+concurrent programming.
+
+10
+00:00:28,420 --> 00:00:30,550
+So in this lecture we are going
+to study concurrent
+
+11
+00:00:30,550 --> 00:00:33,680
+programing with the emphasis for
+correctness of programs.
+
+12
+00:00:33,680 --> 00:00:35,470
+Because parallel programs
+will have the
+
+13
+00:00:35,470 --> 00:00:36,860
+same correctness issues.
+
+14
+00:00:36,860 --> 00:00:38,760
+So, if you want to get parallel,
+you'd better get the
+
+15
+00:00:38,760 --> 00:00:41,610
+concurrency right first.
+
+16
+00:00:41,610 --> 00:00:44,060
+What we're also going do is
+start with a much simpler
+
+17
+00:00:44,060 --> 00:00:45,530
+machine model.
+
+18
+00:00:45,530 --> 00:00:48,980
+In a program where we are going
+to use Java, because I
+
+19
+00:00:48,980 --> 00:00:51,680
+think a lot of people
+understand Java.
+
+20
+00:00:51,680 --> 00:00:54,010
+Also, we are going to do
+some very simple shared
+
+21
+00:00:54,010 --> 00:00:54,240
+[UNINTELLIGIBLE]
+
+22
+00:00:54,240 --> 00:00:55,500
+machine abstraction.
+
+23
+00:00:55,500 --> 00:00:57,350
+I'm not going to even talk about
+any machine anymore.
+
+24
+00:00:57,350 --> 00:01:01,090
+I'm just going to talk about
+concurrent programming here.
+
+25
+00:01:01,090 --> 00:01:03,980
+You need to get through this
+one before you can start to
+
+26
+00:01:03,980 --> 00:01:05,230
+dig in deep into
+the next level.
+
+27
+00:01:15,970 --> 00:01:19,800
+So in the next lecture, we will
+switch from Java to C-C ,
+
+28
+00:01:19,800 --> 00:01:24,070
+I guess using MPI primitives
+in here.
+
+29
+00:01:24,070 --> 00:01:26,190
+We'll start moving into
+parallelism with emphasis on
+
+30
+00:01:26,190 --> 00:01:26,930
+performance.
+
+31
+00:01:26,930 --> 00:01:29,200
+And, of course, you have to get
+correctness, that's given,
+
+32
+00:01:29,200 --> 00:01:31,460
+but we'll start looking at
+performance in there.
+
+33
+00:01:31,460 --> 00:01:33,490
+And we'll start using the
+distributive memory machine,
+
+34
+00:01:33,490 --> 00:01:36,950
+all the notions and details of
+Cell, so we'll just kind of go
+
+35
+00:01:36,950 --> 00:01:40,100
+down and down in
+that direction.
+
+36
+00:01:40,100 --> 00:01:42,490
+So, what's concurrency?
+
+37
+00:01:42,490 --> 00:01:44,520
+Sequential program
+is -- because
+
+38
+00:01:44,520 --> 00:01:45,640
+sequential program opposite.
+
+39
+00:01:45,640 --> 00:01:47,640
+It's basically single
+thread of execution,
+
+40
+00:01:47,640 --> 00:01:48,620
+with is a good one.
+
+41
+00:01:48,620 --> 00:01:50,710
+Finish that, go to the
+next, go to the next.
+
+42
+00:01:50,710 --> 00:01:54,500
+That's a very simple abstract
+model that for about 35 years,
+
+43
+00:01:54,500 --> 00:01:56,970
+40 years, none of the machines
+were actually following, that
+
+44
+00:01:56,970 --> 00:01:58,900
+they had things in the back
+that actually had some
+
+45
+00:01:58,900 --> 00:02:00,660
+parallelism.
+
+46
+00:02:00,660 --> 00:02:04,270
+A concurrent program is the
+[UNINTELLIGIBLE PHRASE]
+
+47
+00:02:04,270 --> 00:02:07,470
+because it's a collection of
+autonomous sequential threads
+
+48
+00:02:07,470 --> 00:02:09,190
+executing logically
+in parallel.
+
+49
+00:02:12,220 --> 00:02:15,180
+So you can execute this thing
+either multi-programming, so
+
+50
+00:02:15,180 --> 00:02:19,790
+we can multiplex different
+parts on multiprocessing.
+
+51
+00:02:19,790 --> 00:02:22,920
+Well, multiprocessing basically
+has [UNINTELLIGIBLE]
+
+52
+00:02:22,920 --> 00:02:24,720
+starting on different
+machines.
+
+53
+00:02:24,720 --> 00:02:26,870
+You can distribute, you
+can actually send it
+
+54
+00:02:26,870 --> 00:02:27,820
+to different places.
+
+55
+00:02:27,820 --> 00:02:30,110
+Of course, you have to deal
+with memory issues.
+
+56
+00:02:30,110 --> 00:02:34,040
+So, concurrency's not only
+parallel systems. So you can
+
+57
+00:02:34,040 --> 00:02:35,450
+do interleaved concurrency.
+
+58
+00:02:35,450 --> 00:02:38,940
+You can have logically parallel,
+but you run Thread A
+
+59
+00:02:38,940 --> 00:02:41,610
+for a while, contacts with
+Thread B for a while, contacts
+
+60
+00:02:41,610 --> 00:02:44,650
+with Thread C, so you can have
+multiple threads on the same
+
+61
+00:02:44,650 --> 00:02:45,630
+machine running.
+
+62
+00:02:45,630 --> 00:02:47,830
+Or you can actually have
+running parallel.
+
+63
+00:02:47,830 --> 00:02:49,810
+You can have three different
+machines running, A, B and C
+
+64
+00:02:49,810 --> 00:02:50,870
+all the time.
+
+65
+00:02:50,870 --> 00:02:53,510
+So you can have both in there.
+
+66
+00:02:53,510 --> 00:02:56,570
+But logically you should not
+see a difference except for
+
+67
+00:02:56,570 --> 00:02:59,540
+performance and stuff
+like that.
+
+68
+00:02:59,540 --> 00:03:03,060
+So what I'm going to do is
+do a bunch of examples.
+
+69
+00:03:03,060 --> 00:03:04,310
+Can you read this?
+
+70
+00:03:07,250 --> 00:03:08,670
+Let's start with a bank.
+
+71
+00:03:08,670 --> 00:03:10,430
+So you have a bank account.
+
+72
+00:03:10,430 --> 00:03:13,130
+So in Java you just basically
+have ID, password, and
+
+73
+00:03:13,130 --> 00:03:16,410
+balance, and you have some
+way to construct
+
+74
+00:03:16,410 --> 00:03:19,330
+this object in here.
+
+75
+00:03:19,330 --> 00:03:23,180
+And you can ask, and see the
+password is correct.
+
+76
+00:03:23,180 --> 00:03:25,160
+You can get the balance.
+
+77
+00:03:25,160 --> 00:03:27,840
+And you can post the balance.
+
+78
+00:03:27,840 --> 00:03:30,470
+So that's a very simple
+account object.
+
+79
+00:03:30,470 --> 00:03:33,510
+If you have a bank, you have a
+bunch of accounts in a hash
+
+80
+00:03:33,510 --> 00:03:37,210
+map, and you create the
+hash map in here.
+
+81
+00:03:37,210 --> 00:03:38,360
+Then you can basically
+[? figure out ?]
+
+82
+00:03:38,360 --> 00:03:42,670
+the bank, you actually create
+a bank in here, and you can
+
+83
+00:03:42,670 --> 00:03:46,170
+get an account, given an ID.
+
+84
+00:03:46,170 --> 00:03:48,280
+Now, assume you want
+to build an ATM.
+
+85
+00:03:48,280 --> 00:03:49,740
+How do you build an ATM?
+
+86
+00:03:49,740 --> 00:03:52,390
+So, you have a bank -- you
+need a bank in here, and
+
+87
+00:03:52,390 --> 00:03:56,120
+here's some input and output
+streams in here.
+
+88
+00:03:56,120 --> 00:03:58,830
+When you start the ATM, you will
+set up these input and
+
+89
+00:03:58,830 --> 00:04:00,790
+output streams in here.
+
+90
+00:04:00,790 --> 00:04:04,810
+In the main function, what
+you'll do is, you get a bank,
+
+91
+00:04:04,810 --> 00:04:09,710
+create where the input streams
+are coming from.
+
+92
+00:04:09,710 --> 00:04:14,400
+Create output goes standard --
+system output goes there.
+
+93
+00:04:14,400 --> 00:04:17,860
+And create an ATM in here, and
+you will make the ATM run.
+
+94
+00:04:17,860 --> 00:04:20,240
+So how do you run the ATM?
+
+95
+00:04:20,240 --> 00:04:22,750
+So, what happens in run
+is, you run forever?
+
+96
+00:04:22,750 --> 00:04:26,150
+ATM doesn't stop any time.
+
+97
+00:04:26,150 --> 00:04:28,350
+What you can do is you can ask
+when somebody walks into the
+
+98
+00:04:28,350 --> 00:04:30,540
+ATM, you can say what's
+the account ID.
+
+99
+00:04:30,540 --> 00:04:31,790
+Type the account ID.
+
+100
+00:04:34,260 --> 00:04:36,160
+You can get that account, so
+of course, if the account
+
+101
+00:04:36,160 --> 00:04:40,040
+already is wrong it says,
+throw exception.
+
+102
+00:04:40,040 --> 00:04:43,560
+You can say OK, what's the
+password, get the password.
+
+103
+00:04:43,560 --> 00:04:47,170
+You take the password, if it's
+wrong you throw exception.
+
+104
+00:04:47,170 --> 00:04:50,160
+Then you can say, here's
+your balance today.
+
+105
+00:04:50,160 --> 00:04:51,440
+What do you want to do?
+
+106
+00:04:51,440 --> 00:04:55,300
+If you want to withdraw
+or deposit.
+
+107
+00:04:55,300 --> 00:04:57,560
+If you want to withdraw you can
+do a minus number, if you
+
+108
+00:04:57,560 --> 00:05:00,620
+want to deposit it will
+be a plus number.
+
+109
+00:05:00,620 --> 00:05:07,310
+Then you can post that
+into your balance.
+
+110
+00:05:07,310 --> 00:05:09,540
+Everybody got the
+thing for ATMs?
+
+111
+00:05:09,540 --> 00:05:13,160
+So, assume activity trace.
+
+112
+00:05:13,160 --> 00:05:17,120
+So somebody comes and gives the
+account ID, at least gives
+
+113
+00:05:17,120 --> 00:05:21,020
+the password, and say that they
+have $100,000 and say how
+
+114
+00:05:21,020 --> 00:05:23,050
+much you withdraw,
+$200 withdraw.
+
+115
+00:05:23,050 --> 00:05:25,080
+And you get the balance
+in here.
+
+116
+00:05:25,080 --> 00:05:26,100
+Looks nice.
+
+117
+00:05:26,100 --> 00:05:28,630
+It works.
+
+118
+00:05:28,630 --> 00:05:31,760
+So I need to run multiple ATMs.
+Assume I am in a place
+
+119
+00:05:31,760 --> 00:05:34,070
+that I actually want to put two
+ATMs or four ATMs next to
+
+120
+00:05:34,070 --> 00:05:35,410
+each other.
+
+121
+00:05:35,410 --> 00:05:38,920
+So how am I going to do that?
+
+122
+00:05:38,920 --> 00:05:42,840
+So, in order to do that, there's
+concurrency in Java.
+
+123
+00:05:42,840 --> 00:05:47,030
+So one way to get Java
+concurrency is you can extend
+
+124
+00:05:47,030 --> 00:05:54,150
+this class thread and
+define a method run.
+
+125
+00:05:54,150 --> 00:05:56,490
+Or you have interface called
+[? Runabout, ?]
+
+126
+00:05:56,490 --> 00:05:59,690
+that you can basically use
+that interface and has
+
+127
+00:05:59,690 --> 00:06:02,840
+estimated run.
+
+128
+00:06:02,840 --> 00:06:05,130
+Then when you have made
+that run and when
+
+129
+00:06:05,130 --> 00:06:06,370
+[UNINTELLIGIBLE PHRASE]
+
+130
+00:06:06,370 --> 00:06:09,430
+start, that will get started.
+
+131
+00:06:09,430 --> 00:06:11,150
+Very simple way to do that.
+
+132
+00:06:11,150 --> 00:06:12,400
+Let me give you an example.
+
+133
+00:06:14,340 --> 00:06:14,940
+Little bit of a digression.
+
+134
+00:06:14,940 --> 00:06:16,600
+Why do you want concurrent
+programming?
+
+135
+00:06:16,600 --> 00:06:20,580
+A lot of times, natural
+application structure is not
+
+136
+00:06:20,580 --> 00:06:21,570
+sequential.
+
+137
+00:06:21,570 --> 00:06:23,010
+The world is not sequential.
+
+138
+00:06:23,010 --> 00:06:25,680
+And then try to sequentialize
+the world sometimes means it's
+
+139
+00:06:25,680 --> 00:06:27,150
+much more complicated
+[UNINTELLIGIBLE]
+
+140
+00:06:27,150 --> 00:06:31,660
+So sometimes it's natural to
+do things in parallel.
+
+141
+00:06:31,660 --> 00:06:33,570
+A lot of times the
+sequentiality's an artifact of
+
+142
+00:06:33,570 --> 00:06:35,295
+the programming language,
+because we use a
+
+143
+00:06:35,295 --> 00:06:37,740
+language like that.
+
+144
+00:06:37,740 --> 00:06:40,960
+Sometimes doing things in
+parallel ways, you can really
+
+145
+00:06:40,960 --> 00:06:43,390
+improve things like throughput
+and responsiveness.
+
+146
+00:06:43,390 --> 00:06:46,020
+If you are doing IO, if you're
+doing sequential programming
+
+147
+00:06:46,020 --> 00:06:46,620
+[UNINTELLIGIBLE PHRASE]
+
+148
+00:06:46,620 --> 00:06:48,160
+you're just twiddling your
+thumb waiting for
+
+149
+00:06:48,160 --> 00:06:49,160
+the IO to come back.
+
+150
+00:06:49,160 --> 00:06:51,920
+In parallel things actually, you
+can do parallel IO and you
+
+151
+00:06:51,920 --> 00:06:55,110
+can do a lot cool
+stuff in here.
+
+152
+00:06:55,110 --> 00:06:58,810
+Of course, in this class,
+if you are multicore and
+
+153
+00:06:58,810 --> 00:07:00,830
+multiprocessor multicore, you
+can get parallel executions.
+
+154
+00:07:00,830 --> 00:07:05,260
+So there are more than one
+[UNINTELLIGIBLE PHRASE].
+
+155
+00:07:10,440 --> 00:07:14,970
+Also, if you are building a very
+large distributed system,
+
+156
+00:07:14,970 --> 00:07:17,210
+concurrent programming is, you
+had to deal with, especially
+
+157
+00:07:17,210 --> 00:07:18,600
+dealing with things like
+client-server type of
+
+158
+00:07:18,600 --> 00:07:20,840
+applications.
+
+159
+00:07:20,840 --> 00:07:25,265
+So here's our original ATMs. So
+to go to multiple ATMs, I
+
+160
+00:07:25,265 --> 00:07:28,030
+am doing a few changes.
+
+161
+00:07:28,030 --> 00:07:29,910
+I'll go back and forth
+a few times.
+
+162
+00:07:29,910 --> 00:07:32,090
+So the first thing I have done
+is I have sett here number of
+
+163
+00:07:32,090 --> 00:07:33,310
+ATMs to be four.
+
+164
+00:07:33,310 --> 00:07:34,520
+Can you really read it
+from back there?
+
+165
+00:07:34,520 --> 00:07:37,090
+AUDIENCE: [INAUDIBLE PHRASE].
+
+166
+00:07:37,090 --> 00:07:38,920
+PROFESSOR: OK, good.
+
+167
+00:07:38,920 --> 00:07:44,240
+Then what I have done is, in
+here, I did four ATMs here,
+
+168
+00:07:44,240 --> 00:07:47,140
+and then I put it in a loop to
+create this ATM, so I created
+
+169
+00:07:47,140 --> 00:07:50,960
+four ATMs in here and start
+four ATMs, basically.
+
+170
+00:07:50,960 --> 00:07:53,490
+Then of course I extended these
+ATMs so now we will
+
+171
+00:07:53,490 --> 00:07:54,670
+extend [? up a thread. ?]
+
+172
+00:07:54,670 --> 00:07:57,260
+And I haven't started that.
+
+173
+00:07:57,260 --> 00:07:58,110
+And the ATMs [UNINTELLIGIBLE]
+
+174
+00:07:58,110 --> 00:07:59,560
+ATMs, so it's great.
+
+175
+00:07:59,560 --> 00:08:02,820
+So now what happens is I assume
+now there's two guys
+
+176
+00:08:02,820 --> 00:08:05,800
+going, both ATMs, at least
+[UNINTELLIGIBLE] been.
+
+177
+00:08:05,800 --> 00:08:07,920
+Then enter the account and
+[UNINTELLIGIBLE PHRASE],
+
+178
+00:08:07,920 --> 00:08:08,960
+that's works really well.
+
+179
+00:08:08,960 --> 00:08:09,710
+No problem.
+
+180
+00:08:09,710 --> 00:08:10,980
+So we have two ATMs, two people
+
+181
+00:08:10,980 --> 00:08:12,660
+actually went on parallel.
+
+182
+00:08:12,660 --> 00:08:16,580
+One then deposited some money,
+other one took money, great.
+
+183
+00:08:16,580 --> 00:08:19,580
+Now, as MIT students, they
+want to do something,
+
+184
+00:08:19,580 --> 00:08:21,170
+they can hack it.
+
+185
+00:08:21,170 --> 00:08:22,410
+So, [UNINTELLIGIBLE]
+
+186
+00:08:22,410 --> 00:08:25,550
+basically [UNINTELLIGIBLE] went
+[UNINTELLIGIBLE], and
+
+187
+00:08:25,550 --> 00:08:28,040
+basically what
+[UNINTELLIGIBLE PHRASE]
+
+188
+00:08:28,040 --> 00:08:33,890
+enter the password, and they
+said I want to get $100.
+
+189
+00:08:33,890 --> 00:08:35,510
+I would get $90, basically.
+
+190
+00:08:35,510 --> 00:08:38,630
+So he had $100 in his account.
+
+191
+00:08:38,630 --> 00:08:43,610
+Then what he got was, so he
+actually managed to get $180
+
+192
+00:08:43,610 --> 00:08:45,990
+out of an account
+that had $100.
+
+193
+00:08:45,990 --> 00:08:48,850
+This is not a good ATM, at
+least from the bank's
+
+194
+00:08:48,850 --> 00:08:50,440
+perspective.
+
+195
+00:08:50,440 --> 00:08:52,760
+So what went wrong?
+
+196
+00:08:52,760 --> 00:08:58,250
+If you look at what happened in
+activity trace, so we print
+
+197
+00:08:58,250 --> 00:08:59,480
+100 in here.
+
+198
+00:08:59,480 --> 00:09:06,990
+And then you said, you want to
+read this value, you both
+
+199
+00:09:06,990 --> 00:09:08,820
+entered 90, right here.
+
+200
+00:09:08,820 --> 00:09:13,790
+And this account balance
+[UNINTELLIGIBLE PHRASE]
+
+201
+00:09:13,790 --> 00:09:15,840
+because the account
+balance was 100.
+
+202
+00:09:15,840 --> 00:09:17,110
+You saw also the
+account balance
+
+203
+00:09:17,110 --> 00:09:20,280
+[UNINTELLIGIBLE PHRASE], yes,
+it is [UNINTELLIGIBLE].
+
+204
+00:09:20,280 --> 00:09:23,440
+Then each went post, it went to
+10 -- this also did a post
+
+205
+00:09:23,440 --> 00:09:26,680
+of the same time, result
+came both 10.
+
+206
+00:09:26,680 --> 00:09:29,350
+How could this happen?
+
+207
+00:09:29,350 --> 00:09:31,780
+So that way it can happen
+is, so in the ATM, the
+
+208
+00:09:31,780 --> 00:09:38,600
+[UNINTELLIGIBLE PHRASE], what
+happens is v is minus 90, and
+
+209
+00:09:38,600 --> 00:09:40,390
+this post [UNINTELLIGIBLE]
+also when you start a
+
+210
+00:09:40,390 --> 00:09:42,970
+v it's minus 90.
+
+211
+00:09:42,970 --> 00:09:45,480
+Then you treat the
+balance as 100.
+
+212
+00:09:45,480 --> 00:09:51,810
+So in this interleaving, and so
+it is the plus, you get 10.
+
+213
+00:09:51,810 --> 00:09:54,240
+Also, before you write it out,
+you read the balance in the
+
+214
+00:09:54,240 --> 00:09:57,145
+other interleaving, you've got
+the balance as 100, and you do
+
+215
+00:09:57,145 --> 00:09:58,820
+the plus as 10.
+
+216
+00:09:58,820 --> 00:10:02,020
+So it destroyed the balance,
+now balance became 10, and
+
+217
+00:10:02,020 --> 00:10:03,710
+also this guy also wrote the
+balance -- it doesn't matter,
+
+218
+00:10:03,710 --> 00:10:06,960
+it got 10 updated twice,
+and that's it.
+
+219
+00:10:06,960 --> 00:10:10,460
+So you can have interleaving
+in here, that actually did
+
+220
+00:10:10,460 --> 00:10:13,550
+something that's not a
+signature program.
+
+221
+00:10:13,550 --> 00:10:16,680
+And you're in big trouble.
+
+222
+00:10:16,680 --> 00:10:20,530
+So in order to get out of
+that, problem is all
+
+223
+00:10:20,530 --> 00:10:24,110
+interleaving of threads are not
+acceptable and current.
+
+224
+00:10:24,110 --> 00:10:26,250
+What you want is some kind
+of a sequential-looking
+
+225
+00:10:26,250 --> 00:10:28,620
+performance, even though you'd
+get parallel, you don't want
+
+226
+00:10:28,620 --> 00:10:32,050
+to do all these interleavings
+in here.
+
+227
+00:10:32,050 --> 00:10:34,030
+So in order to do that,
+Java provides this
+
+228
+00:10:34,030 --> 00:10:35,910
+synchronization mechanism.
+
+229
+00:10:35,910 --> 00:10:39,240
+That's just strict
+interleaving.
+
+230
+00:10:39,240 --> 00:10:42,930
+So, what synchronizations do
+is, they ensure safety for
+
+231
+00:10:42,930 --> 00:10:44,760
+shared updates.
+
+232
+00:10:44,760 --> 00:10:46,330
+So if you're sharing
+something, so it
+
+233
+00:10:46,330 --> 00:10:47,180
+avoids races, basically.
+
+234
+00:10:47,180 --> 00:10:50,760
+It avoids this old interleaving
+ordering here.
+
+235
+00:10:50,760 --> 00:10:53,500
+Also, it allows you to
+coordinate actions among
+
+236
+00:10:53,500 --> 00:10:54,240
+shared space, basically.
+
+237
+00:10:54,240 --> 00:10:57,500
+Because at some point people
+have to coordinate and take
+
+238
+00:10:57,500 --> 00:10:58,140
+that parallel computation.
+
+239
+00:10:58,140 --> 00:11:01,960
+With notification
+you can do that.
+
+240
+00:11:01,960 --> 00:11:04,540
+So, when multiple threads access
+the shared resource,
+
+241
+00:11:04,540 --> 00:11:09,620
+simultaneously, it's safe only
+if all accesses have no effect
+
+242
+00:11:09,620 --> 00:11:11,660
+on the resource.
+
+243
+00:11:11,660 --> 00:11:12,660
+Basically, we're reading
+variables.
+
+244
+00:11:12,660 --> 00:11:15,105
+But everybody can read the same
+variable, because you're
+
+245
+00:11:15,105 --> 00:11:15,880
+not changing anything.
+
+246
+00:11:15,880 --> 00:11:17,050
+I can do that.
+
+247
+00:11:17,050 --> 00:11:20,850
+Or all accesses are
+idempotent.
+
+248
+00:11:20,850 --> 00:11:23,800
+So you can say, we
+can do that.
+
+249
+00:11:23,800 --> 00:11:26,310
+Or only one access at a time.
+
+250
+00:11:26,310 --> 00:11:29,100
+Which is called mutual
+exclusion.
+
+251
+00:11:29,100 --> 00:11:30,780
+So in this case we are
+changing something.
+
+252
+00:11:30,780 --> 00:11:31,670
+It's not that important.
+
+253
+00:11:31,670 --> 00:11:34,560
+So we have to actually
+do mutual exclusion.
+
+254
+00:11:34,560 --> 00:11:38,840
+So here's a way to look at
+safety problems. Here might be
+
+255
+00:11:38,840 --> 00:11:43,340
+an algorithm that you and your
+roommate have. So you arrive
+
+256
+00:11:43,340 --> 00:11:46,700
+home, look in the
+fridge, no milk.
+
+257
+00:11:46,700 --> 00:11:48,680
+Leave for grocery, arrive
+at grocery, buy milk
+
+258
+00:11:48,680 --> 00:11:50,800
+and arrive at home.
+
+259
+00:11:50,800 --> 00:11:53,080
+The minute you leave for
+grocery, your roommate arrives
+
+260
+00:11:53,080 --> 00:11:54,790
+and do this.
+
+261
+00:11:54,790 --> 00:11:57,620
+Then what do you have is
+you have too much milk.
+
+262
+00:11:57,620 --> 00:12:00,770
+So here's the problem
+in a little bit
+
+263
+00:12:00,770 --> 00:12:03,060
+more abstract sense.
+
+264
+00:12:03,060 --> 00:12:05,890
+And you need a way to
+synchronize this.
+
+265
+00:12:05,890 --> 00:12:08,290
+So how about this.
+
+266
+00:12:08,290 --> 00:12:09,320
+No milk and no note.
+
+267
+00:12:09,320 --> 00:12:13,280
+So you leave a note before you
+actually leave the house and
+
+268
+00:12:13,280 --> 00:12:18,070
+buy milk, and then you come
+back and remove the note.
+
+269
+00:12:18,070 --> 00:12:19,320
+Does this work?
+
+270
+00:12:23,180 --> 00:12:24,430
+AUDIENCE: [INAUDIBLE PHRASE].
+
+271
+00:12:27,910 --> 00:12:29,900
+PROFESSOR: I mean here
+also you can do that,
+
+272
+00:12:29,900 --> 00:12:31,230
+no milk and no note.
+
+273
+00:12:31,230 --> 00:12:33,420
+So both are started.
+
+274
+00:12:33,420 --> 00:12:38,470
+We would leave a note,
+and these things can
+
+275
+00:12:38,470 --> 00:12:39,300
+happen at the same time.
+
+276
+00:12:39,300 --> 00:12:40,990
+There's a little bit of things
+saying OK, why didn't you see
+
+277
+00:12:40,990 --> 00:12:42,680
+your roommate.
+
+278
+00:12:42,680 --> 00:12:44,820
+They go buy milk, he goes
+to buy milk and you have
+
+279
+00:12:44,820 --> 00:12:46,880
+too much milk too.
+
+280
+00:12:46,880 --> 00:12:51,610
+So the way to do this
+in Java is this
+
+281
+00:12:51,610 --> 00:12:53,670
+notion of critical section.
+
+282
+00:12:53,670 --> 00:12:56,380
+Critical section is where only
+one thread can be in it at a
+
+283
+00:12:56,380 --> 00:12:59,200
+given time.
+
+284
+00:12:59,200 --> 00:13:01,670
+The way you can do it with
+Java is, you can put
+
+285
+00:13:01,670 --> 00:13:03,730
+synchronized in front
+of the method.
+
+286
+00:13:03,730 --> 00:13:07,250
+And you do that method, only
+one person can be executing
+
+287
+00:13:07,250 --> 00:13:08,530
+that method at any one time.
+
+288
+00:13:08,530 --> 00:13:11,530
+So in here I would say get
+balance and post so you can
+
+289
+00:13:11,530 --> 00:13:12,990
+synchronize.
+
+290
+00:13:12,990 --> 00:13:16,810
+So when you do that,
+what happens is --
+
+291
+00:13:16,810 --> 00:13:17,700
+so in here you read.
+
+292
+00:13:17,700 --> 00:13:19,050
+No problem, you can
+do this parallel.
+
+293
+00:13:19,050 --> 00:13:20,490
+You can do this in parallel.
+
+294
+00:13:20,490 --> 00:13:25,390
+And then you say, first
+take out post in here.
+
+295
+00:13:25,390 --> 00:13:31,730
+And this [? takes out ?] post.
+Because of synchronization
+
+296
+00:13:31,730 --> 00:13:33,700
+these things can't have an
+order, because this has to
+
+297
+00:13:33,700 --> 00:13:35,000
+happen in some order.
+
+298
+00:13:35,000 --> 00:13:36,720
+Either this happens first
+and this has to
+
+299
+00:13:36,720 --> 00:13:38,090
+finish before this one.
+
+300
+00:13:38,090 --> 00:13:42,540
+At that point you can actually
+-- what happened now?
+
+301
+00:13:46,830 --> 00:13:47,530
+Are we happy?
+
+302
+00:13:47,530 --> 00:13:49,980
+AUDIENCE: [INAUDIBLE].
+
+303
+00:13:49,980 --> 00:13:50,230
+PROFESSOR: Yeah.
+
+304
+00:13:50,230 --> 00:13:53,800
+At least banks realize --
+
+305
+00:13:53,800 --> 00:13:55,870
+bank's book is correct.
+
+306
+00:13:55,870 --> 00:13:57,760
+Because it realizes,
+here is more money.
+
+307
+00:13:57,760 --> 00:14:01,120
+But actually it let you
+take more money than
+
+308
+00:14:01,120 --> 00:14:01,450
+your account had.
+
+309
+00:14:01,450 --> 00:14:03,820
+So at least it got
+that value right.
+
+310
+00:14:03,820 --> 00:14:06,250
+But what happened was, why
+is this happening now?
+
+311
+00:14:06,250 --> 00:14:09,170
+AUDIENCE: You want the
+check covered.
+
+312
+00:14:09,170 --> 00:14:11,900
+PROFESSOR: OK, you want
+to check also.
+
+313
+00:14:11,900 --> 00:14:12,420
+Good.
+
+314
+00:14:12,420 --> 00:14:16,820
+So the key thing is, here
+we didn't check.
+
+315
+00:14:16,820 --> 00:14:19,100
+So you have a negative bank
+balance happening.
+
+316
+00:14:19,100 --> 00:14:22,490
+So this is a problem
+with atomacity.
+
+317
+00:14:22,490 --> 00:14:24,760
+Because synchronized
+methods execute the
+
+318
+00:14:24,760 --> 00:14:25,860
+body at atomic units.
+
+319
+00:14:25,860 --> 00:14:28,860
+So when that happens, the entire
+thing of body happens
+
+320
+00:14:28,860 --> 00:14:30,880
+without anybody else
+[? modifying. ?]
+
+321
+00:14:30,880 --> 00:14:32,590
+That's the only thing that's
+happening at any given time.
+
+322
+00:14:35,170 --> 00:14:37,540
+The code read [UNINTELLIGIBLE]
+
+323
+00:14:37,540 --> 00:14:41,550
+you chose is probably too
+small in this case.
+
+324
+00:14:41,550 --> 00:14:45,140
+What we need to do is, we
+need to basically have
+
+325
+00:14:45,140 --> 00:14:48,090
+synchronizing not on the
+method but a lot more
+
+326
+00:14:48,090 --> 00:14:49,330
+[UNINTELLIGIBLE] in there,
+so you have to do block
+
+327
+00:14:49,330 --> 00:14:50,920
+synchronization.
+
+328
+00:14:50,920 --> 00:14:53,470
+So synchronized keywords
+actually work like this too.
+
+329
+00:14:53,470 --> 00:14:55,510
+You can say instead of doing
+a method, you can just
+
+330
+00:14:55,510 --> 00:14:58,800
+synchronize account and all
+those things happen
+
+331
+00:14:58,800 --> 00:15:04,130
+synchronously within
+that block.
+
+332
+00:15:04,130 --> 00:15:07,060
+So, now what we have done
+is we have built a
+
+333
+00:15:07,060 --> 00:15:08,310
+bigger atomic unit.
+
+334
+00:15:11,580 --> 00:15:13,640
+So here's the programming
+here.
+
+335
+00:15:17,060 --> 00:15:20,250
+So here's the synchronized
+unit in here.
+
+336
+00:15:20,250 --> 00:15:25,140
+So what we did was, we say
+instead of these synchronized
+
+337
+00:15:25,140 --> 00:15:27,270
+and these synchronize
+separately, both of these
+
+338
+00:15:27,270 --> 00:15:29,230
+computations have to
+happen atomically.
+
+339
+00:15:29,230 --> 00:15:32,180
+So when I check our
+bank balance, we
+
+340
+00:15:32,180 --> 00:15:34,350
+can't do anything else.
+
+341
+00:15:34,350 --> 00:15:35,460
+So now what happens?
+
+342
+00:15:35,460 --> 00:15:39,610
+So yeah, in this situation
+you're reading, reading, and
+
+343
+00:15:39,610 --> 00:15:43,160
+you get synchronized account
+in here, and I do account
+
+344
+00:15:43,160 --> 00:15:45,750
+balance plus [? well ?]
+
+345
+00:15:45,750 --> 00:15:47,790
+and post the account.
+
+346
+00:15:47,790 --> 00:15:51,540
+So in here I go to
+10, I do that.
+
+347
+00:15:51,540 --> 00:15:54,750
+If I start the other one here,
+I have to wait till that
+
+348
+00:15:54,750 --> 00:15:58,390
+entire synchronization is
+over before I do that.
+
+349
+00:15:58,390 --> 00:16:02,430
+Of course, I don't have enough
+balance, so I throw exception.
+
+350
+00:16:02,430 --> 00:16:03,680
+Are we still happy?
+
+351
+00:16:05,940 --> 00:16:07,190
+Is there issue on this one?
+
+352
+00:16:10,740 --> 00:16:15,030
+I mean, I guess -- assume you
+can do something clever, but I
+
+353
+00:16:15,030 --> 00:16:15,940
+haven't done that.
+
+354
+00:16:15,940 --> 00:16:18,150
+But there's one issue in here.
+
+355
+00:16:18,150 --> 00:16:22,260
+Which, when you start it's
+just, balance is 100.
+
+356
+00:16:22,260 --> 00:16:23,620
+So in this one, say
+balance is 100.
+
+357
+00:16:23,620 --> 00:16:27,320
+You go type it and then voila,
+you type it and then, sorry, I
+
+358
+00:16:27,320 --> 00:16:28,590
+don't have money.
+
+359
+00:16:28,590 --> 00:16:30,640
+So that's not nice, because if
+you've got the balance you
+
+360
+00:16:30,640 --> 00:16:31,840
+should be able to get that.
+
+361
+00:16:31,840 --> 00:16:32,740
+So how we deal with that?
+
+362
+00:16:32,740 --> 00:16:40,167
+AUDIENCE: [INAUDIBLE PHRASE].
+
+363
+00:16:47,100 --> 00:16:50,490
+PROFESSOR: So that's probably
+the best solution to that
+
+364
+00:16:50,490 --> 00:16:51,900
+because we can only
+log into one.
+
+365
+00:16:51,900 --> 00:16:55,330
+But in this example I assume
+what we are doing.
+
+366
+00:16:55,330 --> 00:16:57,253
+How can we deal with this one?
+
+367
+00:16:57,253 --> 00:16:59,188
+AUDIENCE: There are two
+ways of doing it.
+
+368
+00:16:59,188 --> 00:17:01,283
+One is to put the whole thing
+[INAUDIBLE PHRASE] section.
+
+369
+00:17:01,283 --> 00:17:03,250
+The other way is to notify
+somebody that the
+
+370
+00:17:03,250 --> 00:17:06,720
+[UNINTELLIGIBLE PHRASE].
+
+371
+00:17:06,720 --> 00:17:08,790
+PROFESSOR:
+[UNINTELLIGIBLE PHRASE].
+
+372
+00:17:08,790 --> 00:17:10,590
+So what I can do is I can
+say OK, wait a minute.
+
+373
+00:17:10,590 --> 00:17:12,060
+I am actually going to
+make the critical
+
+374
+00:17:12,060 --> 00:17:13,520
+section even bigger.
+
+375
+00:17:13,520 --> 00:17:18,970
+So now I print the balance
+before I do that.
+
+376
+00:17:18,970 --> 00:17:20,200
+So the entire thing is
+critical section.
+
+377
+00:17:20,200 --> 00:17:23,955
+I print the balance off
+and then go ahead
+
+378
+00:17:23,955 --> 00:17:24,270
+and withdraw that.
+
+379
+00:17:24,270 --> 00:17:25,940
+So what might happen
+in this case?
+
+380
+00:17:25,940 --> 00:17:28,990
+AUDIENCE: [INAUDIBLE PHRASE].
+
+381
+00:17:32,040 --> 00:17:32,430
+PROFESSOR: Yeah.
+
+382
+00:17:32,430 --> 00:17:33,810
+That's the issue of a little
+bit of waiting.
+
+383
+00:17:33,810 --> 00:17:34,840
+So what happens is, in here.
+
+384
+00:17:34,840 --> 00:17:38,520
+You do this one, and you do
+synchronized account.
+
+385
+00:17:38,520 --> 00:17:41,590
+And you put the balance and
+other one do synchronized and
+
+386
+00:17:41,590 --> 00:17:43,090
+you ask the question.
+
+387
+00:17:43,090 --> 00:17:43,770
+In here.
+
+388
+00:17:43,770 --> 00:17:46,770
+And you start thinking.
+
+389
+00:17:46,770 --> 00:17:49,300
+We can start thinking that my
+machine is not responsive,
+
+390
+00:17:49,300 --> 00:17:51,420
+it's just waiting for the
+critical section started.
+
+391
+00:17:51,420 --> 00:17:52,720
+[UNINTELLIGIBLE] and you
+have this [? IOUN ?]
+
+392
+00:17:52,720 --> 00:17:54,040
+sitting in the middle.
+
+393
+00:17:54,040 --> 00:17:55,650
+That's not good either.
+
+394
+00:17:55,650 --> 00:17:56,640
+So he has a performance issue.
+
+395
+00:17:56,640 --> 00:17:58,940
+So that's not a good
+way of doing that.
+
+396
+00:17:58,940 --> 00:18:00,870
+So you don't get any
+response in here.
+
+397
+00:18:00,870 --> 00:18:03,730
+So you can make this
+atomic [? radius ?]
+
+398
+00:18:03,730 --> 00:18:06,200
+but there's a price you'll
+pay by making it
+
+399
+00:18:06,200 --> 00:18:07,450
+[UNINTELLIGIBLE PHRASE] large.
+
+400
+00:18:10,470 --> 00:18:12,710
+So here's another thing
+we want to do.
+
+401
+00:18:12,710 --> 00:18:15,250
+I want to do something that can
+transfer account balance
+
+402
+00:18:15,250 --> 00:18:18,130
+from one account to another.
+
+403
+00:18:18,130 --> 00:18:20,580
+So I might do that if I have a
+method in here to transfer
+
+404
+00:18:20,580 --> 00:18:21,140
+[UNINTELLIGIBLE]
+
+405
+00:18:21,140 --> 00:18:22,080
+account, this amount.
+
+406
+00:18:22,080 --> 00:18:26,030
+So what I do is, I synchronize
+from account.
+
+407
+00:18:26,030 --> 00:18:28,940
+I say, I get balance in here.
+
+408
+00:18:32,640 --> 00:18:35,350
+If the balance is available,
+I can synchronize the two
+
+409
+00:18:35,350 --> 00:18:36,600
+accounts and force it there.
+
+410
+00:18:41,790 --> 00:18:45,010
+See any problems?
+
+411
+00:18:45,010 --> 00:18:46,680
+So let's see what happenes.
+
+412
+00:18:46,680 --> 00:18:50,470
+So assume I want to transfer
+10 to Ben's account and Ben
+
+413
+00:18:50,470 --> 00:18:53,400
+wants to transfer 20 to
+Alyssa's account.
+
+414
+00:18:53,400 --> 00:18:56,420
+So what happens is,
+this goes --
+
+415
+00:18:56,420 --> 00:19:01,250
+get the value in here, and
+you synchronize to
+
+416
+00:19:01,250 --> 00:19:05,160
+two and say OK, great.
+
+417
+00:19:05,160 --> 00:19:11,020
+Now what happens is, in here,
+in from, I am holding a
+
+418
+00:19:11,020 --> 00:19:11,860
+Alyssa's account.
+
+419
+00:19:11,860 --> 00:19:14,030
+There I am holding
+Ben's account.
+
+420
+00:19:14,030 --> 00:19:15,730
+Now, inside I want to
+synchronize for Alyssa.
+
+421
+00:19:15,730 --> 00:19:17,630
+And I'm still [UNINTELLIGIBLE]
+when I --
+
+422
+00:19:17,630 --> 00:19:18,480
+wait until Alyssa
+got released.
+
+423
+00:19:18,480 --> 00:19:20,400
+And he says I want to wait
+till Ben got released.
+
+424
+00:19:20,400 --> 00:19:23,100
+And nobody's going to release,
+and you're hung.
+
+425
+00:19:23,100 --> 00:19:25,770
+You are in what you call
+a deadlock situation.
+
+426
+00:19:25,770 --> 00:19:27,020
+That's a deadlock.
+
+427
+00:19:30,360 --> 00:19:32,690
+So you have to be very careful
+when you do synchronizing.
+
+428
+00:19:32,690 --> 00:19:36,830
+If you do multiple
+synchronization, the easiest
+
+429
+00:19:36,830 --> 00:19:38,820
+thing you can do is, you
+do it in some order.
+
+430
+00:19:38,820 --> 00:19:40,100
+And end up in a a deadlock
+situation.
+
+431
+00:19:40,100 --> 00:19:46,470
+This is a very common way of
+parallel programs doing that.
+
+432
+00:19:46,470 --> 00:19:50,390
+So how to avoid deadlock?
+
+433
+00:19:50,390 --> 00:19:54,460
+Because deadlock is, there's
+a cycle in locking graph.
+
+434
+00:19:54,460 --> 00:19:56,330
+So somebody's going to lock
+somebody, he's going to lock
+
+435
+00:19:56,330 --> 00:19:58,150
+that person, and we
+have a cycle.
+
+436
+00:19:58,150 --> 00:20:01,620
+You can end up in deadlock
+situation.
+
+437
+00:20:01,620 --> 00:20:06,260
+So standard solution for that
+is, you take locks in some
+
+438
+00:20:06,260 --> 00:20:08,580
+kind of canonical order.
+
+439
+00:20:08,580 --> 00:20:10,390
+You don't take in
+arbitary order.
+
+440
+00:20:10,390 --> 00:20:14,080
+So it's some kind of a -- you
+have some base in, OK, if you
+
+441
+00:20:14,080 --> 00:20:17,740
+are taking this lock, you have
+to have, after that, you can
+
+442
+00:20:17,740 --> 00:20:20,580
+take a higher order lock.
+
+443
+00:20:20,580 --> 00:20:22,390
+So you have to have some
+kind of order in here.
+
+444
+00:20:22,390 --> 00:20:24,600
+Acquire in increasing
+order and release
+
+445
+00:20:24,600 --> 00:20:25,475
+in decreasing order.
+
+446
+00:20:25,475 --> 00:20:29,190
+So you have some kind
+of force in here.
+
+447
+00:20:29,190 --> 00:20:31,640
+This ensures deadlock freedom
+most of the time, but it's not
+
+448
+00:20:31,640 --> 00:20:32,820
+that easy to do a
+lot of the time.
+
+449
+00:20:32,820 --> 00:20:36,320
+Because your program might not
+fit into this nice ordering a
+
+450
+00:20:36,320 --> 00:20:39,940
+lot of times, and then sometimes
+you realize that you
+
+451
+00:20:39,940 --> 00:20:42,770
+had locked something and at that
+time it's too late when
+
+452
+00:20:42,770 --> 00:20:43,350
+you realize it.
+
+453
+00:20:43,350 --> 00:20:45,100
+And then it has a
+different order.
+
+454
+00:20:45,100 --> 00:20:48,630
+So this is, you have to sometime
+do some changes to
+
+455
+00:20:48,630 --> 00:20:50,540
+basically make the program
+work like this.
+
+456
+00:20:50,540 --> 00:20:54,180
+So in here, what you can do
+is, in the program you can
+
+457
+00:20:54,180 --> 00:21:00,220
+associate some kind of a rank,
+and when you put in account,
+
+458
+00:21:00,220 --> 00:21:02,200
+you put the rank to the
+account number.
+
+459
+00:21:02,200 --> 00:21:04,210
+So you have some kind
+of ordering in here.
+
+460
+00:21:04,210 --> 00:21:08,570
+Then what you have is, you
+always get the first, highest
+
+461
+00:21:08,570 --> 00:21:09,920
+rank one before you
+go the next one.
+
+462
+00:21:09,920 --> 00:21:11,520
+So there's some ordering
+in here.
+
+463
+00:21:11,520 --> 00:21:14,995
+So at least then we'll be at
+least forced into some
+
+464
+00:21:14,995 --> 00:21:16,442
+ordering in here.
+
+465
+00:21:16,442 --> 00:21:19,190
+AUDIENCE: Is there a way of
+[UNINTELLIGIBLE PHRASE]
+
+466
+00:21:19,190 --> 00:21:20,660
+deadlock [INAUDIBLE PHRASE].
+
+467
+00:21:23,550 --> 00:21:25,470
+PROFESSOR: Not statically.
+
+468
+00:21:25,470 --> 00:21:28,290
+Because most of the time that
+means you have to know all the
+
+469
+00:21:28,290 --> 00:21:31,710
+possible control profile,
+to do that.
+
+470
+00:21:31,710 --> 00:21:36,130
+And, for example, there are some
+tools that can -- because
+
+471
+00:21:36,130 --> 00:21:40,070
+you might know that, for
+example, assume you are trying
+
+472
+00:21:40,070 --> 00:21:43,040
+to enforce some ordering
+of locks.
+
+473
+00:21:43,040 --> 00:21:47,260
+But it's not the software, it's
+the locking software,
+
+474
+00:21:47,260 --> 00:21:48,080
+that doesn't know about those.
+
+475
+00:21:48,080 --> 00:21:50,680
+You can actually write a locking
+software that will
+
+476
+00:21:50,680 --> 00:21:53,460
+tell you, like look, you are
+trying to acquire locking out
+
+477
+00:21:53,460 --> 00:21:56,060
+of order, out of this
+locking order.
+
+478
+00:21:56,060 --> 00:21:58,820
+Most of the time you might be
+OK because it might not hit,
+
+479
+00:21:58,820 --> 00:22:00,640
+but [? we assume ?] that if
+you are doing unsafe thing
+
+480
+00:22:00,640 --> 00:22:01,350
+that might work, so.
+
+481
+00:22:01,350 --> 00:22:05,130
+So you can put some dynamic
+checks that might warn you
+
+482
+00:22:05,130 --> 00:22:06,730
+that you might be in a
+situation, but it doesn't
+
+483
+00:22:06,730 --> 00:22:07,520
+guarantee you.
+
+484
+00:22:07,520 --> 00:22:09,800
+So deadlock is something, you
+have to basically -- there's
+
+485
+00:22:09,800 --> 00:22:11,360
+no nice tools for.
+
+486
+00:22:11,360 --> 00:22:14,030
+Basically, it's almost a
+software [? methodology. ?]
+
+487
+00:22:14,030 --> 00:22:15,840
+So, for example, you can impose
+a software methodology
+
+488
+00:22:15,840 --> 00:22:19,370
+to say, I'm following this
+convention and that will
+
+489
+00:22:19,370 --> 00:22:20,770
+guarantee me deadlock freedom.
+
+490
+00:22:20,770 --> 00:22:22,470
+So one good convention
+is this, basically
+
+491
+00:22:22,470 --> 00:22:24,820
+some order in here.
+
+492
+00:22:24,820 --> 00:22:27,620
+So, another interesting thing
+and hard thing is race
+
+493
+00:22:27,620 --> 00:22:30,390
+conditions.
+
+494
+00:22:30,390 --> 00:22:33,570
+These are non-deterministic
+timing dependent, and cause
+
+495
+00:22:33,570 --> 00:22:37,550
+data corruption, crashes that
+are impossible to detect.
+
+496
+00:22:37,550 --> 00:22:41,100
+So the problem with race
+conditions is the minute you
+
+497
+00:22:41,100 --> 00:22:44,570
+put your debug, or put any
+debugging things, race
+
+498
+00:22:44,570 --> 00:22:46,970
+conditions goes away.
+
+499
+00:22:46,970 --> 00:22:49,490
+It comes back when you are in
+it all and you're debugging
+
+500
+00:22:49,490 --> 00:22:49,940
+[UNINTELLIGIBLE PHRASE].
+
+501
+00:22:49,940 --> 00:22:53,300
+It happens again because
+it's basically
+
+502
+00:22:53,300 --> 00:22:54,080
+an independent thing.
+
+503
+00:22:54,080 --> 00:22:57,050
+In fact, I have this
+interesting
+
+504
+00:22:57,050 --> 00:22:57,650
+experience with myself.
+
+505
+00:22:57,650 --> 00:22:59,910
+A long time ago I was working
+at Microsoft and
+
+506
+00:22:59,910 --> 00:23:01,230
+I worked two summers.
+
+507
+00:23:01,230 --> 00:23:06,540
+In one summer I was working on
+their LAN manager and network
+
+508
+00:23:06,540 --> 00:23:10,930
+manager, and there's a bug that
+after you run the network
+
+509
+00:23:10,930 --> 00:23:13,410
+manager for some time
+it just freezes.
+
+510
+00:23:13,410 --> 00:23:15,560
+That's not a nice behavior
+to have if you are
+
+511
+00:23:15,560 --> 00:23:18,370
+running your network.
+
+512
+00:23:18,370 --> 00:23:20,330
+That bug lasted the
+entire year.
+
+513
+00:23:20,330 --> 00:23:22,550
+And at the end they had,
+I think, a $2,000
+
+514
+00:23:22,550 --> 00:23:23,930
+bounty on that bug.
+
+515
+00:23:23,930 --> 00:23:26,590
+Because the minute you do
+any instrumentation, the
+
+516
+00:23:26,590 --> 00:23:26,930
+[? bug isn't ?]
+
+517
+00:23:26,930 --> 00:23:28,460
+[UNINTELLIGIBLE]
+
+518
+00:23:28,460 --> 00:23:30,730
+When you have more
+instrumentation and have 100
+
+519
+00:23:30,730 --> 00:23:33,840
+machines running, heavily,
+hitting another machine.
+
+520
+00:23:33,840 --> 00:23:35,310
+Once in a while voila.
+
+521
+00:23:35,310 --> 00:23:36,200
+It freezes.
+
+522
+00:23:36,200 --> 00:23:38,670
+And you have no idea
+why it happened.
+
+523
+00:23:38,670 --> 00:23:41,365
+That was so hard to debug
+because there's nothing you
+
+524
+00:23:41,365 --> 00:23:43,400
+could do, because any time
+you do any changes,
+
+525
+00:23:43,400 --> 00:23:44,650
+the bug goes away.
+
+526
+00:23:49,510 --> 00:23:52,390
+You had to be very careful
+because these things are not
+
+527
+00:23:52,390 --> 00:23:56,160
+easy to find, and happen
+intermittently.
+
+528
+00:23:56,160 --> 00:23:57,390
+And very hard to debug.
+
+529
+00:23:57,390 --> 00:24:01,270
+So having good discipline and
+good design really helps to
+
+530
+00:24:01,270 --> 00:24:02,000
+get rid of it.
+
+531
+00:24:02,000 --> 00:24:04,280
+These are not something you can
+go through like program
+
+532
+00:24:04,280 --> 00:24:06,580
+debugs, it [UNINTELLIGIBLE]
+cycle.
+
+533
+00:24:06,580 --> 00:24:10,110
+If you read that cycle, it's
+a very slow cycle.
+
+534
+00:24:10,110 --> 00:24:13,230
+The best way to do that is get
+the design right first.
+
+535
+00:24:13,230 --> 00:24:15,040
+So what's a data race?
+
+536
+00:24:15,040 --> 00:24:16,630
+So I assume I had this
+program like that.
+
+537
+00:24:16,630 --> 00:24:22,500
+So I read [? hit ?] in there,
+and then I modify
+
+538
+00:24:22,500 --> 00:24:23,710
+and write in this.
+
+539
+00:24:23,710 --> 00:24:25,590
+This doesn't have to be
+in two statements.
+
+540
+00:24:25,590 --> 00:24:25,990
+If we [UNINTELLIGIBLE]
+
+541
+00:24:25,990 --> 00:24:28,790
+same statement, the compiler
+might put it in register,
+
+542
+00:24:28,790 --> 00:24:31,000
+read, update and modify
+and write.
+
+543
+00:24:31,000 --> 00:24:34,540
+So it might just look hits
+equals hits plus 1 and hits
+
+544
+00:24:34,540 --> 00:24:36,340
+equals hits plus
+1 on the cycle.
+
+545
+00:24:36,340 --> 00:24:37,640
+Doesn't have to
+[? have temporary. ?]
+
+546
+00:24:37,640 --> 00:24:38,590
+and in your call.
+
+547
+00:24:38,590 --> 00:24:41,020
+Because the compiler puts a
+[? temporary ?] in there.
+
+548
+00:24:41,020 --> 00:24:44,840
+And if you execute like
+this you're happy.
+
+549
+00:24:44,840 --> 00:24:48,480
+But if you get excluded in this
+order, I don't get at it
+
+550
+00:24:48,480 --> 00:24:51,170
+two times, I only get it because
+I read hit the order
+
+551
+00:24:51,170 --> 00:24:52,010
+given values.
+
+552
+00:24:52,010 --> 00:24:53,210
+This adds once and writes.
+
+553
+00:24:53,210 --> 00:24:54,820
+And this also adds one to
+[? the ordinary value ?]
+
+554
+00:24:54,820 --> 00:24:55,630
+and write.
+
+555
+00:24:55,630 --> 00:24:57,695
+So I only get it increased
+by one and you
+
+556
+00:24:57,695 --> 00:24:59,240
+are in a bad situation.
+
+557
+00:25:03,930 --> 00:25:06,030
+The problems with data races
+is this non-determinism.
+
+558
+00:25:10,410 --> 00:25:11,470
+We ensured [UNINTELLIGIBLE]
+
+559
+00:25:11,470 --> 00:25:12,430
+that this mutual exclusion.
+
+560
+00:25:12,430 --> 00:25:16,660
+So if you have same data access,
+make sure that they
+
+561
+00:25:16,660 --> 00:25:20,560
+are in the mutual
+exclude region.
+
+562
+00:25:20,560 --> 00:25:25,150
+You can basically see that it
+has access to old objects.
+
+563
+00:25:25,150 --> 00:25:30,470
+Before you go there, one
+interesting thing is this is
+
+564
+00:25:30,470 --> 00:25:32,320
+just a problem with all parallel
+programs. So at the
+
+565
+00:25:32,320 --> 00:25:34,990
+beginning you say OK, I'm going
+to have this nice mutual
+
+566
+00:25:34,990 --> 00:25:37,060
+excluded, lock ordered
+program.
+
+567
+00:25:37,060 --> 00:25:38,500
+You write this.
+
+568
+00:25:38,500 --> 00:25:42,890
+It worked correctly,
+beautifully, but run dog slow
+
+569
+00:25:42,890 --> 00:25:45,150
+because now we are huge
+critical sections.
+
+570
+00:25:45,150 --> 00:25:47,560
+Everybody's waiting in data and
+then someone says I want
+
+571
+00:25:47,560 --> 00:25:49,810
+to run fast. I think I
+don't need this lock.
+
+572
+00:25:49,810 --> 00:25:51,980
+It doesn't seem to be, so keep
+removing locks, making
+
+573
+00:25:51,980 --> 00:25:54,560
+critical sections smaller
+and stuff like that.
+
+574
+00:25:54,560 --> 00:25:56,920
+That's where all the problems
+start cropping up, because all
+
+575
+00:25:56,920 --> 00:25:58,780
+this nice design goes
+to the dogs when you
+
+576
+00:25:58,780 --> 00:25:59,840
+have performance issues.
+
+577
+00:25:59,840 --> 00:26:02,520
+So when you realize that, you
+want to write this nice
+
+578
+00:26:02,520 --> 00:26:05,980
+program, nice large critical
+sections, stuff like that.
+
+579
+00:26:05,980 --> 00:26:08,020
+The programs will
+work correctly.
+
+580
+00:26:08,020 --> 00:26:09,938
+But run like a dog because now
+it's sequential in many cases
+
+581
+00:26:09,938 --> 00:26:11,520
+because you are doing this.
+
+582
+00:26:11,520 --> 00:26:13,500
+Then you go and say OK, I
+want to run parallel.
+
+583
+00:26:13,500 --> 00:26:15,320
+Eh, this is OK.
+
+584
+00:26:15,320 --> 00:26:17,400
+That's when problems
+start creeping up.
+
+585
+00:26:17,400 --> 00:26:22,140
+So make sure that when you get
+a discipline, as you can go
+
+586
+00:26:22,140 --> 00:26:24,160
+into the performance improvement
+but you still
+
+587
+00:26:24,160 --> 00:26:26,090
+maintain at least some
+part of discipline.
+
+588
+00:26:26,090 --> 00:26:28,740
+That's the hard thing.
+
+589
+00:26:28,740 --> 00:26:31,550
+So I want to switch gears a
+little bit to talk about a
+
+590
+00:26:31,550 --> 00:26:32,630
+classic problem.
+
+591
+00:26:32,630 --> 00:26:34,960
+It's called dining philosophers
+problem.
+
+592
+00:26:34,960 --> 00:26:37,270
+So, there are five philosophers
+
+593
+00:26:37,270 --> 00:26:38,890
+sitting around a table.
+
+594
+00:26:38,890 --> 00:26:39,710
+Between each of the
+
+595
+00:26:39,710 --> 00:26:41,040
+philosophers there's a chopstick.
+
+596
+00:26:43,650 --> 00:26:45,780
+So each philosopher
+do two things.
+
+597
+00:26:45,780 --> 00:26:50,690
+He thinks -- he or she thinks
+or he or she eats.
+
+598
+00:26:50,690 --> 00:26:52,760
+So the philosopher thinks
+for a while.
+
+599
+00:26:52,760 --> 00:26:55,480
+And then the philosopher
+is hungry.
+
+600
+00:26:55,480 --> 00:26:59,530
+She stops thinking and she
+picks up a left and right
+
+601
+00:26:59,530 --> 00:27:04,260
+chopstick, eats, and puts
+the chopsticks down.
+
+602
+00:27:04,260 --> 00:27:07,910
+He cannot eat until they have
+both chopsticks right in hand
+
+603
+00:27:07,910 --> 00:27:10,370
+because you can't eat
+with one chopstick.
+
+604
+00:27:10,370 --> 00:27:12,330
+So you have to wait until
+you get both chopsticks.
+
+605
+00:27:12,330 --> 00:27:15,530
+When you are done, you put
+the chopsticks down.
+
+606
+00:27:19,200 --> 00:27:21,240
+Then after you're done, you go
+back to thinking again for a
+
+607
+00:27:21,240 --> 00:27:23,730
+while and come back to eating.
+
+608
+00:27:23,730 --> 00:27:25,000
+That's the classic problem.
+
+609
+00:27:25,000 --> 00:27:26,890
+So how to write that,
+record that?
+
+610
+00:27:26,890 --> 00:27:30,280
+You can have philosopher
+extend thread, and
+
+611
+00:27:30,280 --> 00:27:30,590
+[UNINTELLIGIBLE PHRASE]
+
+612
+00:27:30,590 --> 00:27:37,490
+philosopher you have a chopstick
+in here, and instead
+
+613
+00:27:37,490 --> 00:27:40,200
+of philosopher buy left
+and right chopstick.
+
+614
+00:27:40,200 --> 00:27:43,880
+Then what you do is you create
+a number of philosophers and
+
+615
+00:27:43,880 --> 00:27:46,850
+you get a new chopstick and
+start to the left and you go
+
+616
+00:27:46,850 --> 00:27:48,960
+to the other philosophers
+assigning left and right
+
+617
+00:27:48,960 --> 00:27:51,430
+chopsticks in here, and
+then you start the
+
+618
+00:27:51,430 --> 00:27:52,160
+philosophers going.
+
+619
+00:27:52,160 --> 00:27:55,230
+So you just set up a chopstick
+[? on it, ?]
+
+620
+00:27:55,230 --> 00:28:01,200
+and then you share the chopstick
+and do that.
+
+621
+00:28:01,200 --> 00:28:02,790
+So here is what a
+[UNINTELLIGIBLE]
+
+622
+00:28:02,790 --> 00:28:03,790
+philosopher does.
+
+623
+00:28:03,790 --> 00:28:07,900
+So I am here, I'm taking my left
+chopstick, I'm taking my
+
+624
+00:28:07,900 --> 00:28:12,150
+right chopstick and I'm going to
+eat and I'm done eating and
+
+625
+00:28:12,150 --> 00:28:13,260
+I'm putting down there.
+
+626
+00:28:13,260 --> 00:28:14,120
+What will happen in this one?
+
+627
+00:28:14,120 --> 00:28:18,555
+AUDIENCE: [INAUDIBLE PHRASE].
+
+628
+00:28:22,990 --> 00:28:24,430
+PROFESSOR: In what situation,
+[UNINTELLIGIBLE PHRASE].
+
+629
+00:28:28,160 --> 00:28:30,280
+[UNINTELLIGIBLE PHRASE],
+but right
+
+630
+00:28:30,280 --> 00:28:31,440
+technical though is different.
+
+631
+00:28:31,440 --> 00:28:35,880
+AUDIENCE: [INAUDIBLE PHRASE].
+
+632
+00:28:35,880 --> 00:28:36,960
+PROFESSOR: You end up in
+a deadlock because
+
+633
+00:28:36,960 --> 00:28:37,270
+[UNINTELLIGIBLE PHRASE]
+
+634
+00:28:37,270 --> 00:28:41,025
+we will pick up the left
+chopstick suddenly, and they
+
+635
+00:28:41,025 --> 00:28:42,010
+all try to take the
+right chopstick.
+
+636
+00:28:42,010 --> 00:28:44,170
+There's no right chopstick and
+nobody has right chopstick and
+
+637
+00:28:44,170 --> 00:28:46,300
+everybody waiting for somebody
+to drop the chopstick, that's
+
+638
+00:28:46,300 --> 00:28:47,830
+not going to happen.
+
+639
+00:28:47,830 --> 00:28:50,320
+So you have a problem.
+
+640
+00:28:50,320 --> 00:28:53,640
+Second way to solve that is
+this, and you say OK.
+
+641
+00:28:53,640 --> 00:28:54,780
+The problem is everybody
+trying to
+
+642
+00:28:54,780 --> 00:28:56,150
+pick up this chopstick.
+
+643
+00:28:56,150 --> 00:29:01,670
+I will put unique variable
+table, unique object table.
+
+644
+00:29:01,670 --> 00:29:05,750
+If anybody want to eat, I
+need to own the table.
+
+645
+00:29:05,750 --> 00:29:06,480
+What will this do?
+
+646
+00:29:06,480 --> 00:29:10,300
+AUDIENCE: [INAUDIBLE PHRASE].
+
+647
+00:29:10,300 --> 00:29:14,830
+AUDIENCE: It prevents two people
+who wouldn't normally
+
+648
+00:29:14,830 --> 00:29:16,970
+interact from eating
+at the same table.
+
+649
+00:29:16,970 --> 00:29:17,540
+PROFESSOR: Yes.
+
+650
+00:29:17,540 --> 00:29:20,220
+So what happens is only one
+person can eat at a time.
+
+651
+00:29:20,220 --> 00:29:23,430
+Which works perfectly,
+beautifully, sequential.
+
+652
+00:29:23,430 --> 00:29:28,375
+So, you wonder if one
+philosopher eating, the person
+
+653
+00:29:28,375 --> 00:29:30,290
+or [? posit ?] can eat.
+
+654
+00:29:30,290 --> 00:29:32,230
+But you're not allowed
+to because the
+
+655
+00:29:32,230 --> 00:29:33,050
+chopstick in there.
+
+656
+00:29:33,050 --> 00:29:36,200
+So one way of doing that is
+sequentialized large regions,
+
+657
+00:29:36,200 --> 00:29:38,440
+with putting these critical
+sections in there.
+
+658
+00:29:38,440 --> 00:29:40,050
+This works.
+
+659
+00:29:40,050 --> 00:29:42,420
+Not greatly, but it will work.
+
+660
+00:29:42,420 --> 00:29:45,030
+Another thing is, of course,
+what I point out to have some
+
+661
+00:29:45,030 --> 00:29:46,550
+kind of ordering.
+
+662
+00:29:46,550 --> 00:29:51,120
+So you put some position
+ordering and saying if you are
+
+663
+00:29:51,120 --> 00:29:55,910
+sitting in even position, you're
+the first to pick the
+
+664
+00:29:55,910 --> 00:29:57,490
+left one, if you are putting
+an odd position, you're
+
+665
+00:29:57,490 --> 00:29:58,350
+supposed to pick
+the right one.
+
+666
+00:29:58,350 --> 00:30:01,640
+So in some sense, it got
+[UNINTELLIGIBLE PHRASE]
+
+667
+00:30:01,640 --> 00:30:04,460
+go here, the person go here,
+so only one can get that so
+
+668
+00:30:04,460 --> 00:30:05,240
+you don't have ordering.
+
+669
+00:30:05,240 --> 00:30:07,900
+At least between those two
+you can maintain that.
+
+670
+00:30:07,900 --> 00:30:09,895
+So you can do something but you
+have to figure out what
+
+671
+00:30:09,895 --> 00:30:11,250
+the right ordering in here.
+
+672
+00:30:11,250 --> 00:30:13,170
+This is not a linear
+list, linear
+
+673
+00:30:13,170 --> 00:30:14,500
+ordering for this circuit.
+
+674
+00:30:14,500 --> 00:30:17,160
+But you can copy ordering and
+say OK, look, if you do that
+
+675
+00:30:17,160 --> 00:30:23,380
+this new way, you can run into
+a deadlock situation.
+
+676
+00:30:23,380 --> 00:30:25,780
+There are a lot of types of
+synchronizations in Java, and
+
+677
+00:30:25,780 --> 00:30:28,410
+then tomorrow you learn
+more different type of
+
+678
+00:30:28,410 --> 00:30:34,520
+synchronization with available
+using [UNINTELLIGIBLE PHRASE],
+
+679
+00:30:34,520 --> 00:30:35,770
+so using MPI.
+
+680
+00:30:38,060 --> 00:30:39,620
+But there are a lot of potential
+problems you are
+
+681
+00:30:39,620 --> 00:30:40,370
+worried about.
+
+682
+00:30:40,370 --> 00:30:41,780
+Deadlock you have
+to worry about.
+
+683
+00:30:41,780 --> 00:30:45,480
+Two or more threads stop, wait
+for each other forever.
+
+684
+00:30:45,480 --> 00:30:48,090
+Livelock.
+
+685
+00:30:48,090 --> 00:30:52,230
+What livelock means is two or
+more threads basically trying
+
+686
+00:30:52,230 --> 00:30:54,700
+to do something but never
+made progress.
+
+687
+00:30:54,700 --> 00:30:55,560
+So good example.
+
+688
+00:30:55,560 --> 00:31:00,960
+So assume I go -- it's like
+sometimes you try to cross
+
+689
+00:31:00,960 --> 00:31:03,745
+each other on the road and you
+go into them and say oops, or
+
+690
+00:31:03,745 --> 00:31:06,490
+you both say oops, sorry,
+[UNINTELLIGIBLE]
+
+691
+00:31:06,490 --> 00:31:09,480
+You get into a situation that
+you try to go something, both
+
+692
+00:31:09,480 --> 00:31:11,620
+you start to move a little bit
+and then do that and you keep
+
+693
+00:31:11,620 --> 00:31:14,340
+doing that forever and ever,
+doing it, right.
+
+694
+00:31:14,340 --> 00:31:15,650
+So that can happen.
+
+695
+00:31:15,650 --> 00:31:18,360
+If you program right, you can
+actually try to avoid deadlock
+
+696
+00:31:18,360 --> 00:31:21,800
+by doing that, but both no one
+making forward progress, so
+
+697
+00:31:21,800 --> 00:31:23,050
+that's called livelock.
+
+698
+00:31:25,630 --> 00:31:29,440
+So another thing that's
+called starvation.
+
+699
+00:31:29,440 --> 00:31:31,550
+So the ordering is a
+very good example.
+
+700
+00:31:31,550 --> 00:31:36,230
+So ordering says the higher
+order guy always gets the lock
+
+701
+00:31:36,230 --> 00:31:38,080
+for the lower guy.
+
+702
+00:31:38,080 --> 00:31:40,920
+So assume you have thousands
+of things and everybody's
+
+703
+00:31:40,920 --> 00:31:42,240
+trying to do something.
+
+704
+00:31:42,240 --> 00:31:46,790
+If you have an lower number,
+you probably never get to
+
+705
+00:31:46,790 --> 00:31:49,530
+around to get picked up because
+always if higher order
+
+706
+00:31:49,530 --> 00:31:51,490
+person has, that person
+will get the lock.
+
+707
+00:31:51,490 --> 00:31:53,890
+So if they're ordering
+constraint in there, you can
+
+708
+00:31:53,890 --> 00:31:56,870
+be in situation that some people
+always get and others
+
+709
+00:31:56,870 --> 00:32:00,350
+never get -- there's no fairness
+in that, because when
+
+710
+00:32:00,350 --> 00:32:04,100
+you some ordering constraints.
+
+711
+00:32:04,100 --> 00:32:05,480
+So again, lack of fairness.
+
+712
+00:32:08,740 --> 00:32:11,060
+Of course, race conditions.
+
+713
+00:32:11,060 --> 00:32:17,000
+So you didn't realize that the
+same object is accessed by
+
+714
+00:32:17,000 --> 00:32:20,650
+multiple people without being
+in a particular section.
+
+715
+00:32:20,650 --> 00:32:22,190
+That's the key --
+
+716
+00:32:22,190 --> 00:32:26,350
+I mean don't try to do fancy
+things by letting multiple
+
+717
+00:32:26,350 --> 00:32:27,680
+people have access
+to same thing.
+
+718
+00:32:27,680 --> 00:32:30,760
+This is not much of issue on
+distributed memory machines
+
+719
+00:32:30,760 --> 00:32:34,580
+because there's only you
+access to your memory.
+
+720
+00:32:34,580 --> 00:32:37,420
+But the problem there is if you
+keep values, you suddenly
+
+721
+00:32:37,420 --> 00:32:40,810
+start giving it to everybody and
+say go play, assuming that
+
+722
+00:32:40,810 --> 00:32:42,160
+only one person have
+access to it.
+
+723
+00:32:42,160 --> 00:32:46,530
+So multiple people might be
+modifying it and then what are
+
+724
+00:32:46,530 --> 00:32:47,060
+you going to do.
+
+725
+00:32:47,060 --> 00:32:48,190
+So that issue is there.
+
+726
+00:32:48,190 --> 00:32:50,720
+So when you are doing, using
+data, you got to be very
+
+727
+00:32:50,720 --> 00:32:53,100
+careful who holds it
+and at what time.
+
+728
+00:32:56,040 --> 00:32:59,740
+So, concurrency and parallelism
+are important
+
+729
+00:32:59,740 --> 00:33:05,310
+concepts in comparison beyond
+what we are doing in here.
+
+730
+00:33:05,310 --> 00:33:07,870
+Concurrency can simplify
+programming beyond anything.
+
+731
+00:33:11,560 --> 00:33:14,310
+It's very hard to understand and
+debug concurrent programs.
+
+732
+00:33:14,310 --> 00:33:17,950
+That's the entire reason that we
+are still doing sequential
+
+733
+00:33:17,950 --> 00:33:20,670
+programming and this is entire
+reason that multiple people
+
+734
+00:33:20,670 --> 00:33:24,380
+are looking at it in a very --
+people are scared because
+
+735
+00:33:24,380 --> 00:33:26,350
+writing and getting concurrent
+program right is probably an
+
+736
+00:33:26,350 --> 00:33:28,630
+order of magnitude harder than
+trying to get sequential
+
+737
+00:33:28,630 --> 00:33:29,660
+programs right.
+
+738
+00:33:29,660 --> 00:33:32,660
+This is issue.
+
+739
+00:33:32,660 --> 00:33:35,630
+Parallelism is critical
+for high performance.
+
+740
+00:33:35,630 --> 00:33:38,060
+I mean, it was huge for
+supercomputers in national
+
+741
+00:33:38,060 --> 00:33:40,050
+labs and now it's becoming
+everybody's
+
+742
+00:33:40,050 --> 00:33:41,300
+issue because of multicore.
+
+743
+00:33:44,090 --> 00:33:46,610
+Basically, you need to
+understand concurrent and
+
+744
+00:33:46,610 --> 00:33:48,510
+concurrence issues, it's the
+basis of writing parallel
+
+745
+00:33:48,510 --> 00:33:52,670
+programs. So, you will run
+into all these issues,
+
+746
+00:33:52,670 --> 00:33:56,770
+deadlock, you can deadlock on
+limited access on Cell, you
+
+747
+00:33:56,770 --> 00:33:58,720
+can deadlock on messages.
+
+748
+00:33:58,720 --> 00:34:00,510
+So everybody is waiting for
+somebody else to send you a
+
+749
+00:34:00,510 --> 00:34:04,670
+message and nobody's sending a
+message because that other guy
+
+750
+00:34:04,670 --> 00:34:05,230
+will send you a message.
+
+751
+00:34:05,230 --> 00:34:05,730
+You can [? easier ?]
+
+752
+00:34:05,730 --> 00:34:08,600
+do that in a message in there,
+and a lot of times you can
+
+753
+00:34:08,600 --> 00:34:11,270
+deadlock in that.
+
+754
+00:34:11,270 --> 00:34:14,146
+So this lecture we kind of did
+concurrent programming, how to
+
+755
+00:34:14,146 --> 00:34:15,380
+write a concurrent program.
+
+756
+00:34:15,380 --> 00:34:17,640
+We are going to switch gears
+and start going into
+
+757
+00:34:17,640 --> 00:34:19,700
+parallelism next.
+
+758
+00:34:19,700 --> 00:34:22,590
+But keep these issues in my
+mind when you are writing
+
+759
+00:34:22,590 --> 00:34:27,620
+parallel programs. Have things
+like 617 we had very good
+
+760
+00:34:27,620 --> 00:34:32,340
+discipline on testing and
+methodology of development.
+
+761
+00:34:32,340 --> 00:34:35,180
+You probably won't have kind
+of discipline on how to do
+
+762
+00:34:35,180 --> 00:34:36,260
+parallelism.
+
+763
+00:34:36,260 --> 00:34:38,810
+So there are many ways --
+
+764
+00:34:38,810 --> 00:34:40,810
+next few lectures we'll cover
+many different ways of doing
+
+765
+00:34:40,810 --> 00:34:43,010
+parallelism.
+
+766
+00:34:43,010 --> 00:34:46,210
+Parallelism's a very powerful
+tool, but if you don't use it
+
+767
+00:34:46,210 --> 00:34:49,650
+in a disciplined way, you will
+not be able to debug these
+
+768
+00:34:49,650 --> 00:34:50,620
+[UNINTELLIGIBLE]
+
+769
+00:34:50,620 --> 00:34:54,300
+I mean you run into bugs that
+are so subtle, so difficult
+
+770
+00:34:54,300 --> 00:34:57,410
+it's very hard to find.
+
+771
+00:34:57,410 --> 00:34:58,530
+You don't want in
+that situation.
+
+772
+00:34:58,530 --> 00:35:01,820
+So having a good design, good
+disciplining programming will
+
+773
+00:35:01,820 --> 00:35:06,250
+actually get you working
+correct program.
+
+774
+00:35:06,250 --> 00:35:06,960
+Good.
+
+775
+00:35:06,960 --> 00:35:09,630
+That's all I have for today.
+
+776
+00:35:09,630 --> 00:35:12,520
+You can spend some time
+filling out this one.
+
+777
+00:35:12,520 --> 00:35:16,120
+Just put your name down
+and you're done.
